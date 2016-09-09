@@ -8,7 +8,6 @@ package com.i2i.villapursuit.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,7 +46,7 @@ public class User {
 	@Column(name = "role")
 	private String role;
 	
-	@OneToOne(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "address_id")
 	private Address address;
 	

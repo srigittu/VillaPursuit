@@ -7,7 +7,6 @@ package com.i2i.villapursuit.controller;
 
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 //import javax.validation.Valid;
 
@@ -55,8 +54,9 @@ public class VillaPursuitController {
     }
 
 	@RequestMapping(value="address_form", method=RequestMethod.GET)
-    public String accessAddress(Address address) {
-        return "home";
+    public String accessAddress(Address address, ModelMap model) {
+		model.addAttribute("addAddress", "addressObject");
+		return "home";
     }
 	
     @RequestMapping(value="register_buyer")
