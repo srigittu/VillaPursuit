@@ -15,9 +15,5 @@
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<mapping class="com.i2i.villapursuit.model.User"/>
 		<mapping class="com.i2i.villapursuit.model.Address"/>
-		<mapping class="com.i2i.villapursuit.model.Advertisement"/>
-		<mapping class="com.i2i.villapursuit.model.Facility"/>
-		<mapping class="com.i2i.villapursuit.model.Image"/>
-		<mapping class="com.i2i.villapursuit.model.Review"/>
 	</session-factory>
 </hibernate-configuration>

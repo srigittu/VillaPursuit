@@ -79,15 +79,7 @@ body{
 	height: 150px;
 	width: 350px;
 	padding: 10px;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 14px;
-	font-weight: 400;
 	z-index: 2;
-}
-
-.register span{
-    color: #00ffff
 }
 
 .register h2{
@@ -146,17 +138,17 @@ body{
 	margin-top: 10px;
 }
 
-.editAddress{
+.edit{
 	position: absolute;
-	top: calc(14% - 75px);
-	left: calc(93% - 50px);
+	top: calc(15% - 75px);
+	left: calc(90% - 50px);
 	height: 150px;
 	width: 350px;
 	padding: 10px;
 	z-index: 2;
 }
 
-.editAddress input[type=submit]{
+.edit input[type=submit]{
 	width: 100px;
 	height: 35px;
 	background: #000;
@@ -164,32 +156,6 @@ body{
 	border: 1px solid #010;
 	cursor: pointer;
 	border-radius: 2px;
-	color: #0fffff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 2px;
-	margin-top: 10px;
-}
-
-.postAd{
-	position: absolute;
-	top: calc(14% - 75px);
-	left: calc(93% - 50px);
-	height: 150px;
-	width: 350px;
-	padding: 10px;
-	z-index: 2;
-}
-
-.postAd input[type=submit]{
-	width: 75px;
-	height: 35px;
-	background: #000;
-    opacity: 0.4;
-	border: 1px solid #010;
-	cursor: pointer;
-	border-radius: 75px;
 	color: #0fffff;
 	font-family: 'Exo', sans-serif;
 	font-size: 16px;
@@ -240,6 +206,46 @@ body{
 ::-moz-input-placeholder{
      color: #fff;
 }
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 </style>
 
 <body>
@@ -247,27 +253,11 @@ body{
     <div class="body"></div>
 		<div class="grad"></div>
 		<div class="header">
-			<div>Villa<span>Pursuit</span></div>
+			<div>You are successfully<span>Registered</span></div>
 		</div>
 		<br>
- 	    <div class="postAd">
-		<form action="advertisement_form">
- 			<input type="submit" value="Post Ad">
- 	    </form>
- 	    </div>
- 	    <div class="register">
-		<c:if test="${null != addAddress}">
-			<h2>Add<span>Address!</span></h2>
-                <form:form action="user_address" commandName="address">
-                <form:input path="number" placeholder="Number"/>
-                <form:input path="street" placeholder="Street"/>
-                <form:input path="city" placeholder="City"/>
-                <form:input path="state" placeholder="State"/>
-                <form:input path="pincode" placeholder="Pincode"/>
- 			    <input type="submit" value="Save">
- 			    </form:form>
-		</c:if>
-		</div>
-
+		<div class = "register">
+            <button class="button" style="vertical-align:middle" onclick = "window.location.href='welcome'"><span>Back to Login</span></button>
+        </div>
 </body>
 </html>
