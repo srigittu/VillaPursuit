@@ -1,16 +1,17 @@
-// Copyright (C) 2015 Ideas2IT, Inc.
-// All rights reserved
-
+/**
+ * @author Team #3
+ *
+ * @created 08/09/16 
+ */
 package com.i2i.villapursuit.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,20 +20,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
-/**
- * <p>
- * Model which allows access to properties of Advertisement using getter and setter methods.
- * </p>
- * 
- * @author Team #3
- * 
- * @created 07/09/16
- * 
- */
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "advertisements", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
@@ -52,8 +43,7 @@ public class Advertisement {
     @Column(name = "availability")
     private String availability;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "advertisement_date")
+	@Column(name="date", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable=false, updatable=false)
     private Date date;
     
     @Column(name = "house_type")
@@ -65,39 +55,30 @@ public class Advertisement {
 	@Column(name = "advertisement_count")
     private int advertisementCount;
     
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
 	
-	@OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Facility> facilities = new HashSet<Facility>();
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "facility_id")
+    private Facility facility;
 	
-	@OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Image> images = new HashSet<Image>();
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST)
+    private List<Image> images = new ArrayList<Image>();
 	
-	@OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Review> advertisementReviews = new HashSet<Review>();
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST)
+    private List<Review> advertisementReviews = new ArrayList<Review>();
 	
 	public Advertisement() {
-	}
-
-	public Advertisement(int advertisementId, String title, String status, String availability, Date date, String houseType, String rentType, int advertisementCount,
-			User user, Address address, Set<Facility> facilities, Set<Image> images, Set<Review> advertisementReviews) {
-		this.advertisementId = advertisementId;
-		this.title = title;
-		this.status = status;
-		this.availability = availability;
-		this.date = date;
-		this.advertisementCount = advertisementCount;
-		this.user = null;
-		this.address = null;
-		this.facilities = null;
-		this.images = null;
-		this.advertisementReviews = null;
 	}
 
 	public String getHouseType() {
@@ -132,27 +113,28 @@ public class Advertisement {
 		this.address = address;
 	}
 
-	public Set<Facility> getFacilities() {
-		return facilities;
+	
+	public Facility getFacility() {
+		return facility;
 	}
 
-	public void setFacilities(Set<Facility> facility) {
-		this.facilities.addAll(facility);
+	public void setFacility(Facility facility) {
+		this.facility = facility;
 	}
 
-	public Set<Image> getImages() {
+	public List<Image> getImages() {
 		return images;
 	}
 
-	public void setImages(Set<Image> image) {
-		this.images.addAll(image);
+	public void setImages(List<Image> images) {
+		this.images.addAll(images);
 	}
 
-	public Set<Review> getAdvertisementReviews() {
+	public List<Review> getAdvertisementReviews() {
 		return advertisementReviews;
 	}
 
-	public void setAdvertisementReviews(Set<Review> advertisementReview) {
+	public void setAdvertisementReviews(List<Review> advertisementReviews) {
 		this.advertisementReviews.addAll(advertisementReviews);
 	}
 
@@ -203,7 +185,11 @@ public class Advertisement {
 		this.date = date;
 	}
 	
+	public void addImages(Image image){
+		this.images.add(image);
+	}
 	
-	
-
+    public void addReviews(Review review) {
+        this.advertisementReviews.add(review);
+    }
 }

@@ -72,6 +72,24 @@ body{
 	color: #00ffff !important;
 }
 
+.message{
+    position: absolute;
+	top: calc(30% - 35px);
+	left: calc(25% - 255px);
+	z-index: 2;
+}
+
+.message div{
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 32px;
+	font-weight: 400;
+}
+
+.message div span{
+	color: #00ffff !important;
+}
 .register{
 	position: absolute;
 	top: calc(33% - 75px);
@@ -190,6 +208,22 @@ body{
 	margin-top: 10px;
 }
 
+.message button{
+	width: 130px;
+	height: 35px;
+	background: #fff;
+    opacity: 0.4;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
 .register input[type=submit]:hover{
 	opacity: 0.6;
 }
@@ -199,6 +233,10 @@ body{
 }
 
 .register input[type=text]:hover{
+	opacity: 0.6;
+}
+
+.message button:hover{
 	opacity: 0.6;
 }
 
@@ -246,7 +284,14 @@ body{
 			<div>Villa<span>Pursuit</span></div>
 		</div>
 		<br>
- 	    
+		
+ 	    <c:if test="${userAddMessage != null}">
+ 	        <div class="message">
+ 	            <div>You are successfully<span>Registered!</span>Confirmation Mail has sent to <span>Your Account!!!</span></div>
+ 	            <br><button class="button" style="vertical-align:middle" onclick = "window.location.href='welcome'"><span>Back to Login</span></button>
+ 	        </div>
+ 	    </c:if>
+ 	    <c:if test="${userAddMessage == null}">
  	    <div class="seller">
 		<form action="seller">
  			<input type="submit" value="Seller">
@@ -260,7 +305,7 @@ body{
  	    </div>
  	    
  	    <div class="register">
-		<c:if test="${null != addAddress}">
+		<c:if test="${addAddress != null}">
 			<h2>Add<span>Address!</span></h2>
                 <form:form action="user_address" commandName="address">
                 <form:input path="number" placeholder="Number"/>
@@ -272,6 +317,6 @@ body{
  			    </form:form>
 		</c:if>
 		</div>
-
+        </c:if>
 </body>
 </html>

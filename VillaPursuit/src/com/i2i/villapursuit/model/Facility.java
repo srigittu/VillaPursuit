@@ -1,6 +1,8 @@
-// Copyright (C) 2015 Ideas2IT, Inc.
-// All rights reserved
-
+/**
+ * @author Team #3
+ *
+ * @created 09/09/16 
+ */
 package com.i2i.villapursuit.model;
 
 import javax.persistence.Column;
@@ -8,20 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
-/**
- * <p>
- * Model which allows access to properties of Facility using getter and setter methods.
- * </p>
- * 
- * @author Team #3
- * 
- * @created 07/09/16
- * 
- */
 
 @Entity
 @Table(name = "facilities", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
@@ -47,21 +38,10 @@ public class Facility {
 	@Column(name = "area")
 	private String area;
 	
-    @ManyToOne
+    @OneToOne
     private Advertisement advertisement;
     
     public Facility() {
-	}
-
-	public Facility(int facilityId, boolean parking, boolean drainage, boolean transport, int bedroom, String area,
-			Advertisement advertisement) {
-		this.facilityId = facilityId;
-		this.parking = parking;
-		this.drainage = drainage;
-		this.transport = transport;
-		this.bedroom = bedroom;
-		this.area = area;
-		this.advertisement = null;
 	}
 
 	public int getFacilityId() {
