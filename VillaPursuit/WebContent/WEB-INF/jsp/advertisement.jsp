@@ -74,11 +74,15 @@ body{
 
 .register{
 	position: absolute;
-	top: calc(33% - 75px);
-	left: calc(67% - 50px);
+	top: calc(20% - 75px);
+	left: calc(15% - 50px);
 	height: 150px;
 	width: 350px;
 	padding: 10px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 14px;
+	font-weight: 400;
 	z-index: 2;
 }
 
@@ -138,17 +142,17 @@ body{
 	margin-top: 10px;
 }
 
-.edit{
+.editAddress{
 	position: absolute;
-	top: calc(15% - 75px);
-	left: calc(90% - 50px);
+	top: calc(14% - 75px);
+	left: calc(93% - 50px);
 	height: 150px;
 	width: 350px;
 	padding: 10px;
 	z-index: 2;
 }
 
-.edit input[type=submit]{
+.editAddress input[type=submit]{
 	width: 100px;
 	height: 35px;
 	background: #000;
@@ -156,6 +160,32 @@ body{
 	border: 1px solid #010;
 	cursor: pointer;
 	border-radius: 2px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.postAd{
+	position: absolute;
+	top: calc(14% - 75px);
+	left: calc(93% - 50px);
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+	z-index: 2;
+}
+
+.postAd input[type=submit]{
+	width: 115px;
+	height: 35px;
+	background: #000;
+    opacity: 0.4;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
 	color: #0fffff;
 	font-family: 'Exo', sans-serif;
 	font-size: 16px;
@@ -216,22 +246,57 @@ body{
 			<div>Villa<span>Pursuit</span></div>
 		</div>
 		<br>
-		<div class="edit">
-		<form action="address_form">
- 			<input type="submit" value="Edit Address">
+ 	    <div class="postAd">
+		<form action="advertisement_form">
+ 			<input type="submit" value="Post Ad Again">
  	    </form>
  	    </div>
  	    <div class="register">
-		<c:if test="${addAddress != null}">
-			<h2>Add<span>Address!</span></h2>
-                <form:form action="user_address" commandName="address">
-                <form:input path="number" placeholder="Number"/>
-                <form:input path="street" placeholder="Street"/>
-                <form:input path="city" placeholder="City"/>
-                <form:input path="state" placeholder="State"/>
-                <form:input path="pincode" placeholder="Pincode"/>
- 			    <input type="submit" value="Save">
+ 	    
+		<c:if test="${addAdvertisement != null}">
+			<h2>Enter<span>Villa Detail!</span></h2>
+			<form:form action="addAdvertisement" >
+                <form:form name="advertisement" action="addAdvertisement" modelAttribute="advertisement" >
+                    <form:input path="title" placeholder="Title"/>
+                    <form:input path="status" type="hidden" value="active"/>
+                    <form:input path="availability" placeholder="Availability"/>
+ 			            <form:select path="houseType">
+                            <form:option value="Individual" label="Individual" />
+                            <form:option value="Appartment" label="Appartment" />
+                        </form:select>
+                        <form:select path="rentType">
+                            <form:option value="Rent" label="Rent" />
+                            <form:option value="Lease" label="Lease" />
+                        </form:select><br><br>
+                </form:form>
+                
+                <form:form name="images" action="addAdvertisement" modelAttribute="images">
+                    <form:input path="imagePath" placeholder="images"/>
+                </form:form>
+                <br><br>
+                
+ 			    <form:form name="facilities" action="addAdvertisement" modelAttribute="facilities">
+                    <form:checkbox path="parking"/>Parking<td />
+                    <form:checkbox path="drainage"/>Drainage<td />
+                    <form:checkbox path="transport"/>Transport<br>
+                        <form:select path="bedroom">
+                            <form:option value="0" label="--- Bedroom ---"/>
+                            <form:option value="1" label="--- 1BHK ---" />
+                            <form:option value="2" label="--- 2BHK ---" />
+                            <form:option value="3" label="--- 3BHK ---" />
+                        </form:select><br>
+                        <form:input path="area" placeholder="Area-Size"/><br><br>
  			    </form:form>
+ 			    
+ 			    <form:form name="advertisementAddress" action="addAdvertisement" modelAttribute="advertisementAddress">
+                    <form:input path="number" placeholder="Number"/>
+                    <form:input path="street" placeholder="Street"/>
+                    <form:input path="city" placeholder="City"/>
+                    <form:input path="state" placeholder="State"/>
+                    <form:input path="pincode" placeholder="Pincode"/>
+ 			    </form:form>
+ 			    <input type="submit" value="Post">
+ 			</form:form>
 		</c:if>
 		</div>
 

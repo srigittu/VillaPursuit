@@ -5,24 +5,30 @@
  */
 package com.i2i.villapursuit.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class User {
     
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id", unique = true)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
     private int id;
 	
 	@Column(name = "user_name")
@@ -49,6 +55,9 @@ public class User {
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "address_id")
 	private Address address;
+	
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER) 
+    private Set<Advertisement> favouriteAdvertisements = new HashSet<Advertisement>();
 	
 	public User() {
 	}

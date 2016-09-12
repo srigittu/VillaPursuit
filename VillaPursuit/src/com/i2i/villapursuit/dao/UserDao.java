@@ -37,7 +37,8 @@ public class UserDao {
         }
     }
 
-    public List<User> retriveAllUsers() throws VillaPursuitException {
+    @SuppressWarnings("unchecked")
+	public List<User> retriveAllUsers() throws VillaPursuitException {
         Session session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
