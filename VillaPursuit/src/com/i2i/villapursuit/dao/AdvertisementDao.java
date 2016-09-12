@@ -1,8 +1,6 @@
-/**
- * @author Team #3
- *
- * @created 08/09/16 
- */
+// Copyright (C) 2015 Ideas2IT, Inc.
+// All rights reserved
+
 package com.i2i.villapursuit.dao;
 
 import java.util.List;
@@ -20,9 +18,40 @@ import com.i2i.villapursuit.model.Facility;
 import com.i2i.villapursuit.model.Image;
 import com.i2i.villapursuit.model.User;
 
+/**
+ * <p>
+ * Dao which performs operations on advertisement database 
+ * according to URL mapping
+ * </p>
+ * 
+ * @author Team #3
+ * 
+ * @created 07/09/16
+ *
+ */
+
 public class AdvertisementDao {
 	private SessionFactory sessionFactory = HibernateConnection.getSessionFactory();
     private Transaction transaction = null;
+
+/**
+     * <p>
+     * Method which fetches request from service.
+     * Insert user details into database.
+     * </p>
+     * @param advertisement
+     *     Contains object of the advertisement model.
+     * @param image
+     *     Contains object of the image model.
+     * @param facility
+     *     Contains object of the facility model.
+     * @param advertisementAddress
+     *     Contains object of the address model.
+     * @param userId
+     *     Contains user Id who posts the advertisement.
+     * @throws VillaPursuitException
+     *     If there is failed or interrupted database operations.
+     */
 
     public void insertAdvertisement(Advertisement advertisement, List<Image> images, Facility facility, Address advertisementAddress, int userId) throws VillaPursuitException {
     	Session session = sessionFactory.openSession();
@@ -50,6 +79,17 @@ public class AdvertisementDao {
             session.close(); 
         }
     }
+
+/**
+     * <p>
+     * Method which fetches request from service.
+     * Retrieve advertisement details from database.
+     * </p>
+     * @return list
+     *     Returns the list of advertisements.
+     * @throws VillaPursuitException
+     *     If there is failed or interrupted database operations.
+     */
 
     @SuppressWarnings("unchecked")
 	public List<Advertisement> retriveAllAdvertisements() throws VillaPursuitException {
