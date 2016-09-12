@@ -71,6 +71,45 @@ body{
 .header div span{
 	color: #00ffff !important;
 }
+.ad {
+	position: absolute;
+	top: calc(30% - 35px);
+	left: calc(35% - 255px);
+	z-index: 2;
+}
+
+.ad table {
+	width: 300px border: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 24px;
+	font-weight: 100;
+}
+
+.ad table tr {
+	color: #fff;
+	border: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 32px;
+	font-weight: 200;
+}
+
+.ad table tr th {
+	color: #00ffff;
+	border: #fff;
+	width: 800px font-family: 'Exo', sans-serif;
+	font-size: 32px;
+	font-weight: 200;
+	padding: 6px;
+}
+
+.ad table tr td {
+	color: #fff;
+	border: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 18px;
+	font-weight: 200;
+	padding: 6px;
+}
 
 .register{
 	position: absolute;
@@ -251,45 +290,61 @@ body{
  			<input type="submit" value="Post Ad Again">
  	    </form>
  	    </div>
- 	    <div class="register">
+ 	    <div class="ad">
  	    
 		<c:if test="${advertisement != null}">
-			<h2>Enter<span>Villa Detail!</span></h2>
-                <form:form name="advertisement" action="addAdvertisement" modelAttribute="advertisement" >
-                    <form:input path="title" placeholder="Title"/>
-                    <form:input path="status" type="hidden" value="active"/>
-                    <form:input path="availability" placeholder="Availability"/>
+		    <table>
+					<tr>
+						<th colspan="4">Enter Villa Details</th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+                <form:form name="advertisement" action="add_advertisement" modelAttribute="advertisement" >
+                    <tr>
+                    <td>
+                    <form:input path="images[0].imagePath" placeholder="images"/><br>
+                    <form:input path="images[1].imagePath" placeholder="images"/><br>
+                    </td>
+                    
+                    <td>
+                    <form:input path="title" placeholder="Title"/><br>
+                    <form:input path="status" type="hidden" value="active"/><br>
+                    <form:input path="availability" placeholder="Availability"/><br>
  			            <form:select path="houseType">
                             <form:option value="Individual" label="Individual" />
                             <form:option value="Appartment" label="Appartment" />
-                        </form:select>
+                        </form:select><br>
                         <form:select path="rentType">
                             <form:option value="Rent" label="Rent" />
                             <form:option value="Lease" label="Lease" />
-                        </form:select><br><br>
-                
-                    <form:input path="images[0].imagePath" placeholder="images"/>
-                    <form:input path="images[1].imagePath" placeholder="images"/>
-                <br><br>
-                
-                    <form:checkbox path="facility.parking"/>Parking<td />
-                    <form:checkbox path="facility.drainage"/>Drainage<td />
+                        </form:select><br>
+                    </td>
+                    
+                    <td>
+                    <form:checkbox path="facility.parking"/>Parking<br>
+                    <form:checkbox path="facility.drainage"/>Drainage<br>
                     <form:checkbox path="facility.transport"/>Transport<br>
                         <form:select path="facility.bedroom">
-                            <form:option value="0" label="--- Bedroom ---"/>
-                            <form:option value="1" label="--- 1BHK ---" />
-                            <form:option value="2" label="--- 2BHK ---" />
-                            <form:option value="3" label="--- 3BHK ---" />
+                            <form:option value="NONE" label="--- Bedroom ---"/>
+                            <form:option value="1BHK" label="--- 1BHK ---" />
+                            <form:option value="2BHK" label="--- 2BHK ---" />
+                            <form:option value="3BHK" label="--- 3BHK ---" />
                         </form:select><br>
-                        <form:input path="facility.area" placeholder="Area-Size"/><br><br>
- 			    
-                    <form:input path="address.number" placeholder="Number"/>
-                    <form:input path="address.street" placeholder="Street"/>
-                    <form:input path="address.city" placeholder="City"/>
-                    <form:input path="address.state" placeholder="State"/>
-                    <form:input path="address.pincode" placeholder="Pincode"/>
- 			    <input type="submit" value="Post">
- 			</form:form>
+                        <form:input path="facility.area" placeholder="Area-Size"/><br>
+ 			        </td>
+ 			        
+ 			        <td>
+                    <form:input path="address.number" placeholder="Number"/><br>
+                    <form:input path="address.street" placeholder="Street"/><br>
+                    <form:input path="address.city" placeholder="City"/><br>
+                    <form:input path="address.state" placeholder="State"/><br>
+                    <form:input path="address.pincode" placeholder="Pincode"/><br>
+ 			        <input type="submit" value="Post">
+ 			        </td>
+ 			        </tr>
+ 			     </form:form>
+ 			</table>
 		</c:if>
 		</div>
 

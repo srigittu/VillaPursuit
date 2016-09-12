@@ -1,6 +1,8 @@
-// Copyright (C) 2015 Ideas2IT, Inc.
-// All rights reserved
-
+/**
+ * @author Team #3
+ *
+ * @created 10/09/16 
+ */
 package com.i2i.villapursuit.model;
 
 import javax.persistence.Column;
@@ -12,18 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
-/**
- * <p>
- * Model which allows access to properties of Image using getter and setter methods.
- * </p>
- * 
- * @author Team #3
- * 
- * @created 07/09/16
- * 
- */
-
 
 @Entity
 @Table(name = "images", uniqueConstraints = @UniqueConstraint(columnNames = "id"))

@@ -101,6 +101,47 @@ body{
 .register h2 span{
     color: #00ffff
 }
+.ad {
+	position: absolute;
+	top: calc(30% - 35px);
+	left: calc(34% - 255px);
+	background: #000;
+	opacity: 0.8;
+	z-index: 2;
+}
+
+.ad table {
+	width: 300px
+	font-family: 'Exo', sans-serif;
+	font-size: 24px;
+	font-weight: 100;
+}
+
+.ad table tr {
+	color: #fff;
+	border: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 32px;
+	font-weight: 200;
+}
+
+.ad table tr th {
+	color: #00ffff;
+	border: #fff;
+	width: 800px font-family: 'Exo', sans-serif;
+	font-size: 32px;
+	font-weight: 200;
+	padding: 6px;
+}
+
+.ad table tr td {
+	color: #fff;
+	border: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 18px;
+	font-weight: 200;
+	padding: 6px;
+}
 
 .register input[type=text]{
 	width: 250px;
@@ -198,6 +239,22 @@ body{
 	margin-top: 10px;
 }
 
+.ad input[type=submit] {
+	width: 110px;
+	height: 35px;
+	background: #000;
+	opacity: 0.4;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
 .register input[type=submit]:hover{
 	opacity: 0.6;
 }
@@ -267,6 +324,59 @@ body{
  			    <input type="submit" value="Save">
  			    </form:form>
 		</c:if>
+		</div>
+		
+		<div class="ad">
+
+			<c:if test="${advertisements != null}">
+				<table>
+					<tr>
+						<th colspan="2">Pursuit Dream Villa</th>
+						<th>Availability</th>
+						<th>Posted On</th>
+						<th></th>
+					</tr>
+						<c:forEach var="advertisement" items="${advertisements}">
+						<tr>
+							 <td>
+							    <c:forEach var="image"
+									items="${advertisement.getImages()}">
+									<c:out value="${image.getImagePath()}" />
+									<br>
+								</c:forEach>
+						     </td>
+						     <td>
+							    <c:out value="${advertisement.getTitle()}" />
+								<c:out value="${advertisement.getHouseType()}" />
+								<c:out value="${advertisement.getRentType()}" />
+								<br>
+								<c:set value="${advertisement.getFacility()}" var="facility"/>
+                                <c:out value="${facility.getBedroom()}"/>
+                                <c:out value="${facility.getArea()}"/>
+                                <br>
+                                <c:set value="${advertisement.getAddress()}" var="address"/>
+                                <c:out value="${address.getNumber()}"/>
+                                <c:out value="${address.getStreet()}"/>
+                                <c:out value="${address.getCity()}"/>
+                                <c:out value="${address.getState()}"/>
+                                <c:out value="${address.getPincode()}"/>
+                                <br>
+							</td>
+							<td>
+							    <c:out value="${advertisement.getAvailability()}" />
+							</td>
+							<td>
+							    <c:out value="${advertisement.getDate()}" />
+							</td>
+							<td>
+							<form action="review_form">
+						        <input type="submit" value="Add Review">
+					        </form>
+							</td>
+							</tr>
+						</c:forEach>
+				</table>
+			</c:if>
 		</div>
 
 </body>

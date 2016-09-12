@@ -1,6 +1,9 @@
-// Copyright (C) 2015 Ideas2IT, Inc.
-// All rights reserved
-
+/**
+ * 
+ * @author Team #3
+ *
+ * @created 07/09/16
+ */
 package com.i2i.villapursuit.model;
 
 import javax.persistence.Column;
@@ -10,17 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;	
 import javax.persistence.UniqueConstraint;
-
-/**
- * <p>
- * Model which allows access to properties of Address using getter and setter methods.
- * </p>
- * 
- * @author Team #3
- * 
- * @created 07/09/16
- * 
- */
 
 @Entity
 @Table(name = "address", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
@@ -41,19 +33,10 @@ public class Address {
     private String city;
     
     @Column(name = "pincode")
-    private int pincode;
+    private String pincode;
     
     @Column(name = "state")
     private String state;
-    
-    public Address(int addressId, String number, String street, String city, int pincode, String state) {
-        this.addressId = addressId;
-        this.number = number;
-        this.street = street;
-        this.city = city;
-        this.pincode = pincode;
-        this.state = state;
-    }
 
     public Address() {
     	
@@ -75,7 +58,7 @@ public class Address {
         this.city = city;
     } 
     
-    public void setPincode(int pincode) {
+    public void setPincode(String pincode) {
         this.pincode = pincode;
     } 
     
@@ -99,7 +82,7 @@ public class Address {
         return city;
     }
     
-    public int getPincode() {
+    public String getPincode() {
         return pincode;
     }
     
