@@ -17,8 +17,8 @@ import com.i2i.villapursuit.model.Image;
 public class AdvertisementService {
 	private AdvertisementDao advertisementDao = new AdvertisementDao();
 	   
-    public String addAdvertisement(Advertisement advertisement, Image images, Facility facilities, Address advertisementAddress, int userId) throws VillaPursuitException {
-    	advertisementDao.insertAdvertisement(advertisement, images, facilities, advertisementAddress, userId);
+    public String addAdvertisement(Advertisement advertisement, List<Image> images, Facility facility, Address address, int userId) throws VillaPursuitException {
+    	advertisementDao.insertAdvertisement(advertisement, images, facility, address, userId);
         return "advertisement successfully posted";
     }
     

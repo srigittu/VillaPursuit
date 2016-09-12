@@ -17,8 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 @Entity
@@ -35,8 +33,7 @@ public class Review {
     @Column(name = "rating")
     private String rating;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "advertisement_date")
+    @Column(name="date", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable=false, updatable=false)
     private Date date;
     
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
@@ -44,24 +41,12 @@ public class Review {
     private User user;
 	
     @ManyToOne
-    @JoinColumn(name = "ad_id")
+    @JoinColumn(name = "advertisement_id")
     private Advertisement advertisement;
 
     
 	public Review() {
 	}
-
-
-	public Review(int reviewId, String comment, String rating, Date date, User user, Advertisement advertisement) {
-		super();
-		this.reviewId = reviewId;
-		this.comment = comment;
-		this.rating = rating;
-		this.date = date;
-		this.user = null;
-		this.advertisement = null;
-	}
-
 
 	public int getReviewId() {
 		return reviewId;

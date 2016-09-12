@@ -129,39 +129,4 @@ public class UserDao {
         }
 	}
     
-    /*public void assignProjectToUser(String userName, String projectId) throws VillaPursuitException {
-        Session session = sessionFactory.openSession();
-        try {
-            transaction = session.beginTransaction();
-            User user = (User)session.get(User.class, userName);
-            Project project = (Project)session.get(Project.class, projectId); 
-            user.setProject(project);                                                                  //Assigning Project to User
-            transaction.commit();
-        } catch (HibernateException exceptionCause) {
-            if (transaction!=null) {
-                transaction.rollback();
-            }
-            throw new VillaPursuitException("\t\"Error occured while assigning Project to User... Please try again...\""+exceptionCause.toString());
-        } finally {
-            session.close(); 
-        }
-    }
-    
-    public void removeProjectFromUser(String userName) throws VillaPursuitException {
-        Session session = sessionFactory.openSession();
-        try {
-            transaction = session.beginTransaction();
-            User user = (User)session.get(User.class, userName);
-            user.setProject(null);                                                                  //Removing User From project
-            transaction.commit();
-        } catch (HibernateException exceptionCause) {
-            if (transaction!=null) {
-                transaction.rollback();
-            }
-            LogFile.error("Error occurred in User DataBase:removeProjectFromUser()"+exceptionCause.toString());
-            throw new VillaPursuitException("\t\"Error occured while removing Project from User... Please try again...\"");
-        } finally {
-            session.close(); 
-        }
-    }*/
 }

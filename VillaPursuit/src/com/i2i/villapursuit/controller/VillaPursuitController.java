@@ -6,9 +6,6 @@
 package com.i2i.villapursuit.controller;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 //import javax.validation.Valid;
@@ -16,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -75,13 +73,12 @@ public class VillaPursuitController {
 	
 	@RequestMapping(value="advertisement_form", method=RequestMethod.GET)
     public String accessAdvertisementObject(ModelMap model) {
-		System.out.println("em here");
-		List<Object> advertisementObject = new ArrayList<Object>();
-		advertisementObject.add(new Advertisement());
-		advertisementObject.add(new Image());
-		advertisementObject.add(new Facility());
-		advertisementObject.add(new Address());
-		model.addAttribute("advertisementObject", advertisementObject);
+		Advertisement advertisement = new Advertisement();
+		advertisement.setFacility(new Facility());
+		advertisement.addImages(new Image());
+		advertisement.addImages(new Image());
+		advertisement.setAddress(new Address());
+		model.addAttribute("advertisement" , advertisement);
 		return "advertisement";            
     }
 	
@@ -108,10 +105,9 @@ public class VillaPursuitController {
     }
     
     @RequestMapping(value="addAdvertisement")
-    public String addAdvertisement(Advertisement advertisement, Image images, Facility facilities, Address advertisementAddress, BindingResult result, ModelMap model, HttpSession session) {
+    public String addAdvertisement(@ModelAttribute("advertisement") Advertisement advertisement, BindingResult result, ModelMap model, HttpSession session) {
     	try {
-    		System.out.println("yaa em here");
-    		model.addAttribute("advertisementAddMessage", advertisementService.addAdvertisement(advertisement, images, facilities, advertisementAddress, Integer.parseInt(session.getAttribute("userId").toString())));
+    		model.addAttribute("advertisementAddMessage", advertisementService.addAdvertisement(advertisement, advertisement.getImages(), advertisement.getFacility(), advertisement.getAddress(), Integer.parseInt(session.getAttribute("userId").toString())));
     		return "home_seller";
     	} catch(VillaPursuitException e){
     		model.addAttribute("advertisementAddException", e.toString());
