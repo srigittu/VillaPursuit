@@ -256,7 +256,7 @@ body{
  	    </form>
  	    </div>
  	    <div class="register">
-		<c:if test="${null != addAddress}">
+		<c:if test="${addAddress != null}">
 			<h2>Add<span>Address!</span></h2>
                 <form:form action="user_address" commandName="address">
                 <form:input path="number" placeholder="Number"/>
