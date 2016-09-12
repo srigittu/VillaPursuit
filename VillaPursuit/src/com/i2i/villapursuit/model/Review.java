@@ -1,8 +1,6 @@
-/**
- * @author Team #3
- *
- * @created 10/09/16 
- */
+// Copyright (C) 2015 Ideas2IT, Inc.
+// All rights reserved
+
 package com.i2i.villapursuit.model;
 
 import java.util.Date;
@@ -17,7 +15,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+
+/**
+ * <p>
+ * Model which allows access to properties of Review using getter and setter methods.
+ * </p>
+ * 
+ * @author Team #3
+ * 
+ * @created 07/09/16
+ * 
+ */
 
 @Entity
 @Table(name = "reviews", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
@@ -33,7 +44,8 @@ public class Review {
     @Column(name = "rating")
     private String rating;
     
-    @Column(name="date", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable=false, updatable=false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "advertisement_date")
     private Date date;
     
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
@@ -41,12 +53,24 @@ public class Review {
     private User user;
 	
     @ManyToOne
-    @JoinColumn(name = "advertisement_id")
+    @JoinColumn(name = "ad_id")
     private Advertisement advertisement;
 
     
 	public Review() {
 	}
+
+
+	public Review(int reviewId, String comment, String rating, Date date, User user, Advertisement advertisement) {
+		super();
+		this.reviewId = reviewId;
+		this.comment = comment;
+		this.rating = rating;
+		this.date = date;
+		this.user = null;
+		this.advertisement = null;
+	}
+
 
 	public int getReviewId() {
 		return reviewId;

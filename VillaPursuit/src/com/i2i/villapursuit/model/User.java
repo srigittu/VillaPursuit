@@ -1,21 +1,35 @@
-/**
- * @author Team #3
- * 
- * @created 07/09/16
- */
+// Copyright (C) 2015 Ideas2IT, Inc.
+// All rights reserved
+
 package com.i2i.villapursuit.model;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+
+/**
+ * <p>
+ * Model which allows access to properties of User using getter and setter methods.
+ * </p>
+ * 
+ * @author Team #3
+ * 
+ * @created 07/09/16
+ * 
+ */
 
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
@@ -51,7 +65,21 @@ public class User {
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER) 
+    private Set<Advertisement> favouriteAdvertisements = new HashSet<Advertisement>();
+	
 	public User() {
+		
+	}
+	
+	public User(String userName, String firstName, String lastName, String mobileNumber, String email, String role) {
+		this.userName = userName;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.mobileNumber = mobileNumber;
+		this.email = email;
+		this.role = role;
+		this.address = null;
 	}
 	
 	public int getId() {
@@ -125,5 +153,4 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
 }

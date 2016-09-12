@@ -253,8 +253,9 @@ body{
  	    </div>
  	    <div class="register">
  	    
-		<c:if test="${advertisement != null}">
+		<c:if test="${addAdvertisement != null}">
 			<h2>Enter<span>Villa Detail!</span></h2>
+			<form:form action="addAdvertisement" >
                 <form:form name="advertisement" action="addAdvertisement" modelAttribute="advertisement" >
                     <form:input path="title" placeholder="Title"/>
                     <form:input path="status" type="hidden" value="active"/>
@@ -267,27 +268,33 @@ body{
                             <form:option value="Rent" label="Rent" />
                             <form:option value="Lease" label="Lease" />
                         </form:select><br><br>
+                </form:form>
                 
-                    <form:input path="images[0].imagePath" placeholder="images"/>
-                    <form:input path="images[1].imagePath" placeholder="images"/>
+                <form:form name="images" action="addAdvertisement" modelAttribute="images">
+                    <form:input path="imagePath" placeholder="images"/>
+                </form:form>
                 <br><br>
                 
-                    <form:checkbox path="facility.parking"/>Parking<td />
-                    <form:checkbox path="facility.drainage"/>Drainage<td />
-                    <form:checkbox path="facility.transport"/>Transport<br>
-                        <form:select path="facility.bedroom">
+ 			    <form:form name="facilities" action="addAdvertisement" modelAttribute="facilities">
+                    <form:checkbox path="parking"/>Parking<td />
+                    <form:checkbox path="drainage"/>Drainage<td />
+                    <form:checkbox path="transport"/>Transport<br>
+                        <form:select path="bedroom">
                             <form:option value="0" label="--- Bedroom ---"/>
                             <form:option value="1" label="--- 1BHK ---" />
                             <form:option value="2" label="--- 2BHK ---" />
                             <form:option value="3" label="--- 3BHK ---" />
                         </form:select><br>
-                        <form:input path="facility.area" placeholder="Area-Size"/><br><br>
+                        <form:input path="area" placeholder="Area-Size"/><br><br>
+ 			    </form:form>
  			    
-                    <form:input path="address.number" placeholder="Number"/>
-                    <form:input path="address.street" placeholder="Street"/>
-                    <form:input path="address.city" placeholder="City"/>
-                    <form:input path="address.state" placeholder="State"/>
-                    <form:input path="address.pincode" placeholder="Pincode"/>
+ 			    <form:form name="advertisementAddress" action="addAdvertisement" modelAttribute="advertisementAddress">
+                    <form:input path="number" placeholder="Number"/>
+                    <form:input path="street" placeholder="Street"/>
+                    <form:input path="city" placeholder="City"/>
+                    <form:input path="state" placeholder="State"/>
+                    <form:input path="pincode" placeholder="Pincode"/>
+ 			    </form:form>
  			    <input type="submit" value="Post">
  			</form:form>
 		</c:if>

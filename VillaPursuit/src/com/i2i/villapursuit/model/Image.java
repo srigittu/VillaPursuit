@@ -1,8 +1,6 @@
-/**
- * @author Team #3
- *
- * @created 10/09/16 
- */
+// Copyright (C) 2015 Ideas2IT, Inc.
+// All rights reserved
+
 package com.i2i.villapursuit.model;
 
 import javax.persistence.Column;
@@ -10,10 +8,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+/**
+ * <p>
+ * Model which allows access to properties of Image using getter and setter methods.
+ * </p>
+ * 
+ * @author Team #3
+ * 
+ * @created 07/09/16
+ * 
+ */
 
 @Entity
 @Table(name = "images", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
@@ -27,8 +35,13 @@ public class Image {
     private String imagePath;
 
     @ManyToOne
-    @JoinColumn(name="advertisement_id")
     private Advertisement advertisement;
+
+	public Image(int imageId, String imagePath, Advertisement advertisement) {
+		this.imageId = imageId;
+		this.imagePath = imagePath;
+		this.advertisement = null;
+	}
 
 	public Image() {
 	}
