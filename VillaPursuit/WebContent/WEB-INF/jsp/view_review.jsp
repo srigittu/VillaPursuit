@@ -71,15 +71,47 @@ body{
 .header div span{
 	color: #00ffff !important;
 }
+
+.register{
+	position: absolute;
+	top: calc(33% - 75px);
+	left: calc(67% - 50px);
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	z-index: 2;
+}
+
+.register span{
+    color: #00ffff
+}
+
+.register h2{
+    float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 35px;
+	font-weight: 200;
+}
+
+.register h2 span{
+    color: #00ffff
+}
 .ad {
 	position: absolute;
 	top: calc(30% - 35px);
-	left: calc(35% - 255px);
+	left: calc(34% - 255px);
+	background: #000;
+	opacity: 0.8;
 	z-index: 2;
 }
 
 .ad table {
-	width: 300px border: #fff;
+	width: 300px
 	font-family: 'Exo', sans-serif;
 	font-size: 24px;
 	font-weight: 100;
@@ -109,32 +141,6 @@ body{
 	font-size: 18px;
 	font-weight: 200;
 	padding: 6px;
-}
-
-.register{
-	position: absolute;
-	top: calc(20% - 75px);
-	left: calc(15% - 50px);
-	height: 150px;
-	width: 350px;
-	padding: 10px;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 14px;
-	font-weight: 400;
-	z-index: 2;
-}
-
-.register h2{
-    float: left;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 35px;
-	font-weight: 200;
-}
-
-.register h2 span{
-    color: #00ffff
 }
 
 .register input[type=text]{
@@ -218,10 +224,26 @@ body{
 }
 
 .postAd input[type=submit]{
-	width: 115px;
+	width: 75px;
 	height: 35px;
 	background: #000;
     opacity: 0.4;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.ad input[type=submit] {
+	width: 110px;
+	height: 35px;
+	background: #000;
+	opacity: 0.4;
 	border: 1px solid #010;
 	cursor: pointer;
 	border-radius: 75px;
@@ -308,81 +330,35 @@ p, a span {
 }
 
 </style>
-
 <body>
-
-    <div class="body"></div>
-		<div class="grad"></div>
-		<div class="header">
-			<div>Villa<span>Pursuit</span></div>
+<div class="body"></div>
+	<div class="grad"></div>
+	<div class="header">
+		<div>
+			Villa<span>Pursuit</span>
 		</div>
-		<br>
- 	    <div class="postAd">
- 	    <div class="logout">
+	</div>
+	<br>
+   <div class="ad">
+   <div class="register">
+		<div class="logout">
    <a href="logout">Logout</a>
    </div>
-		<form action="advertisement_form">
- 			<input type="submit" value="Post Ad Again">
- 	    </form>
- 	    </div>
- 	    <div class="ad">
- 	     <div class="logout">
-   <a href="logout">Logout</a>
-   </div>
-		<c:if test="${advertisement != null}">
-		    <table>
+			<c:if test="${reviews != null}">
+			<table>
 					<tr>
-						<th colspan="4">Enter Villa Details</th>
-						<th></th>
-						<th></th>
+						<th>comment</th>
+						<th>status</th>
 						<th></th>
 					</tr>
-                <form:form name="advertisement" action="add_advertisement" modelAttribute="advertisement" >
-                    <tr>
-                    <td>
-                    <form:input path="images[0].imagePath" placeholder="images"/><br>
-                    <form:input path="images[1].imagePath" placeholder="images"/><br>
-                    </td>
-                    
-                    <td>
-                    <form:input path="title" placeholder="Title"/><br>
-                    <form:input path="status" type="hidden" value="active"/><br>
-                    <form:input path="availability" placeholder="Availability"/><br>
- 			            <form:select path="houseType">
-                            <form:option value="Individual" label="Individual" />
-                            <form:option value="Appartment" label="Appartment" />
-                        </form:select><br>
-                        <form:select path="rentType">
-                            <form:option value="Rent" label="Rent" />
-                            <form:option value="Lease" label="Lease" />
-                        </form:select><br>
-                    </td>
-                    
-                    <td>
-                    <form:checkbox path="facility.parking"/>Parking<br>
-                    <form:checkbox path="facility.drainage"/>Drainage<br>
-                    <form:checkbox path="facility.transport"/>Transport<br>
-                        <form:select path="facility.bedroom">
-                            <form:option value="NONE" label="--- Bedroom ---"/>
-                            <form:option value="1BHK" label="--- 1BHK ---" />
-                            <form:option value="2BHK" label="--- 2BHK ---" />
-                            <form:option value="3BHK" label="--- 3BHK ---" />
-                        </form:select><br>
-                        <form:input path="facility.area" placeholder="Area-Size"/><br>
- 			        </td>
- 			        
- 			        <td>
-                    <form:input path="address.number" placeholder="Number"/><br>
-                    <form:input path="address.street" placeholder="Street"/><br>
-                    <form:input path="address.city" placeholder="City"/><br>
-                    <form:input path="address.state" placeholder="State"/><br>
-                    <form:input path="address.pincode" placeholder="Pincode"/><br>
- 			        <input type="submit" value="Post">
- 			        </td>
- 			        </tr>
- 			     </form:form>
- 			</table>
-		</c:if>
-		</div>
+						<c:forEach var="review" items="${reviews}">
+						<tr>
+					        <td><c:out value="${review.getComment()}" /></td>
+						    <td><c:out value="${review.getRating()}" /></td>
+						</tr>
+						</c:forEach>
+			</table>
+			</c:if>
+</div>
 </body>
-</html>
+			

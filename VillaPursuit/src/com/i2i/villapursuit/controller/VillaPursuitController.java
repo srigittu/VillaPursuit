@@ -80,10 +80,19 @@ public class VillaPursuitController {
         try {
         	User user = userService.getUser(userName);
             if(password.equals(user.getPassword())) {
-                session.setAttribute("userId", String.valueOf(user.getId()));
-                session.setAttribute("role", user.getRole());
-                model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
-            	return "home_buyer";	
+                session.setAttribute("userId", user.getId());
+                session.setAttribute("user", user);
+                if("buyer".equals(user.getRole())) {
+                	session.setAttribute("role", user.getRole());
+                    model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
+            	    return "redirect:gotohomebuyer";
+                } else if("seller".equals(user.getRole())) {
+                	session.setAttribute("role", user.getRole());
+                	return "home_seller";
+                } else {
+                	return "login";
+                }
+            	
             } else {
             	return "login";
             }
@@ -94,6 +103,11 @@ public class VillaPursuitController {
         }
 	}
 	
+	@RequestMapping("/gotohomebuyer")
+	public String gotoHomeBuyer(ModelMap model) throws VillaPursuitException {
+		model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
+		return "home_buyer";
+	}
 	/**
 	 * <p>
 	 * Method which gets request from seller.
@@ -144,9 +158,24 @@ public class VillaPursuitController {
 		return "home_buyer";
     }
 	
+	/**
+	 * <p>
+	 * Method which fetches request.
+	 * Bind advertisement, user and facility objects into single object.
+	 * Redirects it to the corresponding review page.
+	 * </p>
+	 * @param model
+	 *     Contains object of the model map class.
+	 * @return "review"
+	 *     JSP page that contains review form.
+	 */
 	@RequestMapping(value="review_form", method=RequestMethod.GET)
-    public String accessReviewObject(Review review) {
-        return "home_buyer";            
+    public String accessReviewObject(ModelMap model, @RequestParam("advertisementId") int id) {
+		Review review = new Review();
+		review.setUser(new User());
+		model.addAttribute("review",review);
+		model.addAttribute("id", id);
+        return "review";            
     }
 	 /**
 	  * <p>
@@ -274,14 +303,38 @@ public class VillaPursuitController {
      */
     
     @RequestMapping(value="add_review")
-    public String addAdvertisementReview(@RequestParam("advertisementId") String advertisementId, Review review, BindingResult result, ModelMap model, HttpSession session) {
+    public String addAdvertisementReview(@ModelAttribute("review") Review review, BindingResult result,
+    		ModelMap model, HttpSession session, @RequestParam("advertisementId") int id) {
     	try {
-    		model.addAttribute("addressAddMessage", reviewService.addAdvertisementReview(review, Integer.parseInt(session.getAttribute("advertisementId").toString()), Integer.parseInt(session.getAttribute("userId").toString())));
+    		model.addAttribute("addressAddMessage", reviewService.addAdvertisementReview(review,
+    				id, Integer.parseInt(session.getAttribute("userId").toString())));
     		return "home_buyer";
     	} catch(VillaPursuitException e){
-    		model.addAttribute("addressAddException", e.toString());
+    		model.addAttribute("reviewAddException", e.toString());
     		return "home_buyer";
     	}
+    }
+    
+    /**
+     * <p>
+     * Method which fetches request for view the reviews.
+     * Redirects it to the corresponding page.
+     * </p>
+     * @param model
+     *     Object of the Model map class.
+     * @return "view_review"
+     *     JSP page that contains review details.
+     */
+    
+    @RequestMapping(value = "view_review")
+    public String viewAllReviews(ModelMap model) {
+        try {
+        	model.addAttribute("reviews",reviewService.retriveAllReviews());
+        	return "view_review";
+        } catch(VillaPursuitException e) {
+        	model.addAttribute("reviewException", e.toString());
+        	return "view_review";
+        }
     }
     
     /**
@@ -294,9 +347,10 @@ public class VillaPursuitController {
      *     JSP page that contains login form.
      */
     
+    
 	@RequestMapping("/logout")
     public String processRequest(HttpSession session) {
-        	session.invalidate();
+        session.invalidate();
         return "login";
     }
 }

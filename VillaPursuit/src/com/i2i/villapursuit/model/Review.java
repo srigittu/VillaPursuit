@@ -115,6 +115,4 @@ public class Review {
 	public void setAdvertisement(Advertisement advertisement) {
 		this.advertisement = advertisement;
 	}
-	
-		
 }

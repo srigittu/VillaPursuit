@@ -373,7 +373,14 @@ p, a span {
 </style>
 
 <body>
-
+<c:if test="${role == null }">
+    <c:redirect url="welcome"/>
+</c:if>
+  <c:if test="${role != null }">
+      <c:if test="${role == 'seller'}">
+          <c:redirect url="home_seller"/>
+      </c:if>
+  </c:if>
 	 <div class="body"></div>
 	<div class="grad"></div>
 	<div class="header">
@@ -470,7 +477,14 @@ p, a span {
 							    <c:out value="${advertisement.getDate()}" />
 							</td>
 							<td>
+							<form action="view_review">
+							    <input type = "hidden" name = "advertisementId" value="${advertisement.getAdvertisementId()}">
+							    <input type="submit" value="View Reviews">
+							</form>
+							</td>
+							<td>
 							<form action="review_form">
+							    <input type ="hidden" name ="advertisementId" value="${advertisement.getAdvertisementId()}">
 						        <input type="submit" value="Add Review">
 					        </form>
 							</td>
