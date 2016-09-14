@@ -1,8 +1,6 @@
-/**
- * @author Team #3
- *
- * @created 09/09/16 
- */
+// Copyright (C) 2015 Ideas2IT, Inc.
+// All rights reserved
+
 package com.i2i.villapursuit.model;
 
 import javax.persistence.Column;
@@ -13,6 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+/**
+ * <p>
+ * Model which allows access to properties of Facility using getter and setter methods.
+ * </p>
+ * 
+ * @author Team #3
+ * 
+ * @created 07/09/16
+ * 
+ */
 
 @Entity
 @Table(name = "facilities", uniqueConstraints = @UniqueConstraint(columnNames = "id"))

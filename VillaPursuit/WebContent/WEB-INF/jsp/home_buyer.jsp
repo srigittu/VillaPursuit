@@ -339,11 +339,42 @@ body {
 ::-moz-input-placeholder {
 	color: #fff;
 }
+.logout {
+    float: right;
+    width: 20%;
+    height:20%;
+    position: absolute;
+	top: calc(14% - 75px);
+	left: calc(93% - 50px);
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+	z-index: 2;
+}
+a {
+    width: 100px;
+	height: 35px;
+	background: #000;
+	opacity: 0.4;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 40px;
+}
+p, a span {
+    color: #000;
+}
+
 </style>
 
 <body>
 
-	<div class="body"></div>
+	 <div class="body"></div>
 	<div class="grad"></div>
 	<div class="header">
 		<div>
@@ -351,7 +382,6 @@ body {
 		</div>
 	</div>
 	<br>
-
 	<c:if test="${userAddMessage != null}">
 		<div class="message">
 			<div>
@@ -379,6 +409,9 @@ body {
 		</div>
 
 		<div class="register">
+		<div class="logout">
+   <a href="logout">Logout</a>
+   </div>
 			<c:if test="${addAddress != null}">
 				<h2>
 					Add<span>Address!</span>
@@ -393,6 +426,7 @@ body {
 				</form:form>
 			</c:if>
 		</div>
+	
 		<div class="ad">
 
 			<c:if test="${advertisements != null}">
@@ -445,6 +479,6 @@ body {
 				</table>
 			</c:if>
 		</div>
-	</c:if>
+	</c:if> 
 </body>
 </html>
