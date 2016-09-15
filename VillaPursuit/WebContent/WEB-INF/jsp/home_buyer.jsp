@@ -437,11 +437,74 @@ body {
 							</td>
 							<td>
 							<form action="review_form">
+						        <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
 						        <input type="submit" value="Add Review">
 					        </form>
 							</td>
 							</tr>
 						</c:forEach>
+				</table>
+			</c:if>
+		</div>
+		
+		<div class="ad">
+
+			<c:if test="${addReview != null}">
+				<table>
+					<tr>
+						<th colspan="2">Pursuit Dream Villa</th>
+						<th>Availability</th>
+						<th>Posted On</th>
+						<th></th>
+					</tr>
+						<c:set var="advertisement" value="${reviewAdvertisement}"/>
+						<tr>
+							 <td>
+							    <c:forEach var="image"
+									items="${advertisement.getImages()}">
+									<c:out value="${image.getImagePath()}" />
+									<br>
+								</c:forEach>
+						     </td>
+						     <td>
+							    <c:out value="${advertisement.getTitle()}" />
+								<c:out value="${advertisement.getHouseType()}" />
+								<c:out value="${advertisement.getRentType()}" />
+								<br>
+								<c:set value="${advertisement.getFacility()}" var="facility"/>
+                                <c:out value="${facility.getBedroom()}"/>
+                                <c:out value="${facility.getArea()}"/>
+                                <br>
+                                <c:set value="${advertisement.getAddress()}" var="address"/>
+                                <c:out value="${address.getNumber()}"/>
+                                <c:out value="${address.getStreet()}"/>
+                                <c:out value="${address.getCity()}"/>
+                                <c:out value="${address.getState()}"/>
+                                <c:out value="${address.getPincode()}"/>
+                                <br>
+							</td>
+							<td>
+							    <c:out value="${advertisement.getAvailability()}" />
+							</td>
+							<td>
+							    <c:out value="${advertisement.getDate()}" />
+							</td>
+							<td>
+							<form:form action="add_review" commandName="review">
+					        <form:input path="comment" placeholder="Comment" />
+					        <form:select path="rating">
+                            <form:option value="NONE" label="--- Rating ---"/>
+                            <form:option value="1" label="--- * ---" />
+                            <form:option value="2" label="--- ** ---" />
+                            <form:option value="3" label="--- *** ---" />
+                            <form:option value="4" label="--- **** ---" />
+                            <form:option value="5" label="--- ***** ---" />
+                        </form:select><br>
+					        <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
+					        <input type="submit" value="Submit">
+				            </form:form>
+							</td>
+							</tr>
 				</table>
 			</c:if>
 		</div>

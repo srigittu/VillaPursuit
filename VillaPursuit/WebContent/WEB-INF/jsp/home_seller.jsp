@@ -328,19 +328,16 @@ body{
 		
 		<div class="ad">
 
-			<c:if test="${advertisements != null}">
+			<c:if test="${sellerAdvertisements != null}">
 				<table>
 					<tr>
 						<th colspan="2">Pursuit Dream Villa</th>
 						<th>Availability</th>
 						<th>Posted On</th>
-						<th></th>
 					</tr>
-						<c:forEach var="advertisement" items="${advertisements}">
-						<tr>
+						<c:forEach var="advertisement" items="${sellerAdvertisements}">
 							 <td>
-							    <c:forEach var="image"
-									items="${advertisement.getImages()}">
+							    <c:forEach var="image" items="${advertisement.getImages()}">
 									<c:out value="${image.getImagePath()}" />
 									<br>
 								</c:forEach>
@@ -368,13 +365,28 @@ body{
 							<td>
 							    <c:out value="${advertisement.getDate()}" />
 							</td>
-							<td>
-							<form action="review_form">
-						        <input type="submit" value="Add Review">
-					        </form>
-							</td>
-							</tr>
-						</c:forEach>
+							<tr>
+						        <th>Reviews</th>
+		         		    </tr>
+		         		    <tr>
+						        <th>Comments</th>
+						        <th></th>
+						        <th>Ratings</th>
+						        <th></th>
+		         		    </tr>
+		         		    <c:forEach var="review" items="${advertisement.getAdvertisementReviews()}">
+							<tr>
+							    <td>
+							    <c:out value="${review.getComment()}"/>
+							    </td>
+							    <td></td>
+							    <td>
+							    <c:out value="${review.getRating()}"/>
+							    </td>
+							    <td></td>
+						    </tr>
+						    </c:forEach>
+				    </c:forEach>
 				</table>
 			</c:if>
 		</div>

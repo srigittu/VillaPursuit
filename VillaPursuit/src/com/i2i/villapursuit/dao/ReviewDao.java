@@ -26,7 +26,7 @@ public class ReviewDao {
         try {
             transaction = session.beginTransaction();
             session.save(review);
-            Advertisement advertisement = (Advertisement)session.get(User.class, advertisementId);
+            Advertisement advertisement = (Advertisement)session.get(Advertisement.class, advertisementId);
             review.setAdvertisement(advertisement);
             User user = (User)session.get(User.class, userId);
             review.setUser(user);

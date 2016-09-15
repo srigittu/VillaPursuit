@@ -22,8 +22,4 @@ public class ReviewService {
     public List<Review> retriveAllReviews() throws VillaPursuitException {
         return reviewDao.retriveAllReviews();
     } 
-    
-
-
-
 }
