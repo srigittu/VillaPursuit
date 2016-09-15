@@ -12,9 +12,7 @@
 <style>
 @import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
 
-@import
-	url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300)
-	;
+@import	url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
 
 body {
 	margin: 0;
@@ -89,6 +87,31 @@ body {
 	font-size: 32px;
 	font-weight: 400;
 }
+
+.message div span {
+	color: #00ffff !important;
+}
+
+.message button {
+	width: 130px;
+	height: 35px;
+	background: #fff;
+	opacity: 0.4;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.message button:hover {
+	opacity: 0.6;
+}
+
 .ad {
 	position: absolute;
 	top: calc(30% - 35px);
@@ -131,8 +154,24 @@ body {
 	padding: 6px;
 }
 
-.message div span {
-	color: #00ffff !important;
+.ad input[type=submit] {
+	width: 110px;
+	height: 35px;
+	background: #000;
+	opacity: 0.4;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.ad input[type=submit]:hover {
+	opacity: 0.6;
 }
 
 .register {
@@ -201,107 +240,11 @@ body {
 	margin-top: 10px;
 }
 
-.editAddress {
-	position: absolute;
-	top: calc(14% - 75px);
-	left: calc(93% - 50px);
-	height: 150px;
-	width: 350px;
-	padding: 10px;
-	z-index: 2;
-}
-
-.editAddress input[type=submit] {
-	width: 100px;
-	height: 35px;
-	background: #000;
-	opacity: 0.4;
-	border: 1px solid #010;
-	cursor: pointer;
-	border-radius: 2px;
-	color: #0fffff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 2px;
-	margin-top: 10px;
-}
-
-.seller {
-	position: absolute;
-	top: calc(14% - 75px);
-	left: calc(83% - 50px);
-	height: 150px;
-	width: 350px;
-	padding: 10px;
-	z-index: 2;
-}
-
-.seller input[type=submit] {
-	width: 75px;
-	height: 35px;
-	background: #000;
-	opacity: 0.4;
-	border: 1px solid #010;
-	cursor: pointer;
-	border-radius: 75px;
-	color: #0fffff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 2px;
-	margin-top: 10px;
-}
-
-.message button {
-	width: 130px;
-	height: 35px;
-	background: #fff;
-	opacity: 0.4;
-	border: 1px solid #010;
-	cursor: pointer;
-	border-radius: 75px;
-	color: #0fffff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 2px;
-	margin-top: 10px;
-}
-
-.ad input[type=submit] {
-	width: 110px;
-	height: 35px;
-	background: #000;
-	opacity: 0.4;
-	border: 1px solid #010;
-	cursor: pointer;
-	border-radius: 75px;
-	color: #0fffff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 2px;
-	margin-top: 10px;
-}
-
 .register input[type=submit]:hover {
 	opacity: 0.6;
 }
 
-.ad input[type=submit]:hover {
-	opacity: 0.6;
-}
-
-.editAddress input[type=submit]:hover {
-	opacity: 0.6;
-}
-
 .register input[type=text]:hover {
-	opacity: 0.6;
-}
-
-.message button:hover {
 	opacity: 0.6;
 }
 
@@ -332,6 +275,86 @@ body {
 	border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
+.seller {
+	position: absolute;
+	top: calc(14% - 75px);
+	left: calc(80% - 50px);
+	z-index: 2;
+}
+
+.seller input[type=submit] {
+	width: 75px;
+	height: 35px;
+	background: #000;
+	opacity: 0.5;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.seller input[type=submit]:hover {
+	opacity: 0.6;
+}
+
+.editAddress {
+	position: absolute;
+	top: calc(14% - 75px);
+	left: calc(86% - 50px);
+	z-index: 2;
+}
+
+.editAddress input[type=submit] {
+	width: 100px;
+	height: 35px;
+	background: #000;
+	opacity: 0.5;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.editAddress input[type=submit]:hover {
+	opacity: 0.6;
+}
+
+.logout {
+	position: absolute;
+	top: calc(14% - 75px);
+	left: calc(98% - 50px);
+	z-index: 2;
+}
+
+.logout input[type=submit] {
+	width: 75px;
+	height: 35px;
+	background: #000;
+	opacity: 0.5;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+.logout input[type=submit]:hover {
+	opacity: 0.6;
+}
+
 ::-webkit-input-placeholder {
 	color: #fff;
 }
@@ -351,8 +374,8 @@ body {
 		</div>
 	</div>
 	<br>
-
 	<c:if test="${userAddMessage != null}">
+		
 		<div class="message">
 			<div>
 				You are successfully<span>Registered!</span>Confirmation Mail has
@@ -365,19 +388,22 @@ body {
 			</button>
 		</div>
 	</c:if>
+	
 	<c:if test="${userAddMessage == null}">
-		<div class="seller">
-			<form action="seller">
-				<input type="submit" value="Seller">
+	<c:if test="${sessionScope['userId'] != null}">
+		
+		<div class="logout">
+			<form action="logout">
+				<input type="submit" value="Logout">
 			</form>
 		</div>
-
+		
 		<div class="editAddress">
 			<form action="address_form">
 				<input type="submit" value="Edit Address">
 			</form>
 		</div>
-
+		
 		<div class="register">
 			<c:if test="${addAddress != null}">
 				<h2>
@@ -499,7 +525,7 @@ body {
                             <form:option value="3" label="--- *** ---" />
                             <form:option value="4" label="--- **** ---" />
                             <form:option value="5" label="--- ***** ---" />
-                        </form:select><br>
+                            </form:select><br>
 					        <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
 					        <input type="submit" value="Submit">
 				            </form:form>
@@ -508,6 +534,14 @@ body {
 				</table>
 			</c:if>
 		</div>
-	</c:if>
+		<c:if test="${sessionScope['role'] == 'seller'}">
+		<div class="seller">
+			<form action="seller">
+				<input type="submit" value="Seller">
+			</form>
+		</div>
+		</c:if>
+		</c:if>
+		</c:if>
 </body>
 </html>

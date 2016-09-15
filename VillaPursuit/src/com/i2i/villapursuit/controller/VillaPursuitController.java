@@ -339,4 +339,21 @@ public class VillaPursuitController {
     		return "home_buyer";
     	}
     }
+    
+    @RequestMapping(value="home")
+    public String home(ModelMap model) {
+    	try {
+    		model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
+    		return "home_buyer";
+    	} catch(VillaPursuitException e){
+    		model.addAttribute("addressAddException", e.toString());
+    		return "home_buyer";
+    	}
+    }
+    
+    @RequestMapping(value="logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+    	return "login";            
+    }
 }

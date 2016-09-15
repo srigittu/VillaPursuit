@@ -187,21 +187,18 @@ body{
 	margin-top: 10px;
 }
 
-.editAddress{
+.logout {
 	position: absolute;
 	top: calc(14% - 75px);
-	left: calc(93% - 50px);
-	height: 150px;
-	width: 350px;
-	padding: 10px;
+	left: calc(96% - 50px);
 	z-index: 2;
 }
 
-.editAddress input[type=submit]{
-	width: 100px;
+.logout input[type=submit] {
+	width: 75px;
 	height: 35px;
 	background: #000;
-    opacity: 0.4;
+	opacity: 0.5;
 	border: 1px solid #010;
 	cursor: pointer;
 	border-radius: 2px;
@@ -213,17 +210,14 @@ body{
 	margin-top: 10px;
 }
 
-.postAd{
+.seller {
 	position: absolute;
 	top: calc(14% - 75px);
-	left: calc(93% - 50px);
-	height: 150px;
-	width: 350px;
-	padding: 10px;
+	left: calc(86% - 50px);
 	z-index: 2;
 }
 
-.postAd input[type=submit]{
+.seller input[type=submit]{
 	width: 75px;
 	height: 35px;
 	background: #000;
@@ -254,6 +248,59 @@ body{
 	padding: 2px;
 	margin-top: 10px;
 }
+.home {
+	position: absolute;
+	top: calc(14% - 75px);
+	left: calc(80% - 50px);
+	z-index: 2;
+}
+
+.home input[type=submit] {
+	width: 75px;
+	height: 35px;
+	background: #000;
+	opacity: 0.5;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.home input[type=submit]:hover {
+	opacity: 0.6;
+}
+
+.postAd {
+	position: absolute;
+	top: calc(14% - 75px);
+	left: calc(86% - 50px);
+	z-index: 2;
+}
+
+.postAd input[type=submit] {
+	width: 100px;
+	height: 35px;
+	background: #000;
+	opacity: 0.5;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.editAddress input[type=submit]:hover {
+	opacity: 0.6;
+}
 
 .register input[type=submit]:hover{
 	opacity: 0.6;
@@ -264,6 +311,10 @@ body{
 }
 
 .register input[type=password]:hover{
+	opacity: 0.6;
+}
+
+.logout input[type=submit]:hover {
 	opacity: 0.6;
 }
 
@@ -300,7 +351,9 @@ body{
 </style>
 
 <body>
-
+    <c:if test="${sessionScope['role'] != 'seller'}">
+    <c:redirect url="welcome"/>
+    </c:if>
     <div class="body"></div>
 		<div class="grad"></div>
 		<div class="header">
@@ -312,6 +365,19 @@ body{
  			<input type="submit" value="Post Ad">
  	    </form>
  	    </div>
+ 	    
+ 	    <div class="home">
+		<form action="home">
+ 			<input type="submit" value="Home">
+ 	    </form>
+ 	    </div>
+ 	    
+ 	    <div class="logout">
+			<form action="logout">
+				<input type="submit" value="Logout">
+			</form>
+		</div>
+		
  	    <div class="register">
 		<c:if test="${addAddress != null}">
 			<h2>Add<span>Address!</span></h2>
@@ -326,9 +392,8 @@ body{
 		</c:if>
 		</div>
 		
-		<div class="ad">
-
-			<c:if test="${sellerAdvertisements != null}">
+		<c:if test="${sellerAdvertisements != null}">
+		    <div class="ad">
 				<table>
 					<tr>
 						<th colspan="2">Pursuit Dream Villa</th>
@@ -388,8 +453,8 @@ body{
 						    </c:forEach>
 				    </c:forEach>
 				</table>
-			</c:if>
-		</div>
+		    </div>
+		</c:if>
 
 </body>
 </html>

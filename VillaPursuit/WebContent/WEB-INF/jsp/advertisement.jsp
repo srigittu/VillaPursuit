@@ -12,7 +12,8 @@
 <style>
 @import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
-body{
+
+body {
 	margin: 0;
 	padding: 0;
 	background: #fff;
@@ -21,7 +22,7 @@ body{
 	font-size: 12px;
 }
 
-.body{
+.body {
 	position: absolute;
 	top: -20px;
 	left: -20px;
@@ -32,14 +33,14 @@ body{
 	background-image: url(images/city-road.jpg);
 	background-size: cover;
 	-webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+	filter: blur(5px);
 	z-index: 0;
 }
 
-.grad{
+.grad {
 	position: absolute;
 	top: -20px;
 	left: -20px;
@@ -48,19 +49,18 @@ body{
 	width: auto;
 	height: auto;
 	background: #000;
-    opacity: 0.2;
+	opacity: 0.2;
 	z-index: 1;
-	
 }
 
-.header{
+.header {
 	position: absolute;
 	top: calc(10% - 35px);
 	left: calc(25% - 255px);
 	z-index: 2;
 }
 
-.header div{
+.header div {
 	float: left;
 	color: #fff;
 	font-family: 'Exo', sans-serif;
@@ -68,18 +68,60 @@ body{
 	font-weight: 200;
 }
 
-.header div span{
+.header div span {
 	color: #00ffff !important;
 }
+
+.message {
+	position: absolute;
+	top: calc(30% - 35px);
+	left: calc(25% - 255px);
+	z-index: 2;
+}
+
+.message div {
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 32px;
+	font-weight: 400;
+}
+
+.message div span {
+	color: #00ffff !important;
+}
+
+.message button {
+	width: 130px;
+	height: 35px;
+	background: #fff;
+	opacity: 0.4;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.message button:hover {
+	opacity: 0.6;
+}
+
 .ad {
 	position: absolute;
 	top: calc(30% - 35px);
-	left: calc(35% - 255px);
+	left: calc(34% - 255px);
+	background: #000;
+	opacity: 0.8;
 	z-index: 2;
 }
 
 .ad table {
-	width: 300px border: #fff;
+	width: 300px
 	font-family: 'Exo', sans-serif;
 	font-size: 24px;
 	font-weight: 100;
@@ -111,117 +153,11 @@ body{
 	padding: 6px;
 }
 
-.register{
-	position: absolute;
-	top: calc(20% - 75px);
-	left: calc(15% - 50px);
-	height: 150px;
-	width: 350px;
-	padding: 10px;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 14px;
-	font-weight: 400;
-	z-index: 2;
-}
-
-.register h2{
-    float: left;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 35px;
-	font-weight: 200;
-}
-
-.register h2 span{
-    color: #00ffff
-}
-
-.register input[type=text]{
-	width: 250px;
-	height: 30px;
-	background: #000;
-	opacity: 0.5;
-	border: 1px solid rgba(255,255,255,0.6);
-	border-radius: 2px;
-	color: #00ffff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 500;
-	padding: 4px;
-}
-
-.register input[type=password]{
-	width: 250px;
-	height: 30px;
-	background: #000;
-	opacity: 0.5;
-	border: 1px solid rgba(255,255,255,0.6);
-	border-radius: 2px;
-	color: #00ffff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 500;
-	padding: 4px;
-}
-
-.register input[type=submit]{
-	width: 127px;
+.ad input[type=submit] {
+	width: 110px;
 	height: 35px;
 	background: #000;
-    opacity: 0.4;
-	border: 1px solid #010;
-	cursor: pointer;
-	border-radius: 2px;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 6px;
-	margin-top: 10px;
-}
-
-.editAddress{
-	position: absolute;
-	top: calc(14% - 75px);
-	left: calc(93% - 50px);
-	height: 150px;
-	width: 350px;
-	padding: 10px;
-	z-index: 2;
-}
-
-.editAddress input[type=submit]{
-	width: 100px;
-	height: 35px;
-	background: #000;
-    opacity: 0.4;
-	border: 1px solid #010;
-	cursor: pointer;
-	border-radius: 2px;
-	color: #0fffff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 2px;
-	margin-top: 10px;
-}
-
-.postAd{
-	position: absolute;
-	top: calc(14% - 75px);
-	left: calc(93% - 50px);
-	height: 150px;
-	width: 350px;
-	padding: 10px;
-	z-index: 2;
-}
-
-.postAd input[type=submit]{
-	width: 115px;
-	height: 35px;
-	background: #000;
-    opacity: 0.4;
+	opacity: 0.4;
 	border: 1px solid #010;
 	cursor: pointer;
 	border-radius: 75px;
@@ -233,63 +169,227 @@ body{
 	margin-top: 10px;
 }
 
-.register input[type=submit]:hover{
+.ad input[type=submit]:hover {
 	opacity: 0.6;
 }
 
-.register input[type=text]:hover{
+.register {
+	position: absolute;
+	top: calc(33% - 75px);
+	left: calc(67% - 50px);
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+	z-index: 2;
+}
+
+.register h2 {
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 35px;
+	font-weight: 200;
+}
+
+.register h2 span {
+	color: #00ffff
+}
+
+.register input[type=text] {
+	width: 250px;
+	height: 30px;
+	background: #000;
+	opacity: 0.5;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	border-radius: 2px;
+	color: #00ffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	padding: 4px;
+}
+
+.register input[type=password] {
+	width: 250px;
+	height: 30px;
+	background: #000;
+	opacity: 0.5;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	border-radius: 2px;
+	color: #00ffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	padding: 4px;
+}
+
+.register input[type=submit] {
+	width: 127px;
+	height: 35px;
+	background: #000;
+	opacity: 0.4;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 10px;
+}
+
+.register input[type=submit]:hover {
 	opacity: 0.6;
 }
 
-.register input[type=password]:hover{
+.register input[type=text]:hover {
 	opacity: 0.6;
 }
 
-.register input[type=button]:active{
+.register input[type=password]:hover {
 	opacity: 0.6;
 }
 
-.register input[type=text]:active{
+.register input[type=button]:active {
 	opacity: 0.6;
 }
 
-.register input[type=text]:focus{
+.register input[type=text]:active {
+	opacity: 0.6;
+}
+
+.register input[type=text]:focus {
 	outline: none;
-	border: 1px solid rgba(255,255,255,0.9);
+	border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
-.register input[type=password]:focus{
+.register input[type=password]:focus {
 	outline: none;
-	border: 1px solid rgba(255,255,255,0.9);
+	border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
-.register input[type=submit]:focus{
+.register input[type=submit]:focus {
 	outline: none;
-	border: 1px solid rgba(255,255,255,0.9);
+	border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
-::-webkit-input-placeholder{
-     color: #fff;
+.home {
+	position: absolute;
+	top: calc(14% - 75px);
+	left: calc(80% - 50px);
+	z-index: 2;
 }
 
-::-moz-input-placeholder{
-     color: #fff;
+.home input[type=submit] {
+	width: 75px;
+	height: 35px;
+	background: #000;
+	opacity: 0.5;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.home input[type=submit]:hover {
+	opacity: 0.6;
+}
+
+.editAddress {
+	position: absolute;
+	top: calc(14% - 75px);
+	left: calc(86% - 50px);
+	z-index: 2;
+}
+
+.editAddress input[type=submit] {
+	width: 110px;
+	height: 35px;
+	background: #000;
+	opacity: 0.5;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.editAddress input[type=submit]:hover {
+	opacity: 0.6;
+}
+
+.logout {
+	position: absolute;
+	top: calc(14% - 75px);
+	left: calc(98% - 50px);
+	z-index: 2;
+}
+
+.logout input[type=submit] {
+	width: 75px;
+	height: 35px;
+	background: #000;
+	opacity: 0.5;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+.logout input[type=submit]:hover {
+	opacity: 0.6;
+}
+
+::-webkit-input-placeholder {
+	color: #fff;
+}
+
+::-moz-input-placeholder {
+	color: #fff;
 }
 </style>
 
 <body>
-
+    <c:if test="${sessionScope['userId'] == null}">
+    <c:redirect url="welcome"/>
+    </c:if>
     <div class="body"></div>
 		<div class="grad"></div>
 		<div class="header">
 			<div>Villa<span>Pursuit</span></div>
 		</div>
 		<br>
- 	    <div class="postAd">
+		<div class="logout">
+			<form action="logout">
+				<input type="submit" value="Logout">
+			</form>
+		</div>
+ 	    <div class="editAddress">
 		<form action="advertisement_form">
  			<input type="submit" value="Post Ad Again">
  	    </form>
  	    </div>
+ 	    
+ 	    <div class="home">
+		<form action="home">
+ 			<input type="submit" value="Home">
+ 	    </form>
+ 	    </div>
+ 	    
  	    <div class="ad">
  	    
 		<c:if test="${advertisement != null}">
@@ -307,10 +407,12 @@ body{
                     <form:input path="images[1].imagePath" placeholder="images"/><br>
                     </td>
                     
-                    <td>
+                    <td colspan="2">
                     <form:input path="title" placeholder="Title"/><br>
                     <form:input path="status" type="hidden" value="active"/><br>
                     <form:input path="availability" placeholder="Availability"/><br>
+                    </td>
+                    <td>
  			            <form:select path="houseType">
                             <form:option value="Individual" label="Individual" />
                             <form:option value="Appartment" label="Appartment" />
@@ -320,11 +422,13 @@ body{
                             <form:option value="Lease" label="Lease" />
                         </form:select><br>
                     </td>
-                    
+                    <tr>
                     <td>
-                    <form:checkbox path="facility.parking"/>Parking<br>
-                    <form:checkbox path="facility.drainage"/>Drainage<br>
-                    <form:checkbox path="facility.transport"/>Transport<br>
+                    <form:checkbox path="facility.parking"/>Parking
+                    <form:checkbox path="facility.drainage"/>Drainage
+                    <form:checkbox path="facility.transport"/>Transport
+                    </td>
+                    <td>
                         <form:select path="facility.bedroom">
                             <form:option value="NONE" label="--- Bedroom ---"/>
                             <form:option value="1BHK" label="--- 1BHK ---" />
@@ -333,15 +437,19 @@ body{
                         </form:select><br>
                         <form:input path="facility.area" placeholder="Area-Size"/><br>
  			        </td>
- 			        
- 			        <td>
+ 			        <td  colspan="2">
                     <form:input path="address.number" placeholder="Number"/><br>
                     <form:input path="address.street" placeholder="Street"/><br>
                     <form:input path="address.city" placeholder="City"/><br>
                     <form:input path="address.state" placeholder="State"/><br>
                     <form:input path="address.pincode" placeholder="Pincode"/><br>
- 			        <input type="submit" value="Post">
  			        </td>
+ 			        </tr>
+ 			        <tr>
+ 			        <td></td>
+ 			        <td></td>
+ 			        <td></td>
+ 			        <td><input type="submit" value="Post"></td>
  			        </tr>
  			     </form:form>
  			</table>
