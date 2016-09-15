@@ -339,11 +339,49 @@ body {
 ::-moz-input-placeholder {
 	color: #fff;
 }
+.logout {
+    float: right;
+    width: 20%;
+    height:20%;
+    position: absolute;
+	top: calc(14% - 75px);
+	left: calc(93% - 50px);
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+	z-index: 2;
+}
+a {
+    width: 100px;
+	height: 35px;
+	background: #000;
+	opacity: 0.4;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 40px;
+}
+p, a span {
+    color: #000;
+}
+
 </style>
 
 <body>
-
-	<div class="body"></div>
+<c:if test="${role == null }">
+    <c:redirect url="welcome"/>
+</c:if>
+  <c:if test="${role != null }">
+      <c:if test="${role == 'seller'}">
+          <c:redirect url="home_seller"/>
+      </c:if>
+  </c:if>
+	 <div class="body"></div>
 	<div class="grad"></div>
 	<div class="header">
 		<div>
@@ -351,7 +389,6 @@ body {
 		</div>
 	</div>
 	<br>
-
 	<c:if test="${userAddMessage != null}">
 		<div class="message">
 			<div>
@@ -379,6 +416,9 @@ body {
 		</div>
 
 		<div class="register">
+		<div class="logout">
+   <a href="logout">Logout</a>
+   </div>
 			<c:if test="${addAddress != null}">
 				<h2>
 					Add<span>Address!</span>
@@ -393,6 +433,7 @@ body {
 				</form:form>
 			</c:if>
 		</div>
+	
 		<div class="ad">
 
 			<c:if test="${advertisements != null}">
@@ -436,8 +477,14 @@ body {
 							    <c:out value="${advertisement.getDate()}" />
 							</td>
 							<td>
+							<form action="view_review">
+							    <input type = "hidden" name = "advertisementId" value="${advertisement.getAdvertisementId()}">
+							    <input type="submit" value="View Reviews">
+							</form>
+							</td>
+							<td>
 							<form action="review_form">
-						        <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
+							    <input type ="hidden" name ="advertisementId" value="${advertisement.getAdvertisementId()}">
 						        <input type="submit" value="Add Review">
 					        </form>
 							</td>
@@ -509,5 +556,6 @@ body {
 			</c:if>
 		</div>
 	</c:if>
+	</c:if> 
 </body>
 </html>

@@ -330,106 +330,35 @@ p, a span {
 }
 
 </style>
-
 <body>
- <c:if test="${role == null }">
-    <c:redirect url="welcome"/>
-</c:if>
-  <c:if test="${role != null }">
-      <c:if test="${role == 'buyer'}">
-          <c:redirect url="home_buyer"/>
-      </c:if>
-  </c:if>
-   <div class="body"></div>
-		<div class="grad"></div>
-		<div class="header">
-			<div>Villa<span>Pursuit</span></div>
+<div class="body"></div>
+	<div class="grad"></div>
+	<div class="header">
+		<div>
+			Villa<span>Pursuit</span>
 		</div>
-		<br>
- 	    <div class="postAd">
-		<form action="advertisement_form">
- 			<input type="submit" value="Post Ad">
- 	    </form>
- 	    </div>
- 	    <div class="register">
- 	    <div class="logout">
+	</div>
+	<br>
+   <div class="ad">
+   <div class="register">
+		<div class="logout">
    <a href="logout">Logout</a>
    </div>
-		<c:if test="${addAddress != null}">
-			<h2>Add<span>Address!</span></h2>
-                <form:form action="user_address" commandName="address">
-                <form:input path="number" placeholder="Number"/>
-                <form:input path="street" placeholder="Street"/>
-                <form:input path="city" placeholder="City"/>
-                <form:input path="state" placeholder="State"/>
-                <form:input path="pincode" placeholder="Pincode"/>
- 			    <input type="submit" value="Save">
- 			    </form:form>
-		</c:if>
-		</div>
-		
-		<div class="ad">
-
-			<c:if test="${sellerAdvertisements != null}">
-				<table>
+			<c:if test="${reviews != null}">
+			<table>
 					<tr>
-						<th colspan="2">Pursuit Dream Villa</th>
-						<th>Availability</th>
-						<th>Posted On</th>
+						<th>comment</th>
+						<th>status</th>
+						<th></th>
 					</tr>
-						<c:forEach var="advertisement" items="${sellerAdvertisements}">
-							 <td>
-							    <c:forEach var="image" items="${advertisement.getImages()}">
-									<c:out value="${image.getImagePath()}" />
-									<br>
-								</c:forEach>
-						     </td>
-						     <td>
-							    <c:out value="${advertisement.getTitle()}" />
-								<c:out value="${advertisement.getHouseType()}" />
-								<c:out value="${advertisement.getRentType()}" />
-								<br>
-								<c:set value="${advertisement.getFacility()}" var="facility"/>
-                                <c:out value="${facility.getBedroom()}"/>
-                                <c:out value="${facility.getArea()}"/>
-                                <br>
-                                <c:set value="${advertisement.getAddress()}" var="address"/>
-                                <c:out value="${address.getNumber()}"/>
-                                <c:out value="${address.getStreet()}"/>
-                                <c:out value="${address.getCity()}"/>
-                                <c:out value="${address.getState()}"/>
-                                <c:out value="${address.getPincode()}"/>
-                                <br>
-							</td>
-							<td>
-							    <c:out value="${advertisement.getAvailability()}" />
-							</td>
-							<td>
-							    <c:out value="${advertisement.getDate()}" />
-							</td>
-							<tr>
-						        <th>Reviews</th>
-		         		    </tr>
-		         		    <tr>
-						        <th>Comments</th>
-						        <th></th>
-						        <th>Ratings</th>
-						        <th></th>
-		         		    </tr>
-		         		    <c:forEach var="review" items="${advertisement.getAdvertisementReviews()}">
-							<tr>
-							    <td>
-							    <c:out value="${review.getComment()}"/>
-							    </td>
-							    <td></td>
-							    <td>
-							    <c:out value="${review.getRating()}"/>
-							    </td>
-							    <td></td>
-						    </tr>
-						    </c:forEach>
-				    </c:forEach>
-				</table>
+						<c:forEach var="review" items="${reviews}">
+						<tr>
+					        <td><c:out value="${review.getComment()}" /></td>
+						    <td><c:out value="${review.getRating()}" /></td>
+						</tr>
+						</c:forEach>
+			</table>
 			</c:if>
-		</div></body>
-</html>
+</div>
+</body>
+			

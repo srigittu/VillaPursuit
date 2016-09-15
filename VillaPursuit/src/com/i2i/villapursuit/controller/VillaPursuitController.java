@@ -1,5 +1,8 @@
 // Copyright (C) 2015 Ideas2IT, Inc.
 // All rights reserved
+<<<<<<< HEAD
+=======
+
 package com.i2i.villapursuit.controller;
 
 
@@ -36,7 +39,6 @@ import com.i2i.villapursuit.service.UserService;
  * Review an Advertisement and address insertion operations.
  * Redirects the request to the corresponding service classes
  * such as User Service, Advertisement Service and Review Service.
- * </p>
  *
  * @author Team #3
  *
@@ -89,10 +91,19 @@ public class VillaPursuitController {
         try {
         	User user = userService.getUser(userName);
             if(password.equals(user.getPassword())) {
-                session.setAttribute("userId", String.valueOf(user.getId()));
-                session.setAttribute("role", user.getRole());
-                model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
-            	return "home_buyer";	
+                session.setAttribute("userId", user.getId());
+                session.setAttribute("user", user);
+                if("buyer".equals(user.getRole())) {
+                	session.setAttribute("role", user.getRole());
+                    model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
+            	    return "redirect:gotohomebuyer";
+                } else if("seller".equals(user.getRole())) {
+                	session.setAttribute("role", user.getRole());
+                	return "home_seller";
+                } else {
+                	return "login";
+                }
+            	
             } else {
             	return "login";
             }
@@ -113,6 +124,20 @@ public class VillaPursuitController {
 	 * @return "home_seller"
 	 *     Returning to the seller home page.
 	 */
+	@RequestMapping("/gotohomebuyer")
+	public String gotoHomeBuyer(ModelMap model) throws VillaPursuitException {
+		model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
+		return "home_buyer";
+	}
+	/**
+	 * <p>
+	 * Method which gets request from seller.
+	 * Redirects it to the corresponding seller page.
+	 * </p>
+	 * @return "home_seller"
+	 *     Returning to the registration form page of seller.
+	 */
+
 	@RequestMapping(value="seller")
     public String sellerHome(ModelMap model, HttpSession session) {
 		List<Advertisement> sellerAdvertisement = new ArrayList<Advertisement>();
@@ -330,13 +355,32 @@ public class VillaPursuitController {
      *    Returning to the buyer home page.
      */
     @RequestMapping(value="add_review")
-    public String addAdvertisementReview(@RequestParam("advertisementId") String advertisementId, Review review, BindingResult result, ModelMap model, HttpSession session) {
+    public String addAdvertisementReview(@ModelAttribute("review") Review review, BindingResult result,
+    		ModelMap model, HttpSession session, @RequestParam("advertisementId") int id) {
     	try {
-    		model.addAttribute("reviewAddMessage", reviewService.addAdvertisementReview(review, Integer.parseInt(advertisementId), Integer.parseInt(session.getAttribute("userId").toString())));
+    		model.addAttribute("reviewAddMessage", reviewService.addAdvertisementReview(review, Integer.parseInt(advertisementId),          
+    		                   Integer.parseInt(session.getAttribute("userId").toString())));
     		return "home_buyer";
     	} catch(VillaPursuitException e){
-    		model.addAttribute("addressAddException", e.toString());
+    		model.addAttribute("reviewAddException", e.toString());
     		return "home_buyer";
     	}
+    }
+    
+    /**
+     * <p>
+     * Method which performs logout operation.
+     * </p>
+     * @param session
+     *     Contains object of the HTTP session.
+     * @return "login"
+     *     JSP page that contains login form.
+     */
+    
+    
+	@RequestMapping("/logout")
+    public String processRequest(HttpSession session) {
+        session.invalidate();
+        return "login";
     }
 }
