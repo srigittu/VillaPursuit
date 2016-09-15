@@ -268,6 +268,7 @@ public class VillaPursuitController {
      * @return "home_buyer"
      *    Returning to the buyer home page.
      */
+    
     @RequestMapping(value="user_address")
     public String addAddress(Address address, BindingResult result, ModelMap model, HttpSession session) {
     	try {
@@ -338,5 +339,21 @@ public class VillaPursuitController {
     		model.addAttribute("addressAddException", e.toString());
     		return "home_buyer";
     	}
+    }
+    
+    /**
+     * <p>
+     * Method which performs logout operation.
+     * </p>
+     * @param session
+     *     Contains object of the HTTP session.
+     * @return "login"
+     *     JSP page that contains login form.
+     */
+    
+	@RequestMapping("/logout")
+    public String processRequest(HttpSession session) {
+        session.invalidate();
+        return "login";
     }
 }

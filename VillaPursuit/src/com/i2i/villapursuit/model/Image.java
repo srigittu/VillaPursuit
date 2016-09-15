@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.mysql.jdbc.Blob;
+
 @Entity
 @Table(name = "images", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Image {
@@ -25,6 +27,7 @@ public class Image {
 
     @Column(name = "image_path")
     private String imagePath;
+
 
     @ManyToOne
     @JoinColumn(name="advertisement_id")

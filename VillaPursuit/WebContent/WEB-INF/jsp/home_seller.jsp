@@ -297,46 +297,80 @@ body{
 ::-moz-input-placeholder{
      color: #fff;
 }
+.logout {
+    float: right;
+    width: 20%;
+    height:20%;
+    position: absolute;
+	top: calc(14% - 75px);
+	left: calc(93% - 50px);
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+	z-index: 2;
+}
+a {
+    width: 100px;
+	height: 35px;
+	background: #000;
+	opacity: 0.4;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 40px;
+}
+p, a span {
+    color: #000;
+}
 </style>
 
 <body>
 
     <div class="body"></div>
-		<div class="grad"></div>
-		<div class="header">
-			<div>Villa<span>Pursuit</span></div>
-		</div>
-		<br>
- 	    <div class="postAd">
-		<form action="advertisement_form">
- 			<input type="submit" value="Post Ad">
- 	    </form>
- 	    </div>
- 	    <div class="register">
-		<c:if test="${addAddress != null}">
-			<h2>Add<span>Address!</span></h2>
-                <form:form action="user_address" commandName="address">
-                <form:input path="number" placeholder="Number"/>
-                <form:input path="street" placeholder="Street"/>
-                <form:input path="city" placeholder="City"/>
-                <form:input path="state" placeholder="State"/>
-                <form:input path="pincode" placeholder="Pincode"/>
- 			    <input type="submit" value="Save">
- 			    </form:form>
-		</c:if>
-		</div>
+		    <div class="grad"></div>
+		    <div class="header">
+			    <div>Villa<span>Pursuit</span></div>
+		    </div>
+		    <br>
+ 	        <div class="postAd">
+		        <form action="advertisement_form">
+ 			        <input type="submit" value="Post Ad">
+ 	            </form>
+ 	        </div>
+ 	        <div class="register">
+ 	            <div class="logout">
+                    <a href="logout">Logout</a>
+                </div>
+		        <c:if test="${addAddress != null}">
+		            <h2>Add<span>Address!</span></h2>
+                    <form:form action="user_address" commandName="address">
+                        <form:input path="number" placeholder="Number"/>
+                        <form:input path="street" placeholder="Street"/>
+                        <form:input path="city" placeholder="City"/>
+                        <form:input path="state" placeholder="State"/>
+                        <form:input path="pincode" placeholder="Pincode"/>
+ 			            <input type="submit" value="Save">
+ 	                </form:form>
+		        </c:if>
+		    </div>
 		
-		<div class="ad">
+		    <div class="ad">
 
-			<c:if test="${sellerAdvertisements != null}">
-				<table>
-					<tr>
-						<th colspan="2">Pursuit Dream Villa</th>
+		        <table>
+				    <tr>
+					    <th colspan="2">Pursuit Dream Villa</th>
 						<th>Availability</th>
 						<th>Posted On</th>
 					</tr>
+					<c:if test="${sellerAdvertisements != null}">
 						<c:forEach var="advertisement" items="${sellerAdvertisements}">
-							 <td>
+						<tr>
+					        <td>
 							    <c:forEach var="image" items="${advertisement.getImages()}">
 									<c:out value="${image.getImagePath()}" />
 									<br>
@@ -358,38 +392,40 @@ body{
                                 <c:out value="${address.getState()}"/>
                                 <c:out value="${address.getPincode()}"/>
                                 <br>
-							</td>
-							<td>
-							    <c:out value="${advertisement.getAvailability()}" />
-							</td>
-							<td>
-							    <c:out value="${advertisement.getDate()}" />
-							</td>
-							<tr>
-						        <th>Reviews</th>
-		         		    </tr>
-		         		    <tr>
+							 </td>
+							 <td>
+							     <c:out value="${advertisement.getAvailability()}" />
+							 </td>
+							 <td>
+							     <c:out value="${advertisement.getDate()}" />
+							 </td>
+						</tr>
+		         	  <c:if test="${advertisement.getAdvertisementReviews() != null}">  
+		         		 <tr>
+						     <th>Reviews</th>
+		         		 </tr>
+		         		 <tr>
 						        <th>Comments</th>
 						        <th></th>
 						        <th>Ratings</th>
 						        <th></th>
-		         		    </tr>
-		         		    <c:forEach var="review" items="${advertisement.getAdvertisementReviews()}">
-							<tr>
-							    <td>
-							    <c:out value="${review.getComment()}"/>
-							    </td>
-							    <td></td>
-							    <td>
-							    <c:out value="${review.getRating()}"/>
-							    </td>
-							    <td></td>
-						    </tr>
+		         		    </tr> 
+		         		     <c:forEach var="review" items="${advertisement.getAdvertisementReviews()}">
+							     <tr>
+							        <td>
+							            <c:out value="${review.getComment()}"/>
+							        </td>
+							        <td></td>
+							        <td>
+							            <c:out value="${review.getRating()}"/>
+							       </td>
+							        <td></td>
+						         </tr>
 						    </c:forEach>
-				    </c:forEach>
+						    </c:if> 
+						</c:forEach>
+						</c:if>
 				</table>
-			</c:if>
-		</div>
-
+		    </div>
 </body>
 </html>
