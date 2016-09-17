@@ -1,8 +1,6 @@
-/**
- * @author Team #3
- *
- * @created 12/09/16 
- */
+// Copyright (C) 2015 Ideas2IT, Inc.
+// All rights reserved
+
 package com.i2i.villapursuit.dao;
 
 import java.util.List;
@@ -21,6 +19,21 @@ public class ReviewDao {
 	private SessionFactory sessionFactory = HibernateConnection.getSessionFactory();
     private Transaction transaction = null;
 
+    /**
+     * <p>
+     * Method which fetches request from service.
+     * Insert review details into database.
+     * </p>
+     * @param review
+     *     Contains object of the review model.
+     * @param advertisementId
+     *     Contains advertisement Id.
+     * @param userId
+     *     Contains User Id.
+     * @throws VillaPursuitException
+     *     If there is failed or interrupted database operations.
+     */
+    
     public void insertReview(Review review, int advertisementId, int userId) throws VillaPursuitException {
     	Session session = sessionFactory.openSession();
         try {
@@ -41,6 +54,17 @@ public class ReviewDao {
         }
     }
 
+    /**
+     * <p>
+     * Method which fetches request from service.
+     * Retrieve all user details from database.
+     * </p>
+     * @return users
+     *     Return all list of user.
+     * @throws VillaPursuitException
+     *     If there is failed or interrupted database operations.
+     */
+    
     @SuppressWarnings("unchecked")
 	public List<Review> retriveAllReviews() throws VillaPursuitException {
         Session session = sessionFactory.openSession();
