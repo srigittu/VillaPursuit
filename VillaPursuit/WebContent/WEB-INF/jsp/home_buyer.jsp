@@ -351,6 +351,7 @@ body {
 	padding: 2px;
 	margin-top: 10px;
 }
+
 .logout input[type=submit]:hover {
 	opacity: 0.6;
 }
@@ -409,12 +410,12 @@ body {
 				<h2>
 					Add<span>Address!</span>
 				</h2>
-				<form:form action="user_address" commandName="address">
-					<form:input path="number" placeholder="Number" />
-					<form:input path="street" placeholder="Street" />
-					<form:input path="city" placeholder="City" />
-					<form:input path="state" placeholder="State" />
-					<form:input path="pincode" placeholder="Pincode" />
+				<form:form action="user_address" commandName="address" required="required">
+					<form:input path="number" placeholder="Number" required="required"/>
+					<form:input path="street" placeholder="Street" required="required"/>
+					<form:input path="city" placeholder="City" required="required"/>
+					<form:input path="state" placeholder="State" required="required"/>
+					<form:input path="pincode" placeholder="Pincode" required="required"/>
 					<input type="submit" value="Save">
 				</form:form>
 			</c:if>
@@ -425,6 +426,7 @@ body {
 				<table>
 					<tr>
 						<th colspan="2">Pursuit Dream Villa</th>
+						<th>Price</th>
 						<th>Availability</th>
 						<th>Posted On</th>
 						<th></th>
@@ -447,13 +449,9 @@ body {
                                 <c:out value="${facility.getBedroom()}"/>
                                 <c:out value="${facility.getArea()}"/>
                                 <br>
-                                <c:set value="${advertisement.getAddress()}" var="address"/>
-                                <c:out value="${address.getNumber()}"/>
-                                <c:out value="${address.getStreet()}"/>
-                                <c:out value="${address.getCity()}"/>
-                                <c:out value="${address.getState()}"/>
-                                <c:out value="${address.getPincode()}"/>
-                                <br>
+							</td>
+							<td>
+							 <c:out value="${advertisement.getPrice()}" />
 							</td>
 							<td>
 							    <c:out value="${advertisement.getAvailability()}" />
@@ -461,6 +459,10 @@ body {
 							<td>
 							    <c:out value="${advertisement.getDate()}" />
 							</td>
+							</tr>
+							<c:set value="${advertisement.getUser()}" var="user"/>
+							<c:if test="${user.getId() != sessionScope['userId']}">
+							<tr>
 							<td>
 							<form action="review_form">
 						        <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
@@ -468,6 +470,15 @@ body {
 					        </form>
 							</td>
 							</tr>
+							<tr>
+							    <td>
+							        <form action="view_seller">
+						            <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
+						            <input type="submit" value="view Contact">
+					            </form>
+					            </td>
+							</tr><br>
+							</c:if>
 						</c:forEach>
 				</table>
 			</c:if>
@@ -479,6 +490,7 @@ body {
 				<table>
 					<tr>
 						<th colspan="2">Pursuit Dream Villa</th>
+						<th>Price</th>
 						<th>Availability</th>
 						<th>Posted On</th>
 						<th></th>
@@ -501,13 +513,9 @@ body {
                                 <c:out value="${facility.getBedroom()}"/>
                                 <c:out value="${facility.getArea()}"/>
                                 <br>
-                                <c:set value="${advertisement.getAddress()}" var="address"/>
-                                <c:out value="${address.getNumber()}"/>
-                                <c:out value="${address.getStreet()}"/>
-                                <c:out value="${address.getCity()}"/>
-                                <c:out value="${address.getState()}"/>
-                                <c:out value="${address.getPincode()}"/>
-                                <br>
+							</td>
+							<td>
+							 <c:out value="${advertisement.getPrice()}" />
 							</td>
 							<td>
 							    <c:out value="${advertisement.getAvailability()}" />
@@ -542,6 +550,79 @@ body {
 		</div>
 		</c:if>
 		</c:if>
+		</c:if>
+		
+		<c:if test="${viewSellerAdvertisement != null}">
+		    <div class="ad">
+				<table>
+					<tr>
+						<th colspan="2">Pursuit Dream Villa</th>
+						<th>Availability</th>
+						<th>Posted On</th>
+					</tr>
+					     <tr>
+							 <td>
+							    <c:forEach var="image" items="${viewSellerAdvertisement.getImages()}">
+									<c:out value="${image.getImagePath()}" />
+									<br>
+								</c:forEach>
+						     </td>
+						     <td>
+							    <c:out value="${viewSellerAdvertisement.getTitle()}" />
+							    <c:out value="${viewSellerAdvertisement.getPrice()}" />
+								<c:out value="${viewSellerAdvertisement.getHouseType()}" />
+								<c:out value="${viewSellerAdvertisement.getRentType()}" />
+								<br>
+								<c:set value="${viewSellerAdvertisement.getFacility()}" var="facility"/>
+                                <c:out value="${facility.getBedroom()}"/>
+                                <c:out value="${facility.getArea()}"/>
+                                <br>
+                                <c:set value="${viewSellerAdvertisement.getAddress()}" var="address"/>
+                                <c:out value="${address.getNumber()}"/>
+                                <c:out value="${address.getStreet()}"/>
+                                <c:out value="${address.getCity()}"/>
+                                <c:out value="${address.getState()}"/>
+                                <c:out value="${address.getPincode()}"/>
+                                <br>
+							</td>
+							<td>
+							    <c:out value="${viewSellerAdvertisement.getAvailability()}" />
+							</td>
+							<td>
+							    <c:out value="${viewSellerAdvertisement.getDate()}" />
+							</td>
+							<tr>
+							    <td>
+							        <c:set value="${viewSellerAdvertisement.getUser()}" var="seller"/>
+                                    Name:<c:out value="${seller.getFirstName()}"/>
+                                    <c:out value="${seller.getLastName()}"/><br>
+                                    Mobile:<c:out value="${seller.getMobileNumber()}"/><br>
+                                    Email:<c:out value="${seller.getEmail()}"/>
+							    </td>
+							</tr>
+							<tr>
+						        <th>Reviews</th>
+		         		    </tr>
+		         		    <tr>
+						        <th>Comments</th>
+						        <th></th>
+						        <th>Ratings</th>
+						        <th></th>
+		         		    </tr>
+		         		    <c:forEach var="review" items="${viewSellerAdvertisement.getAdvertisementReviews()}">
+							<tr>
+							    <td>
+							    <c:out value="${review.getComment()}"/>
+							    </td>
+							    <td></td>
+							    <td>
+							    <c:out value="${review.getRating()}"/>
+							    </td>
+							    <td></td>
+						    </tr>
+						    </c:forEach>
+				</table>
+		    </div>
 		</c:if>
 </body>
 </html>

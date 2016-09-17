@@ -409,6 +409,7 @@ body{
 						     </td>
 						     <td>
 							    <c:out value="${advertisement.getTitle()}" />
+							    <c:out value="${advertisement.getPrice()}" />
 								<c:out value="${advertisement.getHouseType()}" />
 								<c:out value="${advertisement.getRentType()}" />
 								<br>
@@ -430,6 +431,16 @@ body{
 							<td>
 							    <c:out value="${advertisement.getDate()}" />
 							</td>
+							<c:forEach var="viewer" items="${advertisement.getAdvertisementViewer()}">
+							<tr>
+							    <td>
+                                    Name:<c:out value="${viewer.getFirstName()}"/>
+                                    <c:out value="${viewer.getLastName()}"/><br>
+                                    Mobile:<c:out value="${viewer.getMobileNumber()}"/><br>
+                                    Email:<c:out value="${viewer.getEmail()}"/>
+							    </td>
+							</tr>
+							</c:forEach>
 							<tr>
 						        <th>Reviews</th>
 		         		    </tr>

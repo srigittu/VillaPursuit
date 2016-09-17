@@ -23,7 +23,6 @@ import javax.persistence.UniqueConstraint;
  * @created 07/09/16
  * 
  */
-
 @Entity
 @Table(name = "images", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Image {

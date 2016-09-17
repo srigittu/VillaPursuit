@@ -400,24 +400,25 @@ body {
 						<th></th>
 						<th></th>
 					</tr>
-                <form:form name="advertisement" action="add_advertisement" modelAttribute="advertisement" >
+                    <form:form name="advertisement" action="add_advertisement" modelAttribute="advertisement" >
                     <tr>
                     <td>
-                    <form:input path="images[0].imagePath" placeholder="images"/><br>
-                    <form:input path="images[1].imagePath" placeholder="images"/><br>
-                    </td>
-                    
-                    <td colspan="2">
-                    <form:input path="title" placeholder="Title"/><br>
-                    <form:input path="status" type="hidden" value="active"/><br>
-                    <form:input path="availability" placeholder="Availability"/><br>
+                    <form:input path="images[0].imagePath" placeholder="images" required="required"/><br>
+                    <form:input path="images[1].imagePath" placeholder="images" required="required"/><br>
                     </td>
                     <td>
- 			            <form:select path="houseType">
+                    <form:input path="title" placeholder="Title" required="required"/><br>
+                    <form:input path="status" type="hidden" value="active" required="required"/><br>
+                    <form:input path="availability" placeholder="Availability" required="required"/><br>
+                    <form:input path="price" placeholder="Price"/><br>
+                    </td>
+                    </tr>
+                    <td>
+ 			            <form:select path="houseType" required="required">
                             <form:option value="Individual" label="Individual" />
                             <form:option value="Appartment" label="Appartment" />
                         </form:select><br>
-                        <form:select path="rentType">
+                        <form:select path="rentType" required="required">
                             <form:option value="Rent" label="Rent" />
                             <form:option value="Lease" label="Lease" />
                         </form:select><br>
@@ -429,20 +430,20 @@ body {
                     <form:checkbox path="facility.transport"/>Transport
                     </td>
                     <td>
-                        <form:select path="facility.bedroom">
+                        <form:select path="facility.bedroom" required="required">
                             <form:option value="NONE" label="--- Bedroom ---"/>
                             <form:option value="1BHK" label="--- 1BHK ---" />
                             <form:option value="2BHK" label="--- 2BHK ---" />
                             <form:option value="3BHK" label="--- 3BHK ---" />
                         </form:select><br>
-                        <form:input path="facility.area" placeholder="Area-Size"/><br>
+                        <form:input path="facility.area" placeholder="Area-Size" required="required"/><br>
  			        </td>
  			        <td  colspan="2">
-                    <form:input path="address.number" placeholder="Number"/><br>
-                    <form:input path="address.street" placeholder="Street"/><br>
-                    <form:input path="address.city" placeholder="City"/><br>
-                    <form:input path="address.state" placeholder="State"/><br>
-                    <form:input path="address.pincode" placeholder="Pincode"/><br>
+                    <form:input path="address.number" placeholder="Number" required="required"/><br>
+                    <form:input path="address.street" placeholder="Street" required="required"/><br>
+                    <form:input path="address.city" placeholder="City" required="required"/><br>
+                    <form:input path="address.state" placeholder="State" required="required"/><br>
+                    <form:input path="address.pincode" placeholder="Pincode" required="required"/><br>
  			        </td>
  			        </tr>
  			        <tr>

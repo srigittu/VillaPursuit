@@ -8,8 +8,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-//import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -346,6 +344,19 @@ public class VillaPursuitController {
     public String addAdvertisementReview(@RequestParam("advertisementId") String advertisementId, Review review, BindingResult result, ModelMap model, HttpSession session) {
     	try {
     		model.addAttribute("reviewAddMessage", reviewService.addAdvertisementReview(review, Integer.parseInt(advertisementId), Integer.parseInt(session.getAttribute("userId").toString())));
+    		model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
+    		return "home_buyer";
+    	} catch(VillaPursuitException e){
+    		model.addAttribute("addressAddException", e.toString());
+    		return "home_buyer";
+    	}
+    }
+    
+    @RequestMapping(value="view_seller")
+    public String viewSeller(@RequestParam("advertisementId") String advertisementId, ModelMap model, HttpSession session) {
+    	try {
+    		advertisementService.setAdvertisementViewer(Integer.parseInt(session.getAttribute("userId").toString()), Integer.parseInt(advertisementId));
+    		model.addAttribute("viewSellerAdvertisement", advertisementService.retriveAdvertisementById(Integer.parseInt(advertisementId)));
     		return "home_buyer";
     	} catch(VillaPursuitException e){
     		model.addAttribute("addressAddException", e.toString());
@@ -384,7 +395,6 @@ public class VillaPursuitController {
      * @return "login"
      *     Returning to the login page.
      */
-    
     @RequestMapping(value="logout")
     public String logout(HttpSession session) {
         session.invalidate();

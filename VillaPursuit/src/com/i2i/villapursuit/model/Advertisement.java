@@ -5,7 +5,9 @@ package com.i2i.villapursuit.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +16,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -52,6 +56,17 @@ public class Advertisement {
     @Column(name = "availability")
     private String availability;
     
+    @Column(name = "price")
+    private String price;
+    
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
 	@Column(name="date", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable=false, updatable=false)
     private Date date;
     
@@ -87,6 +102,12 @@ public class Advertisement {
 	@OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST)
     private List<Review> advertisementReviews = new ArrayList<Review>();
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(name = "ADVERTISEMENT_USER", joinColumns = { @JoinColumn(name = "advertisement_id") },
+    inverseJoinColumns = { @JoinColumn(name = "user_id") })
+	private Set<User> advertisementViewer = new HashSet<User>();
+	
 	public Advertisement() {
 	}
 
@@ -96,6 +117,14 @@ public class Advertisement {
 
 	public void setHouseType(String houseType) {
 		this.houseType = houseType;
+	}
+    
+	public Set<User> getAdvertisementViewer() {
+		return advertisementViewer;
+	}
+
+	public void setAdvertisementViewer(Set<User> advertisementViewer) {
+		this.advertisementViewer.addAll(advertisementViewer);
 	}
 
 	public String getRentType() {

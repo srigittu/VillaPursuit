@@ -3,6 +3,9 @@
 
 package com.i2i.villapursuit.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,9 +13,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * <p>
@@ -24,7 +31,6 @@ import javax.persistence.UniqueConstraint;
  * @created 07/09/16
  * 
  */
-
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class User {
@@ -55,13 +61,26 @@ public class User {
 	@Column(name = "role")
 	private String role;
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany(mappedBy="advertisementViewer")
+	private Set<Advertisement> advertisements = new HashSet<Advertisement>();
+	
 	public User() {
 	}
 	
+	public Set<Advertisement> getAdvertisements() {
+		return advertisements;
+	}
+
+	public void setAdvertisements(Set<Advertisement> advertisements) {
+		this.advertisements = advertisements;
+	}
+
 	public int getId() {
 		return id;
 	}
