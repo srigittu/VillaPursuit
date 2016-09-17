@@ -203,10 +203,12 @@ body{
 	font-size: 16px;
 	font-weight: 400;
 	padding: 6px;
-	margin-top: 25px;
+	margin-top: 16px;
 }
 </style>
+
 </head>
+
 <body>
 
   <div class="body"></div>
@@ -216,10 +218,10 @@ body{
 		</div>
 		<br>
 		<div class="login">
-		        <h2>Log<span>in!</span></h2>
+		        <h2>Lo<span>gin!</span></h2>
 				<form action="login" method="post">
-				<input type="text" placeholder="username" name="userName"><br>
-				<input type="password" placeholder="password" name="password"><br>
+				<input type="text" placeholder="username" name="userName" required="required"><br>
+				<input type="password" placeholder="password" name="password" required="required"><br>
  				<input type="submit" value="Login">
  				</form>
 		</div>

@@ -1,6 +1,8 @@
-// Copyright (C) 2015 Ideas2IT, Inc.
-// All rights reserved
-
+/**
+ * @author Team #3
+ *
+ * @created 08/09/16 
+ */
 package com.i2i.villapursuit.model;
 
 import java.util.ArrayList;
@@ -26,17 +28,6 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
-/**
- * <p>
- * Model which allows access to properties of Advertisement using getter and setter methods.
- * </p>
- * 
- * @author Team #3
- * 
- * @created 07/09/16
- * 
- */
 
 @Entity
 @Table(name = "advertisements", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
