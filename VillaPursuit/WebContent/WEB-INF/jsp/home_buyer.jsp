@@ -116,8 +116,6 @@ body {
 	position: absolute;
 	top: calc(30% - 35px);
 	left: calc(34% - 255px);
-	background: #000;
-	opacity: 0.8;
 	z-index: 2;
 }
 
@@ -129,7 +127,17 @@ body {
 }
 
 .ad table tr {
-	color: #fff;
+	background: #000;
+	opacity: 0.8;
+	border: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 32px;
+	font-weight: 200;
+}
+
+.blank table tr {
+	background: #000;
+	opacity: 0.5;
 	border: #fff;
 	font-family: 'Exo', sans-serif;
 	font-size: 32px;
@@ -351,7 +359,6 @@ body {
 	padding: 2px;
 	margin-top: 10px;
 }
-
 .logout input[type=submit]:hover {
 	opacity: 0.6;
 }
@@ -429,7 +436,6 @@ body {
 						<th>Price</th>
 						<th>Availability</th>
 						<th>Posted On</th>
-						<th></th>
 					</tr>
 						<c:forEach var="advertisement" items="${advertisements}">
 						<tr>
@@ -459,26 +465,26 @@ body {
 							<td>
 							    <c:out value="${advertisement.getDate()}" />
 							</td>
-							</tr>
 							<c:set value="${advertisement.getUser()}" var="user"/>
 							<c:if test="${user.getId() != sessionScope['userId']}">
-							<tr>
 							<td>
 							<form action="review_form">
 						        <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
 						        <input type="submit" value="Add Review">
 					        </form>
 							</td>
-							</tr>
-							<tr>
 							    <td>
 							        <form action="view_seller">
 						            <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
 						            <input type="submit" value="view Contact">
 					            </form>
 					            </td>
-							</tr><br>
+							<br>
 							</c:if>
+							</tr>
+						    <tr class="blank">
+						       
+						    </tr> 
 						</c:forEach>
 				</table>
 			</c:if>

@@ -37,7 +37,6 @@ import org.hibernate.annotations.LazyCollectionOption;
  * @created 07/09/16
  * 
  */
-
 @Entity
 @Table(name = "advertisements", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Advertisement {

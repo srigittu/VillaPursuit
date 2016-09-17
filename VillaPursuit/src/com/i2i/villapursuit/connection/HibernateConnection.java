@@ -1,13 +1,20 @@
-/**
- * @author Team #3
- *
- * @created 07/09/16 
- */
+// Copyright (C) 2015 Ideas2IT, Inc.
+// All rights reserved
 package com.i2i.villapursuit.connection;
 
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 
+/**
+ * <p>
+ * Singleton class which establishes connection for database.
+ * </p>
+ * 
+ * @author Team #3
+ * 
+ * @created 07/09/16
+ *
+ */
 public class HibernateConnection {
     private static SessionFactory sessionFactory = null;
     

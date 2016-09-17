@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+//import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -56,7 +58,6 @@ public class VillaPursuitController {
 	 * @return "login"
 	 *     Returning to login page.
 	 */
-	
 	@RequestMapping(value="welcome")
     public String welcome() {
         return "login";            
@@ -83,7 +84,6 @@ public class VillaPursuitController {
 	 *     If the credentials are not match with the database then it,
 	 *     redirects back to the login page.
 	 */
-	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
     public String userLogin(@RequestParam("userName") String userName, @RequestParam("password") String password, HttpSession session, ModelMap model) {
         try {
@@ -113,7 +113,6 @@ public class VillaPursuitController {
 	 * @return "home_seller"
 	 *     Returning to the seller home page.
 	 */
-	
 	@RequestMapping(value="seller")
     public String sellerHome(ModelMap model, HttpSession session) {
 		List<Advertisement> sellerAdvertisement = new ArrayList<Advertisement>();
@@ -142,7 +141,6 @@ public class VillaPursuitController {
 	 * @return "register"
 	 *     Returning to the registration form page.
 	 */
-	
 	@RequestMapping(value="register_form", method=RequestMethod.GET)
     public String accessUserObject(User user) {
         return "register";            
@@ -162,7 +160,6 @@ public class VillaPursuitController {
 	 * @return "home_buyer"
 	 *     Returning back buyer home page with address form.
 	 */
-	
 	@RequestMapping(value="address_form", method=RequestMethod.GET)
     public String accessAddressObject(Address address, ModelMap model) {
 		model.addAttribute("addAddress", "addressObject");
@@ -182,7 +179,6 @@ public class VillaPursuitController {
 	 * @return "advertisement"
 	 *    Returning to the advertisement form page.
 	 */
-	
 	@RequestMapping(value="advertisement_form", method=RequestMethod.GET)
     public String accessAdvertisementObject(ModelMap model) {
 		Advertisement advertisement = new Advertisement();
@@ -198,7 +194,6 @@ public class VillaPursuitController {
 	 * <p>
 	 * Method which gets review addition request from the buyer.
 	 * Then, it redirects the review Object to the review form page.
-	 * </p>
 	 * @param review
 	 *    Contains review object such as comment and rating. 
 	 * @param model
@@ -207,7 +202,6 @@ public class VillaPursuitController {
 	 * @return "home_buyer"
 	 *    Returning back buyer home page with review form.
 	 */
-	
 	@RequestMapping(value="review_form", method=RequestMethod.GET)
     public String accessReviewObject(@RequestParam("advertisementId") String advertisementId, Review review, ModelMap model) {
 		try {
@@ -286,11 +280,9 @@ public class VillaPursuitController {
     }
     
     /**
-     * <p>
      * Method which gets advertisement post request from the seller with their credentials.
 	 * If, the values are Validated then seller advertisement is added to the database
 	 * Then, it redirects to the seller home page.
-	 * </p>
      * @param advertisement
      *    Contains advertisement object with it values, where various model class objects
 	 *    such as images, facility and address are binded to it.
@@ -318,11 +310,9 @@ public class VillaPursuitController {
     }
     
     /**
-     * <p>
      * Method which gets advertisement review request from the buyer with their credentials.
 	 * If, the values are Validated then buyer review to the particular advertisement is added to the database
 	 * Then, it redirects to the buyer home page.
-	 * </p>
      * @param advertisementId
      *    Contains id for the particular advertisement to which buyer provides the review.
      * @param review
@@ -339,7 +329,6 @@ public class VillaPursuitController {
      * @return "home_buyer"
      *    Returning to the buyer home page.
      */
-    
     @RequestMapping(value="add_review")
     public String addAdvertisementReview(@RequestParam("advertisementId") String advertisementId, Review review, BindingResult result, ModelMap model, HttpSession session) {
     	try {
@@ -352,6 +341,20 @@ public class VillaPursuitController {
     	}
     }
     
+    /**
+     * Method which gets viewer for the particular advertisement request from the buyer.
+	 * If, the user viewed the advertisement then user is updated to the database
+	 * Then, it redirects to the buyer home page.
+     * @param advertisementId
+     *    Contains id for the particular advertisement to which buyer provides the review.
+     * @param model
+     *    Contains object of ModelMap class in order to send a acknowledgement 
+	 *    message to the seller whenever buyer viewed the advertisement
+	 *    are not with an Attribute viewSellerAdvertisement.
+     * @param session
+     *    Contains session object such as userId in order to add the user to which posted the advertisement.
+     * @return
+     */
     @RequestMapping(value="view_seller")
     public String viewSeller(@RequestParam("advertisementId") String advertisementId, ModelMap model, HttpSession session) {
     	try {
@@ -365,14 +368,13 @@ public class VillaPursuitController {
     }
     
     /**
-     * <p>
-     * Method which gets request for view all advertisements.
-     * It redirects to the home page.
-     * </p>
+     * Method which gets request from the user privileged page.
+	 * Then, it redirects to the buyer home page.
      * @param model
-     *     Contains object of ModelMap class in order to send a acknowledgment message or the complete list of advertisements.
+     *    Contains object of ModelMap class with an advertisements attribute to list
+	 *    the set of advertisements.
      * @return "home_buyer"
-     *     Returning to the buyer home page.
+     *    Returning to the buyer home page.
      */
     @RequestMapping(value="home")
     public String home(ModelMap model) {
@@ -388,12 +390,11 @@ public class VillaPursuitController {
     /**
      * <p>
      * Method which performs logout operation.
-     * It redirects to the login page if session is invalidated.
      * </p>
      * @param session
-     *     Contains session object such as userId and role.
+     *     Contains object of the HTTP session.
      * @return "login"
-     *     Returning to the login page.
+     *     JSP page that contains login form.
      */
     @RequestMapping(value="logout")
     public String logout(HttpSession session) {
