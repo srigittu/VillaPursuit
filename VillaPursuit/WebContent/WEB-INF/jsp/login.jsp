@@ -220,8 +220,8 @@ body{
 		<div class="login">
 		        <h2>Lo<span>gin!</span></h2>
 				<form action="login" method="post">
-				<input type="text" placeholder="username" name="userName" required="required"><br>
-				<input type="password" placeholder="password" name="password" required="required"><br>
+				<input type="text" placeholder="username" name="userName"><br>
+				<input type="password" placeholder="password" name="password"><br>
  				<input type="submit" value="Login">
  				</form>
 		</div>

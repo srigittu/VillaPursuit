@@ -5,9 +5,7 @@
  */
 package com.i2i.villapursuit.dao;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -64,40 +62,5 @@ public class AdvertisementDao {
             session.close(); 
         }
     }
-
-    public Advertisement retriveAdvertisementById(int advertisementId) throws VillaPursuitException {
-        Session session = sessionFactory.openSession();
-        try {
-            return (Advertisement)session.get(Advertisement.class, advertisementId);
-        } catch (HibernateException exceptionCause) {
-            if (transaction!=null) {
-                transaction.rollback();
-            }
-            throw new VillaPursuitException("\t\"Error occured while retriving User... Please try again...\""+exceptionCause.toString());
-        } finally {
-            session.close(); 
-        }
-    }
-
-	public void setAdvertisementViewer(int userId, int advertisementId) throws VillaPursuitException {
-		Set<User> viewers = new HashSet<User>();
-		Session session = sessionFactory.openSession();
-		try {
-			transaction = session.beginTransaction();
-			User viewer = (User)session.get(User.class, userId);
-			viewers.add(viewer);
-			Advertisement advertisement = (Advertisement)session.get(Advertisement.class, advertisementId);
-			advertisement.setAdvertisementViewer(viewers);
-			session.update(advertisement);
-			transaction.commit();
-		} catch (HibernateException exceptionCause) {
-            if (transaction!=null) {
-                transaction.rollback();
-            }
-            throw new VillaPursuitException("\t\"Error occured while setting Advertisement viewer... Please try again...\""+exceptionCause.toString());
-        } finally {
-            session.close(); 
-        }
-	}
 
 }

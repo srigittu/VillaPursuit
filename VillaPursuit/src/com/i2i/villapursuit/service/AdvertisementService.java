@@ -26,11 +26,4 @@ public class AdvertisementService {
         return advertisementDao.retriveAllAdvertisements();
     } 
     
-    public Advertisement retriveAdvertisementById(int advertisementId) throws VillaPursuitException {
-    	return advertisementDao.retriveAdvertisementById(advertisementId);
-    }
-    
-    public void setAdvertisementViewer(int userId, int advertisementId) throws VillaPursuitException {
-        advertisementDao.setAdvertisementViewer(userId, advertisementId);
-    }
 }

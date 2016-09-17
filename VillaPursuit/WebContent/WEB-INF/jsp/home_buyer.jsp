@@ -351,6 +351,7 @@ body {
 	padding: 2px;
 	margin-top: 10px;
 }
+
 .logout input[type=submit]:hover {
 	opacity: 0.6;
 }
