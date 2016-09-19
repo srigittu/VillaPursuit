@@ -114,7 +114,10 @@ public class VillaPursuitController {
     public String sellerHome(ModelMap model, HttpSession session) {
 		List<Advertisement> sellerAdvertisement = new ArrayList<Advertisement>();
 		try {
-        	for (Advertisement advertisement: advertisementService.getAllAdvertisements()) {
+			if (session.getAttribute("userId") == null) {
+        		return "login";
+        	}
+			for (Advertisement advertisement: advertisementService.getAllAdvertisements()) {
         		if ((advertisement.getUser()).getId() == Integer.parseInt(session.getAttribute("userId").toString())) {
         			sellerAdvertisement.add(advertisement);
         		}
@@ -123,7 +126,7 @@ public class VillaPursuitController {
         	return "home_seller";
         }catch(VillaPursuitException e) {
 			model.addAttribute("sellerException", e.toString());
-        	return "home_buyer";
+        	return "home_seller";
         }
     }
 	
