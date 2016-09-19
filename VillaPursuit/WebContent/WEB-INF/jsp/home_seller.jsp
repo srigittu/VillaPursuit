@@ -513,6 +513,16 @@ body{
                                 <span><c:out value="${facility.getBedroom()}"/></span></div>
                                 <div class="title">Area:
                                 <span><c:out value="${facility.getArea()}"/></span></div>
+                                <div class="title"><c:out value="${'Facilities:'}"/>
+							    <c:if test="${facility.isParking() == true }">
+							        <span><c:out value="${'Parking Facility, '}"/></span>
+							    </c:if>
+							    <c:if test="${facility.isDrainage() == true }">
+							        <span><c:out value="${'Drainage Facility, '}"/></span>
+							    </c:if>
+							    <c:if test="${facility.isTransport() == true }">
+							        <span><c:out value="${'Transport Facility'}"/></span>
+							    </c:if></div>
                                 <c:set value="${advertisement.getAddress()}" var="address"/>
                                 <div class="title">Address:</div>
                                 <c:out value="${address.getNumber()}"/>,

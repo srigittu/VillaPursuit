@@ -500,6 +500,16 @@ body {
                                 <span><c:out value="${facility.getBedroom()}"/></span></div>
                                 <div class="title"><c:out value="${'Area:'}"/>
                                 <span><c:out value="${facility.getArea()}"/></span></div>
+                                <div class="title"><c:out value="${'Facilities:'}"/>
+							    <c:if test="${facility.isParking() == true }">
+							        <span><c:out value="${'Parking Facility, '}"/></span>
+							    </c:if>
+							    <c:if test="${facility.isDrainage() == true }">
+							        <span><c:out value="${'Drainage Facility, '}"/></span>
+							    </c:if>
+							    <c:if test="${facility.isTransport() == true }">
+							        <span><c:out value="${'Transport Facility'}"/></span>
+							    </c:if></div>
 							</td>
 							<td>
 							 <c:out value="${advertisement.getPrice()}" />
@@ -567,6 +577,16 @@ body {
                                 <span><c:out value="${facility.getBedroom()}"/></span></div>
                                 <div class="title"><c:out value="${'Area:'}"/>
                                 <span><c:out value="${facility.getArea()}"/></span></div>
+                                <div class="title"><c:out value="${'Facilities:'}"/>
+							    <c:if test="${facility.isParking() == true }">
+							        <span><c:out value="${'Parking Facility, '}"/></span>
+							    </c:if>
+							    <c:if test="${facility.isDrainage() == true }">
+							        <span><c:out value="${'Drainage Facility, '}"/></span>
+							    </c:if>
+							    <c:if test="${facility.isTransport() == true }">
+							        <span><c:out value="${'Transport Facility'}"/></span>
+							    </c:if></div>
 							</td>
 							<td>
 							 <c:out value="${advertisement.getPrice()}" />
@@ -579,7 +599,7 @@ body {
 							</td>
 							<td>
 							<form:form action="add_review" commandName="review">
-					        <form:input path="comment" placeholder="Comment" />
+					        <form:input path="comment" placeholder="Comment" required="required"/>
 					        <form:select path="rating">
                             <form:option value="NONE" label="--- Rating ---"/>
                             <form:option value="1" label="--- * ---" />
@@ -634,6 +654,16 @@ body {
                                 <span><c:out value="${facility.getBedroom()}"/></span></div>
                                 <div class="title">Area:
                                 <span><c:out value="${facility.getArea()}"/></span></div>
+                                <div class="title"><c:out value="${'Facilities:'}"/>
+							    <c:if test="${facility.isParking() == true }">
+							        <span><c:out value="${'Parking Facility, '}"/></span>
+							    </c:if>
+							    <c:if test="${facility.isDrainage() == true }">
+							        <span><c:out value="${'Drainage Facility, '}"/></span>
+							    </c:if>
+							    <c:if test="${facility.isTransport() == true }">
+							        <span><c:out value="${'Transport Facility'}"/></span>
+							    </c:if></div>
                                 <c:set value="${viewSellerAdvertisement.getAddress()}" var="address"/>
                                 <div class="title">Address:</div>
                                 <c:out value="${address.getNumber()}"/>,
