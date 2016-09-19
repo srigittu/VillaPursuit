@@ -8,8 +8,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-//import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -91,8 +89,7 @@ public class VillaPursuitController {
             if(password.equals(user.getPassword())) {
                 session.setAttribute("userId", String.valueOf(user.getId()));
                 session.setAttribute("role", user.getRole());
-                model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
-            	return "home_buyer";	
+            	return "redirect:gotobuyerpage";	
             } else {
             	return "login";
             }
@@ -130,6 +127,23 @@ public class VillaPursuitController {
         }
     }
 	
+	/**
+	 * <p>
+	 * Method which gets request from user.
+	 * If the user role is privileged to seller then
+	 * Redirects to buyer
+	 * </p>
+	 */
+	@RequestMapping(value="gotobuyerpage")
+	public String gotoBuyer(ModelMap model) {
+		try {
+		    model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
+    	    return "home_buyer";
+		} catch(VillaPursuitException e) {
+			model.addAttribute("sellerException", e.toString());
+        	return "home_buyer";
+		}
+    }
 	/**
 	 * <p>
 	 * Method which gets registration request from the user.

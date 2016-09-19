@@ -204,7 +204,15 @@ body{
      color: #fff;
 }
 </style>
-
+<script>
+function validateForm() {
+    var x = document.forms["myForm"]["username"].value;
+    if (x == null || x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+}
+</script>
 </head>
 
 <body>
@@ -217,16 +225,16 @@ body{
 		<br>
 		<div class="register">
 			<h2>Create<span>Account!</span></h2>
-                <form:form action="register" commandName="user">
-                <form:input path="userName" placeholder="username"/>
-                <form:input path="firstName" placeholder="First Name"/>
-                <form:input path="lastName" placeholder="Last Name"/>
-                <form:password path="password" placeholder="password"/>
-                <form:input path="mobileNumber" placeholder="Mobile Number"/>
-                <form:input path="email" placeholder="Email Id"/><br>
-                <form:radiobutton path="role" value="buyer" />Bu<span>yer</span>
-                <form:radiobutton path="role" value="seller" />Sel<span>ler</span>
- 			    <input type="submit" value="Register">
+                <form:form action="register" commandName="user" name="myForm">
+                <form:input path="userName" placeholder="username" name="username"/>
+                <form:input path="firstName" placeholder="First Name" required="required"/>
+                <form:input path="lastName" placeholder="Last Name" required="required"/>
+                <form:password path="password" placeholder="password" required="required"/>
+                <form:input path="mobileNumber" placeholder="Mobile Number" required="required"/>
+                <form:input path="email" placeholder="Email Id" required="required"/><br>
+                <form:radiobutton path="role" value="buyer" />Buy<span>er</span>
+                <form:radiobutton path="role" value="seller" />Sell<span>er</span>
+ 			    <input type="submit" value="Register" onclick="return validateForm()">
  			    </form:form>
 		</div>
 		
