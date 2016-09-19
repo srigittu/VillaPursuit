@@ -390,6 +390,24 @@ body {
 ::-moz-input-placeholder {
 	color: #fff;
 }
+.title{
+    font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	color: #0dded5;
+}
+.maintitle{
+    font-family: 'Exo', sans-serif;
+	font-size: 25px;
+	color: #0dded5;
+}
+
+.maintitle span {
+	color: #fff;
+}
+
+.title span {
+	color: #fff;
+}
 </style>
 
 <body>
@@ -425,6 +443,12 @@ body {
 				<input type="submit" value="Logout">
 			</form>
 		</div>
+		
+		<div class="home">
+		<form action="home">
+ 			<input type="submit" value="Home">
+ 	    </form>
+ 	    </div>
 		
 		<div class="editAddress">
 			<form action="address_form">
@@ -467,14 +491,16 @@ body {
 								</c:forEach>
 						     </td>
 						     <td>
-							    <c:out value="${advertisement.getTitle()}" />
-								<c:out value="${advertisement.getHouseType()}" />
-								<c:out value="${advertisement.getRentType()}" />
-								<br>
+							    <div class="maintitle"><c:out value="${advertisement.getTitle()}" /></div>
+							    <div class="title"><c:out value="${'House Type:'}"/>
+								<span><c:out value="${advertisement.getHouseType()}" /></span></div>
+								<div class="title"><c:out value="${'Rent Type:'}"/>
+								<span><c:out value="${advertisement.getRentType()}" /></span></div>
 								<c:set value="${advertisement.getFacility()}" var="facility"/>
-                                <c:out value="${facility.getBedroom()}"/>
-                                <c:out value="${facility.getArea()}"/>
-                                <br>
+								<div class="title"><c:out value="${'Bed Rooms:'}"/>
+                                <span><c:out value="${facility.getBedroom()}"/></span></div>
+                                <div class="title"><c:out value="${'Area:'}"/>
+                                <span><c:out value="${facility.getArea()}"/></span></div>
 							</td>
 							<td>
 							 <c:out value="${advertisement.getPrice()}" />
@@ -532,14 +558,16 @@ body {
 								</c:forEach>
 						     </td>
 						     <td>
-							    <c:out value="${advertisement.getTitle()}" />
-								<c:out value="${advertisement.getHouseType()}" />
-								<c:out value="${advertisement.getRentType()}" />
-								<br>
+							     <div class="maintitle"><c:out value="${advertisement.getTitle()}" /></div>
+							    <div class="title"><c:out value="${'House Type:'}"/>
+								<span><c:out value="${advertisement.getHouseType()}" /></span></div>
+								<div class="title"><c:out value="${'Rent Type:'}"/>
+								<span><c:out value="${advertisement.getRentType()}" /></span></div>
 								<c:set value="${advertisement.getFacility()}" var="facility"/>
-                                <c:out value="${facility.getBedroom()}"/>
-                                <c:out value="${facility.getArea()}"/>
-                                <br>
+								<div class="title"><c:out value="${'Bed Rooms:'}"/>
+                                <span><c:out value="${facility.getBedroom()}"/></span></div>
+                                <div class="title"><c:out value="${'Area:'}"/>
+                                <span><c:out value="${facility.getArea()}"/></span></div>
 							</td>
 							<td>
 							 <c:out value="${advertisement.getPrice()}" />
@@ -572,7 +600,7 @@ body {
 		<c:if test="${sessionScope['role'] == 'seller'}">
 		<div class="seller">
 			<form action="seller">
-				<input type="submit" value="Seller">
+				<input type="submit" value="My Posts">
 			</form>
 		</div>
 		</c:if>
@@ -595,21 +623,25 @@ body {
 								</c:forEach>
 						     </td>
 						     <td>
-							    <c:out value="${viewSellerAdvertisement.getTitle()}" />
-							    <c:out value="${viewSellerAdvertisement.getPrice()}" />
-								<c:out value="${viewSellerAdvertisement.getHouseType()}" />
-								<c:out value="${viewSellerAdvertisement.getRentType()}" />
-								<br>
+							    <div class="maintitle"><c:out value="${viewSellerAdvertisement.getTitle()}" /></div>
+							    <div class="title">Price:
+							    <span><c:out value="${viewSellerAdvertisement.getPrice()}" /></span></div>
+							    <div class="title">House Type:
+								<span><c:out value="${viewSellerAdvertisement.getHouseType()}" /></span></div>
+								<div class="title">Rent Type:
+								<span><c:out value="${viewSellerAdvertisement.getRentType()}" /></span></div>
 								<c:set value="${viewSellerAdvertisement.getFacility()}" var="facility"/>
-                                <c:out value="${facility.getBedroom()}"/>
-                                <c:out value="${facility.getArea()}"/>
-                                <br>
+								<div class="title">Bedrooms:
+                                <span><c:out value="${facility.getBedroom()}"/></span></div>
+                                <div class="title">Area:
+                                <span><c:out value="${facility.getArea()}"/></span></div>
                                 <c:set value="${viewSellerAdvertisement.getAddress()}" var="address"/>
-                                <c:out value="${address.getNumber()}"/>
-                                <c:out value="${address.getStreet()}"/>
-                                <c:out value="${address.getCity()}"/>
-                                <c:out value="${address.getState()}"/>
-                                <c:out value="${address.getPincode()}"/>
+                                <div class="title">Address:</div>
+                                <c:out value="${address.getNumber()}"/>,
+                                <c:out value="${address.getStreet()}"/>,
+                                <c:out value="${address.getCity()}"/>,
+                                <c:out value="${address.getState()}"/>,
+                                <c:out value="${address.getPincode()}"/>.
                                 <br>
 							</td>
 							<td>
@@ -628,10 +660,10 @@ body {
 							<tr>
 							    <td colspan="4">
 							        <c:set value="${viewSellerAdvertisement.getUser()}" var="seller"/>
-                                    Name:<c:out value="${seller.getFirstName()}"/>
-                                    <c:out value="${seller.getLastName()}"/>
-                                    Mobile:<c:out value="${seller.getMobileNumber()}"/>
-                                    Email:<c:out value="${seller.getEmail()}"/>
+                                    <div class="title">Name:<span><c:out value="${seller.getFirstName()}"/>
+                                    <c:out value="${seller.getLastName()}"/></span></div>
+                                    <div class="title">Mobile:<span><c:out value="${seller.getMobileNumber()}"/></span></div>
+                                    <div class="title">Email:<span><c:out value="${seller.getEmail()}"/></span></div>
 							    </td>
 							</tr>
 							

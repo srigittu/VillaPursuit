@@ -102,7 +102,7 @@ public class UserDao {
             	if (user.getUserName().equals(userName)) {
             		return user;
             	}
-            }
+            } 
             transaction.commit();
             return null;
         } catch (HibernateException exceptionCause) {

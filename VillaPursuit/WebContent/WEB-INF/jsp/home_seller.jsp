@@ -105,6 +105,25 @@ body{
     color: #00ffff
 }
 
+.title{
+    font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	color: #0dded5;
+}
+.maintitle{
+    font-family: 'Exo', sans-serif;
+	font-size: 25px;
+	color: #0dded5;
+}
+
+.maintitle span {
+	color: #fff;
+}
+
+.title span {
+	color: #fff;
+}
+
 .ad {
 	position: absolute;
 	top: calc(25% - 35px);
@@ -432,21 +451,25 @@ body{
 								</c:forEach>
 						     </td>
 						     <td>
-							    <c:out value="${advertisement.getTitle()}" />
-							    <c:out value="${advertisement.getPrice()}" />
-								<c:out value="${advertisement.getHouseType()}" />
-								<c:out value="${advertisement.getRentType()}" />
-								<br>
+							    <div class="maintitle"><c:out value="${advertisement.getTitle()}" /></div>
+							    <div class="title">Price:
+							    <span><c:out value="${advertisement.getPrice()}" /></span></div>
+							    <div class="title">House Type:
+								<span><c:out value="${advertisement.getHouseType()}" /></span></div>
+								<div class="title">Rent Type:
+								<span><c:out value="${advertisement.getRentType()}" /></span></div>
 								<c:set value="${advertisement.getFacility()}" var="facility"/>
-                                <c:out value="${facility.getBedroom()}"/>
-                                <c:out value="${facility.getArea()}"/>
-                                <br>
+								<div class="title">Bed room:
+                                <span><c:out value="${facility.getBedroom()}"/></span></div>
+                                <div class="title">Area:
+                                <span><c:out value="${facility.getArea()}"/></span></div>
                                 <c:set value="${advertisement.getAddress()}" var="address"/>
-                                <c:out value="${address.getNumber()}"/>
-                                <c:out value="${address.getStreet()}"/>
-                                <c:out value="${address.getCity()}"/>
-                                <c:out value="${address.getState()}"/>
-                                <c:out value="${address.getPincode()}"/>
+                                <div class="title">Address:</div>
+                                <c:out value="${address.getNumber()}"/>,
+                                <c:out value="${address.getStreet()}"/>,
+                                <c:out value="${address.getCity()}"/>,
+                                <c:out value="${address.getState()}"/>,
+                                <c:out value="${address.getPincode()}"/>.
                                 <br>
 							</td>
 							<td>
@@ -457,23 +480,23 @@ body{
 							</td>
 							<tr>
 							    <td colspan="2">
-							        <div class="viewer"><c:out value="${'Buyer Viewed Recently'}"/><br></div>
+							        <div class="viewer"><c:out value="${'Viewer Details'}"/><br></div>
 							    </td>
 							</tr>
 							<c:if test="${advertisement.getAdvertisementViewer().size() == 0}">
 							<tr>
 							    <td colspan="4">
-							        <div class="emptyViewer"><c:out value="${'NOT YET VIEWED'}"/><br></div>
+							        <div class="emptyViewer"><c:out value="${'NO ONE VIEWED'}"/><br></div>
 							    </td>
 							</tr>
 							</c:if>
 							<c:forEach var="viewer" items="${advertisement.getAdvertisementViewer()}">
 							<tr>
 							    <td colspan="4">
-                                    Name:<c:out value="${viewer.getFirstName()}"/>
-                                    <c:out value="${viewer.getLastName()}"/>
-                                    Mobile:<c:out value="${viewer.getMobileNumber()}"/>
-                                    Email:<c:out value="${viewer.getEmail()}"/>
+                                    <div class="title">Name:<span><c:out value="${viewer.getFirstName()}"/>
+                                    <c:out value="${viewer.getLastName()}"/></span></div>
+                                    <div class="title">Mobile:<span><c:out value="${viewer.getMobileNumber()}"/></span></div>
+                                    <div class="title">Email:<span><c:out value="${viewer.getEmail()}"/></span></div>
 							    </td>
 							</tr>
 							</c:forEach>
@@ -508,7 +531,7 @@ body{
 						    </tr>
 						    </c:forEach>
 						    <tr>
-						    <td colspan="4"><c:out value="${'****************'}"/></td>
+						    <td colspan="4"><c:out value="${'***************************************************************************************'}"/></td>
 							</tr>
 				    </c:forEach>
 				</table>
