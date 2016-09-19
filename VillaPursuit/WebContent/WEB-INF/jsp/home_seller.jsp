@@ -10,7 +10,7 @@
      <c:redirect url="welcome"/>
 </c:if>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
+<title>Home Seller</title>
 </head>
 <style>
 @import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
@@ -32,7 +32,7 @@ body{
 	bottom: -700px;
 	width: auto;
 	height: auto;
-	background-image: url(images/city-road.jpg);
+	background-image: url(images/login.jpg);
 	background-size: cover;
 	-webkit-filter: blur(5px);
     -moz-filter: blur(5px);
@@ -50,8 +50,6 @@ body{
 	bottom: -40px;
 	width: auto;
 	height: auto;
-	background: #000;
-    opacity: 0.2;
 	z-index: 1;
 	
 }
@@ -166,7 +164,7 @@ body{
 .ad {
 	position: absolute;
 	top: calc(25% - 35px);
-	left: calc(37% - 255px);srikanth
+	left: calc(37% - 255px);
 	z-index: 2;
 }
 
@@ -490,6 +488,7 @@ body{
 				<table>
 					<tr>
 						<th colspan="2">Pursuit Dream Villa</th>
+						<th>Price</th>
 						<th>Availability</th>
 						<th>Posted On</th>
 					</tr>
@@ -502,35 +501,27 @@ body{
 						     </td>
 						     <td>
 							    <div class="maintitle"><c:out value="${advertisement.getTitle()}" /></div>
-							    <div class="title">Price:
-							    <span><c:out value="${advertisement.getPrice()}" /></span></div>
-							    <div class="title">House Type:
+							    <div class="title"><c:out value="${'House Type: '}"/>
 								<span><c:out value="${advertisement.getHouseType()}" /></span></div>
-								<div class="title">Rent Type:
+								<div class="title"><c:out value="${'Rent Type: '}"/>
 								<span><c:out value="${advertisement.getRentType()}" /></span></div>
 								<c:set value="${advertisement.getFacility()}" var="facility"/>
-								<div class="title">Bed room:
+								<div class="title"><c:out value="${'Bedroom: '}"/>
                                 <span><c:out value="${facility.getBedroom()}"/></span></div>
-                                <div class="title">Area:
+                                <div class="title"><c:out value="${'Area Size: '}"/>
                                 <span><c:out value="${facility.getArea()}"/></span></div>
-                                <div class="title"><c:out value="${'Facilities:'}"/>
-							    <c:if test="${facility.isParking() == true }">
-							        <span><c:out value="${'Parking Facility, '}"/></span>
-							    </c:if>
-							    <c:if test="${facility.isDrainage() == true }">
-							        <span><c:out value="${'Drainage Facility, '}"/></span>
-							    </c:if>
-							    <c:if test="${facility.isTransport() == true }">
-							        <span><c:out value="${'Transport Facility'}"/></span>
-							    </c:if></div>
                                 <c:set value="${advertisement.getAddress()}" var="address"/>
-                                <div class="title">Address:</div>
-                                <c:out value="${address.getNumber()}"/>,
-                                <c:out value="${address.getStreet()}"/>,
+                                <div class="title"><c:out value="${'Address: '}"/>
+                                <span><c:out value="${address.getNumber()}"/>,
+                                <c:out value="${address.getStreet()}"/>,<br>
                                 <c:out value="${address.getCity()}"/>,
                                 <c:out value="${address.getState()}"/>,
-                                <c:out value="${address.getPincode()}"/>.
+                                <c:out value="${address.getPincode()}"/>.</span>
+                                </div>
                                 <br>
+							</td>
+							<td>
+							    <c:out value="${advertisement.getPrice()}" />
 							</td>
 							<td>
 							    <c:out value="${advertisement.getAvailability()}" />
@@ -539,20 +530,20 @@ body{
 							    <c:out value="${advertisement.getDate()}" />
 							</td>
 							<tr>
-							    <td colspan="2">
+							    <td colspan="5">
 							        <div class="viewer"><c:out value="${'Viewer Details'}"/><br></div>
 							    </td>
 							</tr>
 							<c:if test="${advertisement.getAdvertisementViewer().size() == 0}">
 							<tr>
-							    <td colspan="4">
+							    <td colspan="5">
 							        <div class="emptyViewer"><c:out value="${'NO ONE VIEWED'}"/><br></div>
 							    </td>
 							</tr>
 							</c:if>
 							<c:forEach var="viewer" items="${advertisement.getAdvertisementViewer()}">
 							<tr>
-							    <td colspan="4">
+							    <td colspan="5">
                                     <div class="title">Name:<span><c:out value="${viewer.getFirstName()}"/>
                                     <c:out value="${viewer.getLastName()}"/></span></div>
                                     <div class="title">Mobile:<span><c:out value="${viewer.getMobileNumber()}"/></span></div>
@@ -561,12 +552,12 @@ body{
 							</tr>
 							</c:forEach>
 							<tr>
-						        <td colspan="2">
+						        <td colspan="5">
 							        <div class="viewer"><c:out value="${'Buyer Reviews'}"/><br></div>
 							    </td>
 		         		    </tr>
 		         		    <tr>
-						        <td colspan="2">
+						        <td colspan="3">
 							        <div class="viewer"><c:out value="${'Comments'}"/><br></div>
 							    </td>
 							    <td colspan="2">
@@ -575,14 +566,14 @@ body{
 		         		    </tr>
 		         		    <c:if test="${advertisement.getAdvertisementReviews().size() == 0}">
 							<tr>
-							    <td colspan="4">
+							    <td colspan="5">
 							        <div class="emptyViewer"><c:out value="${'NOT YET REVIEWED'}"/><br></div>
 							    </td>
 							</tr>
 							</c:if>
 		         		    <c:forEach var="review" items="${advertisement.getAdvertisementReviews()}">
 							<tr>
-							    <td colspan="2">
+							    <td colspan="3">
 							    <c:out value="${review.getComment()}"/>
 							    </td>
 							    <td colspan="2">
@@ -591,7 +582,7 @@ body{
 						    </tr>
 						    </c:forEach>
 						    <tr>
-						    <td colspan="4"><c:out value="${'***************************************************************************************'}"/></td>
+						    <td colspan="5"><c:out value="${'***************************************************************************************'}"/></td>
 							</tr>
 				    </c:forEach>
 				</table>

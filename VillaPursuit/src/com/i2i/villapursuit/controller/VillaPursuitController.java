@@ -159,7 +159,7 @@ public class VillaPursuitController {
 	 * </p>
 	 * @param address
 	 *     Contains object of the user model such as number, street,
-	 *     city, state and pin code.
+	 *     city, state and pincode.
 	 * @param model
 	 *    Contains object of ModelMap class with an addAdresss attribute to acknowledge
 	 *    back to the user.
@@ -263,7 +263,7 @@ public class VillaPursuitController {
 	 * </p>
      * @param address
      *    Contains user object with it values such as number, street,
-	 *     city, state and pin code.
+	 *     city, state and pincode.
      * @param result
      *    Contains object of BindingResult class with any errors in the address
 	 *    provided values.
@@ -364,8 +364,7 @@ public class VillaPursuitController {
 	 *    are not with an Attribute viewSellerAdvertisement.
      * @param session
      *    Contains session object such as userId in order to add the user to which posted the advertisement.
-     * @return "home_buyer"
-     *    Returning to the buyer home page.
+     * @return
      */
     @RequestMapping(value="view_seller")
     public String viewSeller(@RequestParam("advertisementId") String advertisementId, ModelMap model, HttpSession session) {

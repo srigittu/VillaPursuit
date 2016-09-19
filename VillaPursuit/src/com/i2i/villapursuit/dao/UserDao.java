@@ -97,14 +97,13 @@ public class UserDao {
     public User retriveUser(String userName) throws VillaPursuitException {
         Session session = sessionFactory.openSession();
         try {
-            transaction = session.beginTransaction();
             for (User user : retriveAllUsers()) {
+            	System.out.println(userName);
             	if (user.getUserName().equals(userName)) {
+            		System.out.println(userName);
             		return user;
             	}
-            	return null;
             } 
-            transaction.commit();
             return null;
         } catch (HibernateException exceptionCause) {
             if (transaction!=null) {

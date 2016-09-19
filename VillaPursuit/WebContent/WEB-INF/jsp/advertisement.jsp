@@ -10,7 +10,7 @@
      <c:redirect url="welcome"/>
 </c:if>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
+<title>Seller Advertisement Page</title>
 </head>
 <style>
 @import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
