@@ -5,6 +5,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<c:if test="${role != null }">
+    <c:redirect url="home"/>
+</c:if>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>VillaPurusit Login</title>
 </head>
@@ -182,7 +185,7 @@ body{
 
 .register{
 	position: absolute;
-	top: calc(69% - 72px);
+	top: calc(70.5% - 72px);
 	left: calc(77% - 50px);
 	height: 50px;
 	width: 127px;
