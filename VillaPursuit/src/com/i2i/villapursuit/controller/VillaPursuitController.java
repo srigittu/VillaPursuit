@@ -257,7 +257,8 @@ public class VillaPursuitController {
     @RequestMapping(value="register")
     public String addUser(User user, BindingResult result, ModelMap model) {
     	try {
-    		model.addAttribute("userAddMessage", userService.addUser(user));
+    		userService.addUser(user);
+    		model.addAttribute("userAddMessage", "Account Created Successfully");
     		return "home_buyer";
     	} catch(VillaPursuitException e){
     		model.addAttribute("userAddException", e.toString());
@@ -288,7 +289,9 @@ public class VillaPursuitController {
     @RequestMapping(value="user_address")
     public String addAddress(Address address, BindingResult result, ModelMap model, HttpSession session) {
     	try {
-    		model.addAttribute("addressAddMessage", userService.addUserAddress(address, Integer.parseInt(session.getAttribute("userId").toString())));
+    		userService.addUserAddress(address, Integer.parseInt(session.getAttribute("userId").toString()));
+    		model.addAttribute("addressAddMessage", "Address Updated Successfully");
+    		model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
     		return "home_buyer";
     	} catch(VillaPursuitException e){
     		model.addAttribute("addressAddException", e.toString());
@@ -318,7 +321,8 @@ public class VillaPursuitController {
     @RequestMapping(value="add_advertisement")
     public String addAdvertisement(@ModelAttribute("advertisement") Advertisement advertisement, BindingResult result, ModelMap model, HttpSession session) {
     	try {
-    		model.addAttribute("advertisementAddMessage", advertisementService.addAdvertisement(advertisement, advertisement.getImages(), advertisement.getFacility(), advertisement.getAddress(), Integer.parseInt(session.getAttribute("userId").toString())));
+    		advertisementService.addAdvertisement(advertisement, advertisement.getImages(), advertisement.getFacility(), advertisement.getAddress(), Integer.parseInt(session.getAttribute("userId").toString()));
+    		model.addAttribute("advertisementAddMessage", "Advertisement Posted Successfully");
     		model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
     		return "home_seller";
     	} catch(VillaPursuitException e){
@@ -350,7 +354,8 @@ public class VillaPursuitController {
     @RequestMapping(value="add_review")
     public String addAdvertisementReview(@RequestParam("advertisementId") String advertisementId, Review review, BindingResult result, ModelMap model, HttpSession session) {
     	try {
-    		model.addAttribute("reviewAddMessage", reviewService.addAdvertisementReview(review, Integer.parseInt(advertisementId), Integer.parseInt(session.getAttribute("userId").toString())));
+    		reviewService.addAdvertisementReview(review, Integer.parseInt(advertisementId), Integer.parseInt(session.getAttribute("userId").toString()));
+    		model.addAttribute("reviewAddMessage", "Review Posted Successfully");
     		model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
     		return "home_buyer";
     	} catch(VillaPursuitException e){

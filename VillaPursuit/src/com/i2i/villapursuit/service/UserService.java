@@ -29,15 +29,12 @@ public class UserService {
      * </p>
      * @param user
      *     Object contains user details to be inserted into database.
-     * @return string
-     *     Contains status message.
      * @throws VillaPursuitException
      *     If there is failed or interrupted database operations.
      *     
      */
-    public String addUser(User user) throws VillaPursuitException {
+    public void addUser(User user) throws VillaPursuitException {
         userDao.insertUser(user);
-        return "registration successfull";
     }
     
     /**
@@ -97,15 +94,12 @@ public class UserService {
      *     Object contains user address details to be inserted into database.
      * @param userId
      *     Contains Id of the user.
-     * @return string
-     *     Contains status message.
      * @throws VillaPursuitException
      *     If there is failed or interrupted database operations.
      * 
      */
-    public String addUserAddress(Address userAddress, int userId) throws VillaPursuitException {
+    public void addUserAddress(Address userAddress, int userId) throws VillaPursuitException {
 	    userDao.insertUserAddress(userAddress, userId);
- 	    return "Address successfully Added";
     }
 
 }

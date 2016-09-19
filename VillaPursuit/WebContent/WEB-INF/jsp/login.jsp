@@ -203,7 +203,7 @@ body{
 	font-size: 16px;
 	font-weight: 400;
 	padding: 6px;
-	margin-top: 25px;
+	margin-top: 16px;
 }
 </style>
 

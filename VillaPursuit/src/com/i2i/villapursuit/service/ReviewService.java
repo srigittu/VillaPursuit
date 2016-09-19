@@ -36,14 +36,11 @@ public class ReviewService {
      *     Contains Advertisement Id.
      * @param userId
      *     Contains user Id.
-     * @return string
-     *     Contains status string.
      * @throws VillaPursuitException
      *     If there is failed or interrupted database operations.
      */
-    public String addAdvertisementReview(Review review, int advertisementId, int userId) throws VillaPursuitException {
+    public void addAdvertisementReview(Review review, int advertisementId, int userId) throws VillaPursuitException {
     	reviewDao.insertReview(review, advertisementId, userId);
-        return "advertisement successfully posted";
     }
     
     /**

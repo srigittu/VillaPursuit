@@ -42,14 +42,11 @@ public class AdvertisementService {
 	 *     Object contains address details to be inserted into database.
 	 * @param userId
 	 *     Contains user Id of a seller.
-	 * @return string
-	 *     Contains status message.
 	 * @throws VillaPursuitException
 	 *     If there is failed or interrupted database operations.
 	 */
-    public String addAdvertisement(Advertisement advertisement, List<Image> images, Facility facility, Address address, int userId) throws VillaPursuitException {
+    public void addAdvertisement(Advertisement advertisement, List<Image> images, Facility facility, Address address, int userId) throws VillaPursuitException {
     	advertisementDao.insertAdvertisement(advertisement, images, facility, address, userId);
-        return "advertisement successfully posted";
     }
     
     /**

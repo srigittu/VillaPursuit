@@ -124,6 +124,45 @@ body{
 	color: #fff;
 }
 
+.message {
+	position: absolute;
+	top: calc(30% - 35px);
+	left: calc(25% - 255px);
+	z-index: 2;
+}
+
+.message div {
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 32px;
+	font-weight: 400;
+}
+
+.message div span {
+	color: #00ffff !important;
+}
+
+.message button {
+	width: 130px;
+	height: 35px;
+	background: #fff;
+	opacity: 0.4;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.message button:hover {
+	opacity: 0.6;
+}
+
 .ad {
 	position: absolute;
 	top: calc(25% - 35px);
@@ -434,8 +473,19 @@ body{
  			    </form:form>
 		</c:if>
 		</div>
-		
-		<c:if test="${sellerAdvertisements != null}">
+		<c:if test="${sellerAdvertisements.size() == 0}">
+		    <div class="message">
+			<div>
+				Post your First<span>Advertisement!!!</span>
+			</div>
+			<br>
+			<button class="button" style="vertical-align: middle"
+				onclick="window.location.href='advertisement_form'">
+				<span>Click here</span>
+			</button>
+		</div>
+		</c:if>
+		<c:if test="${sellerAdvertisements.size() != 0}">
 		    <div class="ad">
 				<table>
 					<tr>
