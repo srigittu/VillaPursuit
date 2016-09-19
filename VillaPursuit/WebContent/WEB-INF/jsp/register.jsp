@@ -75,6 +75,45 @@ body{
 	color: #00ffff !important;
 }
 
+.message {
+	position: absolute;
+	top: calc(30% - 35px);
+	left: calc(25% - 255px);
+	z-index: 2;
+}
+
+.message div {
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 32px;
+	font-weight: 400;
+}
+
+.message div span {
+	color: #00ffff !important;
+}
+
+.message button {
+	width: 130px;
+	height: 35px;
+	background: #fff;
+	opacity: 0.4;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.message button:hover {
+	opacity: 0.6;
+}
+
 .register{
 	position: absolute;
 	top: calc(33% - 75px);
@@ -182,7 +221,7 @@ body{
 }
 
 .register input[type=text]:focus{
-	outline: none;
+	outline:
 	border: 1px solid rgba(255,255,255,0.9);
 }
 
@@ -204,15 +243,7 @@ body{
      color: #fff;
 }
 </style>
-<script>
-function validateForm() {
-    var x = document.forms["myForm"]["username"].value;
-    if (x == null || x == "") {
-        alert("Name must be filled out");
-        return false;
-    }
-}
-</script>
+
 </head>
 
 <body>
@@ -223,12 +254,13 @@ function validateForm() {
 			<div>Villa<span>Pursuit</span></div>
 		</div>
 		<br>
+		<c:if test="${userAddMessage == null}">
 		<div class="register">
 			<h2>Create<span>Account!</span></h2>
                 <form:form action="register" commandName="user" name="myForm">
-                <form:input path="userName" placeholder="username" name="username"/>
                 <form:input path="firstName" placeholder="First Name" required="required"/>
                 <form:input path="lastName" placeholder="Last Name" required="required"/>
+                <form:input path="userName" placeholder="username" required="required"/>
                 <form:password path="password" placeholder="password" required="required"/>
                 <form:input path="mobileNumber" placeholder="Mobile Number" required="required"/>
                 <form:input path="email" placeholder="Email Id" required="required"/><br>
@@ -237,6 +269,22 @@ function validateForm() {
  			    <input type="submit" value="Register" onclick="return validateForm()">
  			    </form:form>
 		</div>
+		</c:if>
+		
+		<c:if test="${userAddMessage != null}">
+		
+		<div class="message">
+			<div>
+				You are successfully<span>Registered!</span>Confirmation Mail has
+				sent to <span>Your Account!!!</span>
+			</div>
+			<br>
+			<button class="button" style="vertical-align: middle"
+				onclick="window.location.href='welcome'">
+				<span>Back to Login</span>
+			</button>
+		</div>
+	    </c:if>
 		
 </body>
 

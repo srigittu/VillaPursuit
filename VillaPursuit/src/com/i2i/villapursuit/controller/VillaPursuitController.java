@@ -85,14 +85,20 @@ public class VillaPursuitController {
 	@RequestMapping(value = "login", method = RequestMethod.POST)
     public String userLogin(@RequestParam("userName") String userName, @RequestParam("password") String password, HttpSession session, ModelMap model) {
         try {
-        	User user = userService.getUser(userName);
-            if(password.equals(user.getPassword())) {
-                session.setAttribute("userId", String.valueOf(user.getId()));
-                session.setAttribute("role", user.getRole());
-            	return "redirect:gotobuyerpage";	
-            } else {
-            	return "login";
-            }
+        	if (userService.getUser(userName) != null) {
+        		User user = userService.getUser(userName);
+        		if (password.equals(user.getPassword())) {
+                    session.setAttribute("userId", String.valueOf(user.getId()));
+                    session.setAttribute("role", user.getRole());
+            	    return "redirect:home";	
+                } else {
+                	model.addAttribute("loginMessage", "Invalid Password");
+                	return "login";
+                }
+        	} else {
+        		model.addAttribute("loginMessage", "Invalid Username/Password");
+        		return "login";
+        	}
         }catch(VillaPursuitException e) {
 			model.addAttribute("loginException", e.toString());
         	return "login";
@@ -132,23 +138,6 @@ public class VillaPursuitController {
 	
 	/**
 	 * <p>
-	 * Method which gets request from user.
-	 * If the user role is privileged to seller then
-	 * Redirects to buyer
-	 * </p>
-	 */
-	@RequestMapping(value="gotobuyerpage")
-	public String gotoBuyer(ModelMap model) {
-		try {
-		    model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
-    	    return "home_buyer";
-		} catch(VillaPursuitException e) {
-			model.addAttribute("sellerException", e.toString());
-        	return "home_buyer";
-		}
-    }
-	/**
-	 * <p>
 	 * Method which gets registration request from the user.
 	 * Then, it redirects the User Object to the Registration page.
 	 * </p>
@@ -159,7 +148,7 @@ public class VillaPursuitController {
 	 *     Returning to the registration form page.
 	 */
 	@RequestMapping(value="register_form", method=RequestMethod.GET)
-    public String accessUserObject(User user) {
+    public String getUser(User user) {
         return "register";            
     }
     
@@ -178,7 +167,7 @@ public class VillaPursuitController {
 	 *     Returning back buyer home page with address form.
 	 */
 	@RequestMapping(value="address_form", method=RequestMethod.GET)
-    public String accessAddressObject(Address address, ModelMap model) {
+    public String getAddress(Address address, ModelMap model) {
 		model.addAttribute("addAddress", "addressObject");
 		return "home_buyer";
     }
@@ -197,7 +186,7 @@ public class VillaPursuitController {
 	 *    Returning to the advertisement form page.
 	 */
 	@RequestMapping(value="advertisement_form", method=RequestMethod.GET)
-    public String accessAdvertisementObject(ModelMap model) {
+    public String getAdvertisement(ModelMap model) {
 		Advertisement advertisement = new Advertisement();
 		advertisement.setFacility(new Facility());
 		advertisement.addImages(new Image());
@@ -220,7 +209,7 @@ public class VillaPursuitController {
 	 *    Returning back buyer home page with review form.
 	 */
 	@RequestMapping(value="review_form", method=RequestMethod.GET)
-    public String accessReviewObject(@RequestParam("advertisementId") String advertisementId, Review review, ModelMap model) {
+    public String getReview(@RequestParam("advertisementId") String advertisementId, Review review, ModelMap model) {
 		try {
 			for (Advertisement advertisement : advertisementService.getAllAdvertisements()) {
 				if (advertisement.getAdvertisementId() == Integer.parseInt(advertisementId)){
@@ -259,10 +248,10 @@ public class VillaPursuitController {
     	try {
     		userService.addUser(user);
     		model.addAttribute("userAddMessage", "Account Created Successfully");
-    		return "home_buyer";
+    		return "register";
     	} catch(VillaPursuitException e){
     		model.addAttribute("userAddException", e.toString());
-    		return "home_buyer";
+    		return "register";
     	}
     }
     
@@ -323,11 +312,10 @@ public class VillaPursuitController {
     	try {
     		advertisementService.addAdvertisement(advertisement, advertisement.getImages(), advertisement.getFacility(), advertisement.getAddress(), Integer.parseInt(session.getAttribute("userId").toString()));
     		model.addAttribute("advertisementAddMessage", "Advertisement Posted Successfully");
-    		model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
-    		return "home_seller";
+    		return "advertisement";
     	} catch(VillaPursuitException e){
     		model.addAttribute("advertisementAddException", e.toString());
-    		return "home_seller";
+    		return "advertisement";
     	}
     }
     

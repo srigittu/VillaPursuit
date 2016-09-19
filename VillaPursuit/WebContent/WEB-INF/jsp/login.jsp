@@ -182,7 +182,7 @@ body{
 
 .register{
 	position: absolute;
-	top: calc(67% - 75px);
+	top: calc(69% - 72px);
 	left: calc(77% - 50px);
 	height: 50px;
 	width: 127px;
@@ -203,7 +203,6 @@ body{
 	font-size: 16px;
 	font-weight: 400;
 	padding: 6px;
-	margin-top: 16px;
 }
 </style>
 
@@ -217,8 +216,13 @@ body{
 			<div>Villa<span>Pursuit</span></div>
 		</div>
 		<br>
+		<c:if test="${loginMessage != null}">
+		<script>
+		   window.alert("<c:out value="${loginMessage}"/>");
+		</script>
+		</c:if>
 		<div class="login">
-		        <h2>Lo<span>gin!</span></h2>
+		        <h2>Log<span>in!</span></h2>
 				<form action="login" method="post">
 				<input type="text" placeholder="username" name="userName" required="required"><br>
 				<input type="password" placeholder="password" name="password" required="required"><br>

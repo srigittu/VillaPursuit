@@ -25,7 +25,7 @@ body{
 }
 
 .body{
-	position: absolute;
+	position: fixed;
 	top: -20px;
 	left: -20px;
 	right: -40px;
@@ -166,7 +166,7 @@ body{
 .ad {
 	position: absolute;
 	top: calc(25% - 35px);
-	left: calc(37% - 255px);
+	left: calc(37% - 255px);srikanth
 	z-index: 2;
 }
 
@@ -436,7 +436,7 @@ body{
 </style>
 
 <body>
-    <div class="body"></div>
+     <div class="body"></div>
 		<div class="grad"></div>
 		<div class="header">
 			<div>Villa<span>Pursuit</span></div>

@@ -7,6 +7,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<c:if test="${role == null }">
+    <c:redirect url="welcome"/>
+</c:if>
 <title>Home</title>
 </head>
 <style>
@@ -24,7 +27,7 @@ body {
 }
 
 .body {
-	position: absolute;
+	position: fixed;
 	top: -20px;
 	left: -20px;
 	right: -40px;
@@ -109,6 +112,33 @@ body {
 }
 
 .message button:hover {
+	opacity: 0.6;
+}
+
+.home {
+	position: absolute;
+	top: calc(14% - 75px);
+	left: calc(80% - 50px);
+	z-index: 2;
+}
+
+.home input[type=submit] {
+	width: 75px;
+	height: 35px;
+	background: #000;
+	opacity: 0.5;
+	border: 1px solid #010;
+	cursor: pointer;
+	border-radius: 75px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.home input[type=submit]:hover {
 	opacity: 0.6;
 }
 
@@ -417,37 +447,25 @@ body {
 		</div>
 	</div>
 	<br>
-	<c:if test="${userAddMessage != null}">
-		
-		<div class="message">
-			<div>
-				You are successfully<span>Registered!</span>Confirmation Mail has
-				sent to <span>Your Account!!!</span>
-			</div>
-			<br>
-			<button class="button" style="vertical-align: middle"
-				onclick="window.location.href='welcome'">
-				<span>Back to Login</span>
-			</button>
-		</div>
-	</c:if>
-	
-	<c:if test="${userAddMessage == null}">
 	<c:if test="${sessionScope['userId'] != null}">
-		<c:if test="${role == null }">
-            <c:redirect url="welcome"/>
-        </c:if>
+	
+        <c:if test="${reviewAddMessage != null}">
+		<script>
+		   window.alert("<c:out value="${reviewAddMessage}"/>");
+		</script>
+		</c:if>
+		
+		<c:if test="${addressAddMessage != null}">
+		<script>
+		   window.alert("<c:out value="${addressAddMessage}"/>");
+		</script>
+		</c:if>
+		
 		<div class="logout">
 			<form action="logout">
 				<input type="submit" value="Logout">
 			</form>
 		</div>
-		
-		<div class="home">
-		<form action="home">
- 			<input type="submit" value="Home">
- 	    </form>
- 	    </div>
 		
 		<div class="editAddress">
 			<form action="address_form">
@@ -520,6 +538,14 @@ body {
 							<td>
 							    <c:out value="${advertisement.getDate()}" />
 							</td>
+							<c:set value="${advertisement.getUser()}" var="user"/>
+							<c:if test="${user.getId() == sessionScope['userId']}">
+							<tr>
+							    <td colspan="4">
+							        <c:out value="${'Your Advertisement'}" />
+							    </td>
+							</tr>
+							</c:if>
 							<c:set value="${advertisement.getUser()}" var="user"/>
 							<c:if test="${user.getId() != sessionScope['userId']}">
 							<tr>
@@ -624,9 +650,13 @@ body {
 		</div>
 		</c:if>
 		</c:if>
-		</c:if>
 		
 		<c:if test="${viewSellerAdvertisement != null}">
+		<div class="home">
+		    <form action="home">
+ 		    <input type="submit" value="Home">
+ 	        </form>
+ 	   </div>
 		    <div class="ad">
 				<table>
 					<tr>

@@ -102,6 +102,7 @@ public class UserDao {
             	if (user.getUserName().equals(userName)) {
             		return user;
             	}
+            	return null;
             } 
             transaction.commit();
             return null;

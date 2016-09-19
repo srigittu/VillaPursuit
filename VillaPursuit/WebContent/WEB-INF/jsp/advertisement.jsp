@@ -26,7 +26,7 @@ body {
 }
 
 .body {
-	position: absolute;
+	position: fixed;
 	top: -20px;
 	left: -20px;
 	right: -40px;
@@ -370,6 +370,11 @@ body {
     <c:if test="${sessionScope['userId'] == null}">
     <c:redirect url="welcome"/>
     </c:if>
+    <c:if test="${advertisementAddMessage != null}">
+		<script>
+		   window.alert("<c:out value="${advertisementAddMessage}"/>");
+		</script>
+     </c:if>
     <div class="body"></div>
 		<div class="grad"></div>
 		<div class="header">
