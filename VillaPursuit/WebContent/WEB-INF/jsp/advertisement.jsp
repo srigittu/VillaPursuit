@@ -406,8 +406,8 @@ body {
                 <form:form name="advertisement" action="add_advertisement" modelAttribute="advertisement" >
                     <tr>
                     <td>
-                    <form:input path="images[0].imagePath" placeholder="images" required="required"/><br>
-                    <form:input path="images[1].imagePath" placeholder="images" required="required"/><br>
+                    <form:input type="file" path="images[0].imagePath" placeholder="images" required="required"/><br>
+                    <form:input type="file" path="images[1].imagePath" placeholder="images"/><br>
                     </td>
                     
                     <td>

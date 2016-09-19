@@ -31,7 +31,7 @@ body {
 	top: -20px;
 	left: -20px;
 	right: -40px;
-	bottom: -40px;
+	bottom: -200px;
 	width: auto;
 	height: auto;
 	background-image: url(images/city-road.jpg);
@@ -117,13 +117,12 @@ body {
 
 .ad {
 	position: absolute;
-	top: calc(30% - 35px);
-	left: calc(34% - 255px);
+	top: calc(25% - 35px);
+	left: calc(37% - 255px);
 	z-index: 2;
 }
 
 .ad table {
-	width: 300px
 	font-family: 'Exo', sans-serif;
 	font-size: 24px;
 	font-weight: 100;
@@ -183,6 +182,24 @@ body {
 
 .ad input[type=submit]:hover {
 	opacity: 0.6;
+}
+
+.viewer {
+    color: #00ffff;
+	border: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 22px;
+	font-weight: 200;
+	padding: 6px;
+}
+
+.emptyViewer {
+    color: #fff;
+	border: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 18px;
+	font-weight: 200;
+	padding: 20px;
 }
 
 .register {
@@ -445,7 +462,7 @@ body {
 							 <td>
 							    <c:forEach var="image"
 									items="${advertisement.getImages()}">
-									<c:out value="${image.getImagePath()}" />
+									<img src="upload/<c:out value="${image.getImagePath()}"/>" width="50px" height="50px"/>
 									<br>
 								</c:forEach>
 						     </td>
@@ -470,19 +487,20 @@ body {
 							</td>
 							<c:set value="${advertisement.getUser()}" var="user"/>
 							<c:if test="${user.getId() != sessionScope['userId']}">
-							<td>
+							<tr>
+							<td colspan="4">
 							<form action="review_form">
 						        <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
 						        <input type="submit" value="Add Review">
 					        </form>
 							</td>
-							    <td>
-							        <form action="view_seller">
+							<td  colspan="3">
+							    <form action="view_seller">
 						            <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
 						            <input type="submit" value="view Contact">
 					            </form>
-					            </td>
-							<br>
+					        </td>
+							</tr>
 							</c:if>
 							</tr>
 						    <tr class="blank">
@@ -509,7 +527,7 @@ body {
 							 <td>
 							    <c:forEach var="image"
 									items="${advertisement.getImages()}">
-									<c:out value="${image.getImagePath()}" />
+									<img src="upload/<c:out value="${image.getImagePath()}"/>" width="50px" height="50px"/>
 									<br>
 								</c:forEach>
 						     </td>
@@ -572,7 +590,7 @@ body {
 					     <tr>
 							 <td>
 							    <c:forEach var="image" items="${viewSellerAdvertisement.getImages()}">
-									<c:out value="${image.getImagePath()}" />
+									<img src="upload/<c:out value="${image.getImagePath()}"/>" width="50px" height="50px"/>
 									<br>
 								</c:forEach>
 						     </td>
@@ -600,36 +618,54 @@ body {
 							<td>
 							    <c:out value="${viewSellerAdvertisement.getDate()}" />
 							</td>
+							
 							<tr>
-							    <td>
+						        <td colspan="2">
+							        <div class="viewer"><c:out value="${'Seller Detail'}"/><br></div>
+							    </td>
+		         		    </tr>
+		         		    
+							<tr>
+							    <td colspan="4">
 							        <c:set value="${viewSellerAdvertisement.getUser()}" var="seller"/>
                                     Name:<c:out value="${seller.getFirstName()}"/>
-                                    <c:out value="${seller.getLastName()}"/><br>
-                                    Mobile:<c:out value="${seller.getMobileNumber()}"/><br>
+                                    <c:out value="${seller.getLastName()}"/>
+                                    Mobile:<c:out value="${seller.getMobileNumber()}"/>
                                     Email:<c:out value="${seller.getEmail()}"/>
 							    </td>
 							</tr>
+							
 							<tr>
-						        <th>Reviews</th>
+						        <td colspan="2">
+							        <div class="viewer"><c:out value="${'Buyer Reviews'}"/><br></div>
+							    </td>
 		         		    </tr>
 		         		    <tr>
-						        <th>Comments</th>
-						        <th></th>
-						        <th>Ratings</th>
-						        <th></th>
+						        <td colspan="2">
+							        <div class="viewer"><c:out value="${'Comments'}"/><br></div>
+							    </td>
+							    <td colspan="2">
+							        <div class="viewer"><c:out value="${'Ratings'}"/><br></div>
+							    </td>
 		         		    </tr>
+		         		    
+		         		    <c:if test="${viewSellerAdvertisement.getAdvertisementReviews().size() == 0}">
+							<tr>
+							    <td colspan="4">
+							        <div class="emptyViewer"><c:out value="${'NOT YET REVIEWED'}"/><br></div>
+							    </td>
+							</tr>
+							</c:if>
 		         		    <c:forEach var="review" items="${viewSellerAdvertisement.getAdvertisementReviews()}">
 							<tr>
-							    <td>
+							    <td colspan="2">
 							    <c:out value="${review.getComment()}"/>
 							    </td>
-							    <td></td>
-							    <td>
+							    <td colspan="2">
 							    <c:out value="${review.getRating()}"/>
 							    </td>
-							    <td></td>
 						    </tr>
-						    </c:forEach>
+							</c:forEach>
 				</table>
 		    </div>
 		</c:if>

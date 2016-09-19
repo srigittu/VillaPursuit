@@ -316,6 +316,7 @@ public class VillaPursuitController {
     public String addAdvertisement(@ModelAttribute("advertisement") Advertisement advertisement, BindingResult result, ModelMap model, HttpSession session) {
     	try {
     		model.addAttribute("advertisementAddMessage", advertisementService.addAdvertisement(advertisement, advertisement.getImages(), advertisement.getFacility(), advertisement.getAddress(), Integer.parseInt(session.getAttribute("userId").toString())));
+    		model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
     		return "home_seller";
     	} catch(VillaPursuitException e){
     		model.addAttribute("advertisementAddException", e.toString());
