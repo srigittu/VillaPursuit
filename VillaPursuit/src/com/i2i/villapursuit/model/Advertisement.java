@@ -105,7 +105,7 @@ public class Advertisement {
 	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "ADVERTISEMENT_USER", joinColumns = { @JoinColumn(name = "advertisement_id") },
     inverseJoinColumns = { @JoinColumn(name = "user_id") })
-	private Set<User> advertisementViewer = new HashSet<User>();
+	private Set<User> advertisementViewer = new HashSet<User>(5);
 	
 	public Advertisement() {
 	}

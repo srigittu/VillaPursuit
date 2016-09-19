@@ -98,9 +98,7 @@ public class UserDao {
         Session session = sessionFactory.openSession();
         try {
             for (User user : retriveAllUsers()) {
-            	System.out.println(userName);
             	if (user.getUserName().equals(userName)) {
-            		System.out.println(userName);
             		return user;
             	}
             } 

@@ -172,6 +172,7 @@ body{
 	font-family: 'Exo', sans-serif;
 	font-size: 24px;
 	font-weight: 100;
+    border-collapse: collapse;
 }
 
 .ad table tr {
@@ -183,19 +184,10 @@ body{
 	font-weight: 200;
 }
 
-.blank table tr {
-	background: #000;
-	opacity: 0.5;
-	border: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 32px;
-	font-weight: 200;
-}
-
 .ad table tr th {
 	color: #00ffff;
 	border: #fff;
-	width: 800px font-family: 'Exo', sans-serif;
+	font-family: 'Exo', sans-serif;
 	font-size: 32px;
 	font-weight: 200;
 	padding: 6px;

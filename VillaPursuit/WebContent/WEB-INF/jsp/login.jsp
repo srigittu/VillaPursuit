@@ -185,7 +185,7 @@ body{
 
 .register{
 	position: absolute;
-	top: calc(70.5% - 72px);
+	top: calc(69% - 72px);
 	left: calc(77% - 50px);
 	height: 50px;
 	width: 127px;

@@ -152,21 +152,13 @@ body {
 	font-family: 'Exo', sans-serif;
 	font-size: 24px;
 	font-weight: 100;
+	border-collapse: collapse;
 }
 
 .ad table tr {
 	background: #000;
 	opacity: 0.8;
-	border: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 32px;
-	font-weight: 200;
-}
-
-.blank table tr {
-	background: #000;
-	opacity: 0.5;
-	border: #fff;
+	border: #000;
 	font-family: 'Exo', sans-serif;
 	font-size: 32px;
 	font-weight: 200;
@@ -174,8 +166,8 @@ body {
 
 .ad table tr th {
 	color: #00ffff;
-	border: #fff;
-	width: 800px font-family: 'Exo', sans-serif;
+	border: #000;
+	font-family: 'Exo', sans-serif;
 	font-size: 32px;
 	font-weight: 200;
 	padding: 6px;
@@ -183,7 +175,7 @@ body {
 
 .ad table tr td {
 	color: #fff;
-	border: #fff;
+	border: #000;
 	font-family: 'Exo', sans-serif;
 	font-size: 18px;
 	font-weight: 200;
@@ -541,6 +533,8 @@ body {
 						            <input type="submit" value="More Info">
 					            </form>
 					            </td>
+					            <td colspan="3"></td>
+					            
 					        </tr>
 						</c:if>
 						</c:forEach>
@@ -609,7 +603,9 @@ body {
 					        <input type="submit" value="Submit">
 				            </form:form>
 							</td>
+							<td colspan="3"></td>
 							</tr>
+							
 				</table>
 		     </div>
 		</c:if>
