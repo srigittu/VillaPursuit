@@ -28,10 +28,9 @@ import com.i2i.villapursuit.model.User;
  * @author Team #3
  * 
  * @created 07/09/16
- *
  */
 public class AdvertisementDao {
-	private SessionFactory sessionFactory = HibernateConnection.getSessionFactory();
+    private SessionFactory sessionFactory = HibernateConnection.getSessionFactory();
     private Transaction transaction = null;
     
     /**
@@ -52,7 +51,8 @@ public class AdvertisementDao {
      * @throws VillaPursuitException
      *     If there is failed or interrupted database operations.
      */
-    public void insertAdvertisement(Advertisement advertisement, List<Image> images, Facility facility, Address advertisementAddress, int userId) throws VillaPursuitException {
+    public void insertAdvertisement(Advertisement advertisement, List<Image> images, Facility facility, Address advertisementAddress, 
+            int userId) throws VillaPursuitException {
     	Session session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
@@ -73,7 +73,8 @@ public class AdvertisementDao {
             if (transaction!=null) {
                 transaction.rollback();
             }
-            throw new VillaPursuitException("\t\"Error occured while Adding Advertisement... Please try again...\""+exceptionCause.toString());
+            throw new VillaPursuitException("\t\"Error occured while Adding Advertisement... Please try again...\""+
+                     exceptionCause.toString());
         } finally {
             session.close(); 
         }
@@ -90,12 +91,13 @@ public class AdvertisementDao {
      *     If there is failed or interrupted database operations.
      */
     @SuppressWarnings("unchecked")
-	public List<Advertisement> retriveAllAdvertisements() throws VillaPursuitException {
+    public List<Advertisement> retriveAllAdvertisements() throws VillaPursuitException {
         Session session = sessionFactory.openSession();
         try {
-        	return session.createQuery("FROM Advertisement").list();        
+            return session.createQuery("FROM Advertisement").list();        
         } catch (HibernateException exceptionCause) {
-            throw new VillaPursuitException("\t\"Error occured while retriving Advertisements... Please try again...\""+exceptionCause.toString());
+            throw new VillaPursuitException("\t\"Error occured while retriving Advertisements... Please try again...\""+
+                    exceptionCause.toString());
         } finally {
             session.close(); 
         }
@@ -137,25 +139,25 @@ public class AdvertisementDao {
      *    Contains the id value for the particular advertisement
      * @throws VillaPursuitException
      */
-	public void setAdvertisementViewer(int userId, int advertisementId) throws VillaPursuitException {
-		Set<User> viewers = new HashSet<User>();
-		Session session = sessionFactory.openSession();
-		try {
-			transaction = session.beginTransaction();
-			User viewer = (User)session.get(User.class, userId);
-			viewers.add(viewer);
-			Advertisement advertisement = (Advertisement)session.get(Advertisement.class, advertisementId);
-			advertisement.setAdvertisementViewer(viewers);
-			session.update(advertisement);
-			transaction.commit();
-		} catch (HibernateException exceptionCause) {
+    public void setAdvertisementViewer(int userId, int advertisementId) throws VillaPursuitException {
+        Set<User> viewers = new HashSet<User>();
+	Session session = sessionFactory.openSession();
+	try {
+	    transaction = session.beginTransaction();
+	    User viewer = (User)session.get(User.class, userId);
+	    viewers.add(viewer);
+	    Advertisement advertisement = (Advertisement)session.get(Advertisement.class, advertisementId);
+	    advertisement.setAdvertisementViewer(viewers);
+	    session.update(advertisement);
+	    transaction.commit();
+	} catch (HibernateException exceptionCause) {
             if (transaction!=null) {
                 transaction.rollback();
             }
-            throw new VillaPursuitException("\t\"Error occured while setting Advertisement viewer... Please try again...\""+exceptionCause.toString());
+            throw new VillaPursuitException("\t\"Error occured while setting Advertisement viewer... Please try again...\""+
+                    exceptionCause.toString());
         } finally {
             session.close(); 
         }
-	}
-
+    }
 }

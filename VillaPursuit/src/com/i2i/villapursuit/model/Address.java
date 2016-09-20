@@ -25,7 +25,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "address", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Address {
 	
-	@Id 
+    @Id 
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id",unique = true, nullable = false)
     private int addressId;
@@ -96,5 +96,4 @@ public class Address {
     public String getState() {
         return state;
     }
-	
 }

@@ -25,28 +25,29 @@ import com.i2i.villapursuit.model.Image;
  * 
  */
 public class AdvertisementService {
-	private AdvertisementDao advertisementDao = new AdvertisementDao();
+    private AdvertisementDao advertisementDao = new AdvertisementDao();
 	
-	/**
-	 * <p>
-	 * Method which gets request from controller.
+    /** 
+     * <p>
+     * Method which gets request from controller.
      * Perform validations to insert advertisement details into database.
-	 * </p>
-	 * @param advertisement
-	 *     Object contains advertisement details to be inserted into database.
-	 * @param images
-	 *     Object contains image details to be inserted into database.
-	 * @param facility
-	 *     Object contains facility details to be inserted into database.
-	 * @param advertisementAddress
-	 *     Object contains address details to be inserted into database.
-	 * @param userId
-	 *     Contains user Id of a seller.
-	 * @throws VillaPursuitException
-	 *     If there is failed or interrupted database operations.
-	 */
-    public void addAdvertisement(Advertisement advertisement, List<Image> images, Facility facility, Address address, int userId) throws VillaPursuitException {
-    	advertisementDao.insertAdvertisement(advertisement, images, facility, address, userId);
+     * </p>
+     * @param advertisement
+     *     Object contains advertisement details to be inserted into database.
+     * @param images
+     *     Object contains image details to be inserted into database.
+     * @param facility
+     *     Object contains facility details to be inserted into database.
+     * @param advertisementAddress
+     *     Object contains address details to be inserted into database.
+     * @param userId
+     *     Contains user Id of a seller.
+     * @throws VillaPursuitException
+     *     If there is failed or interrupted database operations.
+     */
+    public void addAdvertisement(Advertisement advertisement, List<Image> images, Facility facility, Address address, int userId) 
+            throws VillaPursuitException {
+        advertisementDao.insertAdvertisement(advertisement, images, facility, address, userId);
     }
     
     /**

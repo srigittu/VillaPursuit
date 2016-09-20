@@ -26,7 +26,8 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "images", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Image {
-	@Id 
+
+    @Id 
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id",unique = true, nullable = false)
     private int imageId;
@@ -38,31 +39,30 @@ public class Image {
     @JoinColumn(name="advertisement_id")
     private Advertisement advertisement;
 
-	public Image() {
-	}
+    public Image() {
+    }
 
-	public int getImageId() {
-		return imageId;
-	}
+    public int getImageId() {
+	return imageId;
+    }
 
-	public void setImageId(int imageId) {
-		this.imageId = imageId;
-	}
+    public void setImageId(int imageId) {
+	this.imageId = imageId;
+    }
 
-	public String getImagePath() {
-		return imagePath;
-	}
+    public String getImagePath() {
+	return imagePath;
+    }
 
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
+    public void setImagePath(String imagePath) {
+	this.imagePath = imagePath;
+    }
 
-	public Advertisement getAdvertisement() {
-		return advertisement;
-	}
+    public Advertisement getAdvertisement() {
+	 return advertisement;
+    }
 
-	public void setAdvertisement(Advertisement advertisement) {
-		this.advertisement = advertisement;
-	}
-		
+    public void setAdvertisement(Advertisement advertisement) {
+        this.advertisement = advertisement;
+    }
 }

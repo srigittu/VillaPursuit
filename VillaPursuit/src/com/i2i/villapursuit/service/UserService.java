@@ -8,6 +8,7 @@ import com.i2i.villapursuit.dao.UserDao;
 import com.i2i.villapursuit.exception.VillaPursuitException;
 import com.i2i.villapursuit.model.Address;
 import com.i2i.villapursuit.model.User;
+
 /**
  * <p>
  * Service which gets request from controller.
@@ -31,7 +32,6 @@ public class UserService {
      *     Object contains user details to be inserted into database.
      * @throws VillaPursuitException
      *     If there is failed or interrupted database operations.
-     *     
      */
     public void addUser(User user) throws VillaPursuitException {
         userDao.insertUser(user);
@@ -46,7 +46,6 @@ public class UserService {
      *     contains name of the user.
      * @throws VillaPursuitException
      *     If there is failed or interrupted database operations.
-     *     
      */
     public void removeUser(String userName) throws VillaPursuitException {
         userDao.deleteUser(userName);
@@ -63,8 +62,6 @@ public class UserService {
      *     Returns user object. 
      * @throws VillaPursuitException
      *     If there is failed or interrupted database operations.
-     *     
-     *     
      */
     public User getUser(String userName) throws VillaPursuitException {
         return userDao.retriveUser(userName);
@@ -79,7 +76,6 @@ public class UserService {
      *     Returns user list From database.
      * @throws VillaPursuitException
      *     If there is failed or interrupted database operations.
-     *     
      */
     public List<User> getAllUsers() throws VillaPursuitException {
         return userDao.retriveAllUsers();
@@ -96,10 +92,8 @@ public class UserService {
      *     Contains Id of the user.
      * @throws VillaPursuitException
      *     If there is failed or interrupted database operations.
-     * 
      */
     public void addUserAddress(Address userAddress, int userId) throws VillaPursuitException {
 	    userDao.insertUserAddress(userAddress, userId);
     }
-
 }

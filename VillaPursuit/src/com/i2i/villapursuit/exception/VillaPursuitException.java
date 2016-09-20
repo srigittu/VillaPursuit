@@ -12,7 +12,6 @@ package com.i2i.villapursuit.exception;
  * @author Team #3
  *
  * @created 07/09/16 
- * 
  */
 @SuppressWarnings("serial")
 public class VillaPursuitException extends Exception {

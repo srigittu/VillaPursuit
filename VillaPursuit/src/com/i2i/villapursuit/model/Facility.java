@@ -26,86 +26,85 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "facilities", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Facility {
 	
-	@Id 
+    @Id 
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id",unique = true, nullable = false)
     private int facilityId;
     
-	@Column(name = "parking")
-	private boolean parking; 
+    @Column(name = "parking")
+    private boolean parking; 
     
-	@Column(name = "drainage")
-	private boolean drainage;
+    @Column(name = "drainage")
+    private boolean drainage;
     
-	@Column(name = "transport")
-	private boolean transport;
+    @Column(name = "transport")
+    private boolean transport;
 	
-	@Column(name = "bedroom")
-	private String bedroom;
+    @Column(name = "bedroom")
+    private String bedroom;
 	
-	@Column(name = "area")
-	private String area;
+    @Column(name = "area")
+    private String area;
 	
     @OneToOne
     private Advertisement advertisement;
     
     public Facility() {
-	}
+    }
 
-	public int getFacilityId() {
-		return facilityId;
-	}
+    public int getFacilityId() {
+	return facilityId;
+    }
 
-	public void setFacilityId(int facilityId) {
-		this.facilityId = facilityId;
-	}
+    public void setFacilityId(int facilityId) {
+	this.facilityId = facilityId;
+    }
 
-	public boolean isParking() {
-		return parking;
-	}
+    public boolean isParking() {
+	return parking;
+    }
 
-	public void setParking(boolean parking) {
-		this.parking = parking;
-	}
+    public void setParking(boolean parking) {
+	this.parking = parking;
+    }
 
-	public boolean isDrainage() {
-		return drainage;
-	}
+    public boolean isDrainage() {
+	return drainage;
+    }
 
-	public void setDrainage(boolean drainage) {
-		this.drainage = drainage;
-	}
+    public void setDrainage(boolean drainage) {
+	this.drainage = drainage;
+    }
 
-	public boolean isTransport() {
-		return transport;
-	}
+    public boolean isTransport() {
+	return transport;
+    }
 
-	public void setTransport(boolean transport) {
-		this.transport = transport;
-	}
+    public void setTransport(boolean transport) {
+	this.transport = transport;
+    }
 
-	public String getBedroom() {
-		return bedroom;
-	}
+    public String getBedroom() {
+	return bedroom;
+    }
 
-	public void setBedroom(String bedroom) {
-		this.bedroom = bedroom;
-	}
+    public void setBedroom(String bedroom) {
+	this.bedroom = bedroom;
+    }
 
-	public String getArea() {
-		return area;
-	}
+    public String getArea() {
+	return area;
+    }
 
-	public void setArea(String area) {
-		this.area = area;
-	}
+    public void setArea(String area) {
+	this.area = area;
+    }
 
-	public Advertisement getAdvertisement() {
-		return advertisement;
-	}
+    public Advertisement getAdvertisement() {
+	return advertisement;
+    }
 
-	public void setAdvertisement(Advertisement advertisement) {
-		this.advertisement = advertisement;
-	}
-    
+    public void setAdvertisement(Advertisement advertisement) {
+	this.advertisement = advertisement;
+    }
 }
