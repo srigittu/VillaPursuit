@@ -26,6 +26,8 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * <p>
@@ -81,30 +83,36 @@ public class Advertisement {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "address_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Address address;
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
     private User user;
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "facility_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
     private Facility facility;
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST)
+	@OnDelete(action = OnDeleteAction.CASCADE)
     private List<Image> images = new ArrayList<Image>();
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST)
+	@OnDelete(action = OnDeleteAction.CASCADE)
     private List<Review> advertisementReviews = new ArrayList<Review>();
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(name = "ADVERTISEMENT_USER", joinColumns = { @JoinColumn(name = "advertisement_id") },
+    @JoinTable(name = "ADVERTISEMENT_USER", joinColumns = { @JoinColumn(name = "advertisement_id")},
     inverseJoinColumns = { @JoinColumn(name = "user_id") })
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	private Set<User> advertisementViewer = new HashSet<User>(5);
 	
 	public Advertisement() {

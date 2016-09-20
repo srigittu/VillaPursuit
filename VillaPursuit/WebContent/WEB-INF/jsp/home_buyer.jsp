@@ -52,8 +52,100 @@ body {
 	bottom: -40px;
 	width: auto;
 	height: auto;
-	
 	z-index: 1;
+}
+
+.location {
+	position: fixed;
+	top: calc(25% - 32px);
+	left: calc(8% - 94px);
+	color: #00ffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	z-index: 3;
+}
+
+.myselect select {
+	background: #000;
+	opacity:0.5;
+    width: 200px;
+    height:30px;
+    padding: 2px;
+    color: #00ffff;
+    font-size: 16px;
+    line-height: 1;
+    border: #fff;
+    border-radius: 0;
+   -webkit-appearance: none;
+}
+
+.myselect {
+   width: 200px;
+   height:30px;
+   overflow: hidden;
+   color: #00ffff;
+   background: #000;
+   opacity:0.5;
+   border: 1px solid #fff;
+   opacity:0.5;
+   }
+
+.location input[type=submit] {
+	width: 100px;
+	height: 35px;
+	background: #000;
+	opacity: 0.5;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #0fffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 2px;
+	margin-top: 10px;
+}
+
+.location input[type=submit]:hover {
+	opacity: 0.6;
+}
+
+.location input[type=range]{
+    /* fix for FF unable to apply focus style bug  */
+    border: 1px solid white; 
+
+    /*required for proper track sizing in FF*/
+    width: 180px;
+}
+
+.location input[type=range]::-moz-range-track {
+    width: 180px;
+    height: 5px;
+    background: #000;
+    opacity:0.4;
+    border: none;
+}
+
+.location input[type=range]::-moz-range-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    background: #00ffff;
+    opacity:0.4;
+}
+
+/*hide the outline behind the border*/
+.location input[type=range]:-moz-focusring{
+    outline: 1px solid #fff;
+    opacity:0.8;
+    outline-offset: 1px;
+}
+
+.location input[type=range]:focus::-moz-range-track {
+    background: #00ffff;
+    opacity:0.4;
 }
 
 .header {
@@ -68,7 +160,7 @@ body {
 	color: #fff;
 	font-family: 'Exo', sans-serif;
 	font-size: 35px;
-	font-weight: 200;
+	font-weight: 400;
 }
 
 .header div span {
@@ -117,7 +209,7 @@ body {
 .home {
 	position: absolute;
 	top: calc(14% - 75px);
-	left: calc(74% - 50px);
+	left: calc(80% - 50px);
 	z-index: 2;
 }
 
@@ -143,7 +235,7 @@ body {
 
 .ad {
 	position: absolute;
-	top: calc(25% - 35px);
+	top: calc(29% - 35px);
 	left: calc(37% - 255px);
 	z-index: 2;
 }
@@ -153,6 +245,7 @@ body {
 	font-size: 24px;
 	font-weight: 100;
 	border-collapse: collapse;
+	
 }
 
 .ad table tr {
@@ -162,37 +255,42 @@ body {
 	font-family: 'Exo', sans-serif;
 	font-size: 32px;
 	font-weight: 200;
+	padding-top: .5em;
+	border
+}
+.ad table .backNo {
+   background: none;
 }
 
 .ad table tr th {
 	color: #00ffff;
-	border: #000;
+	border-collapse: collapse;
 	font-family: 'Exo', sans-serif;
-	font-size: 32px;
-	font-weight: 200;
-	padding: 6px;
+	font-size: 36px;
+	font-weight: 400;
+	padding: 10px;
 }
 
 .ad table tr td {
 	color: #fff;
-	border: #000;
+	border-collapse: collapse;
 	font-family: 'Exo', sans-serif;
 	font-size: 18px;
-	font-weight: 200;
+	font-weight: 400;
 	padding: 6px;
 }
 
 .ad input[type=submit] {
 	width: 110px;
-	height: 35px;
-	background: #fff;
-	border: 1px solid #010;
+	height: 30px;
+	background: #000;
+	border: 1px solid #fff;
 	cursor: pointer;
 	border-radius: 75px;
 	color: #0dded5;
 	font-family: 'Exo', sans-serif;
 	font-size: 16px;
-	font-weight: 400;
+	font-weight: 500;
 	padding: 2px;
 	margin-top: 10px;
 }
@@ -206,7 +304,7 @@ body {
 	border: #fff;
 	font-family: 'Exo', sans-serif;
 	font-size: 22px;
-	font-weight: 200;
+	font-weight: 400;
 	padding: 6px;
 }
 
@@ -323,7 +421,7 @@ body {
 .seller {
 	position: absolute;
 	top: calc(14% - 75px);
-	left: calc(80% - 50px);
+	left: calc(74% - 50px);
 	z-index: 2;
 }
 
@@ -407,14 +505,28 @@ body {
 ::-moz-input-placeholder {
 	color: #fff;
 }
-.title{
+
+.imaging {
+    position: absolute;
+	top: calc(10% - 75px);
+	left: calc(10% - 50px);
+	height: 100px;
+	width: 100px;
+	padding: 10px;
+	z-index: 3;
+}
+
+.title {
     font-family: 'Exo', sans-serif;
 	font-size: 16px;
+	font-weight: 350;
 	color: #0dded5;
 }
-.maintitle{
+
+.maintitle {
     font-family: 'Exo', sans-serif;
 	font-size: 25px;
+	font-weight: 500;
 	color: #0dded5;
 }
 
@@ -423,14 +535,15 @@ body {
 }
 
 .title span {
-	color: #fff;
+	color: #ffffff;
 }
+
 </style>
 
 <body>
 
 	<div class="body"></div>
-	<div class="grad"></div>
+	
 	<div class="header">
 		<div>
 			Villa<span>Pursuit</span>
@@ -479,14 +592,48 @@ body {
 			</c:if>
 		</div>
 		<c:if test="${advertisements != null}">
- 	        <div class="ad">
+ 	        <div class="location">
+		     <label>Search For:</label>
+		     <form action="filter" method="post">
+		        <div class="myselect">
+		        <select name="houseType">
+                    <option>Choose House Type</option>
+                    <option value="Individual">Individual</option>
+                    <option value="Appartment">Appartment</option>
+                </select>
+                </div>
+                <br>
+                <div class="myselect">
+                <select name="rentType">
+                     <option>Choose Rent Type</option>
+                     <option value="Rent">Rent</option>
+                     <option value="Lease">Lease</option>
+                </select>
+                </div>
+                <br>
+                <label>Price (10k-40k):</label><br>
+                <span id="slider_value" style="color:white; text-align:right;"></span>
+                <br>
+                <script>
+                function show_value(x)
+                {
+                 document.getElementById("slider_value").innerHTML=x;
+                }
+                </script>
+                <input type="range" min="10000" max="40000" name="price" value="10000" onchange="show_value(this.value);">
+ 				<br>
+ 				<input type="submit" value="Filter">
+ 		    </form>
+		    </div>
+ 	        <c:if test="${sessionScope['role'] == 'seller'}">
+		    <div class="home">
+			<form action="seller">
+				<input type="submit" value="My Posts">
+			</form>
+		    </div>
+		    </c:if>
+ 	        <div class="ad" >
 				<table>
-					<tr>
-						<th colspan="2">Pursuit Dream Villa</th>
-						<th>Price</th>
-						<th>Availability</th>
-						<th>Posted On</th>
-					</tr>
 				    <c:forEach var="advertisement" items="${advertisements}">
 						<c:set value="${advertisement.getUser()}" var="user"/>
 						<c:if test="${user.getId() != sessionScope['userId']}">
@@ -494,97 +641,120 @@ body {
 							 <td>
 							    <c:forEach var="image"
 									items="${advertisement.getImages()}">
-									<img src="upload/<c:out value="${image.getImagePath()}"/>" width="50px" height="50px"/>
+									<img src="upload/<c:out value="${image.getImagePath()}"/>" width="150px" height="75px"/>
 									<br>
 								</c:forEach>
 						     </td>
 						     <td>
 							    <div class="maintitle"><c:out value="${advertisement.getTitle()}" /></div>
-							    <div class="title"><c:out value="${'House Type: '}"/>
+							    <div class="title" style="margin-top:10px; padding:2px;"><c:out value="${'House Type :'}"/>
 								<span><c:out value="${advertisement.getHouseType()}" /></span></div>
-								<div class="title"><c:out value="${'Rent Type: '}"/>
+								<div class="title" style="padding:2px;"><c:out value="${'Rent Type :'}"/>
 								<span><c:out value="${advertisement.getRentType()}" /></span></div>
 								<c:set value="${advertisement.getFacility()}" var="facility"/>
-								<div class="title"><c:out value="${'Bed Rooms: '}"/>
+								<div class="title" style="padding:2px;"><c:out value="${'Bed Rooms :'}"/>
                                 <span><c:out value="${facility.getBedroom()}"/></span></div>
-                                <div class="title"><c:out value="${'Area: '}"/>
+                                <div class="title" style="padding:2px;"><c:out value="${'Area :'}"/>
                                 <span><c:out value="${facility.getArea()}"/></span></div>
+                                <c:set value="${advertisement.getAddress()}" var="address"/>
+                                <div class="title" style="padding:3px;"><c:out value="${'Location :'}"/>
+                                <span><c:out value="${address.getCity()}"/></span></div>
+							</td>
+							<td style="padding:10px;">
+							 <div class="title" style="padding:2px;"><c:out value="${'₹ : '}"/> 
+							 <span><c:out value="${advertisement.getPrice()}" /></span>/Month</div>
+							</td>
+							<td style="padding:10px;">
+							     <div class="title" style="margin-top:10px; padding:2px;"><c:out value="${'Availability :'}"/>
+							     <span><c:out value="${advertisement.getAvailability()}" /></span></div>
 							</td>
 							<td>
-							 <c:out value="${advertisement.getPrice()}" />
-							</td>
-							<td>
-							    <c:out value="${advertisement.getAvailability()}" />
-							</td>
-							<td>
-							    <c:out value="${advertisement.getDate()}" /><br>
+							    <div class="title" style="margin-top:10px; padding:2px;"><c:out value="${'Posted On :'}"/>
+							    <br><span><c:out value="${advertisement.getDate()}" /></span></div>
 							</td>
 							</tr>
-							<tr>
-							    <td>
+							<tr >
+							    <td colspan="3"></td>
+							    <td style="padding:1px; text-align:right;">
 							    <form action="review_form">
 						            <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
 						            <input type="submit" value="Add Review">
 					            </form>
 					            </td>
-							    <td>
+					            <td style="padding:1px;">
 							    <form action="view_seller">
 						            <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
 						            <input type="submit" value="More Info">
 					            </form>
 					            </td>
-					            <td colspan="3"></td>
-					            
+					        <tr style="border-bottom:3px solid white;">
+					        <td colspan="5">
+					        </td>
+					        </tr>
+					        <tr style="background: none;">
+					        <td colspan="5" >
+					         </td>
 					        </tr>
 						</c:if>
 						</c:forEach>
 				</table>
-		     </div>
+				<div class="title" style="float:right;">
+		        <div>@Villa<span>Pursuit</span></div>
+		        </div>
+		  </div>
 		</c:if>
-		
 	    <c:if test="${addReview != null}">
+			<c:if test="${sessionScope['role'] == 'seller'}">
+		    <div class="seller">
+			<form action="seller">
+				<input type="submit" value="My Posts">
+			</form>
+		    </div>
+		    </c:if>
+		    
 			<div class="home">
 		    <form action="home">
  		    <input type="submit" value="Home">
  	        </form>
  	        </div>
+ 	        
  	        <div class="ad">
 				<table>
-					<tr>
-						<th colspan="2">Pursuit Dream Villa</th>
-						<th>Price</th>
-						<th>Availability</th>
-						<th>Posted On</th>
-					</tr>
 						<c:set var="advertisement" value="${reviewAdvertisement}"/>
 						<tr>
 							 <td>
 							    <c:forEach var="image"
 									items="${advertisement.getImages()}">
-									<img src="upload/<c:out value="${image.getImagePath()}"/>" width="50px" height="50px"/>
+									<img src="upload/<c:out value="${image.getImagePath()}"/>" width="150px" height="75px"/>
 									<br>
 								</c:forEach>
 						     </td>
 						     <td>
 							    <div class="maintitle"><c:out value="${advertisement.getTitle()}" /></div>
-							    <div class="title"><c:out value="${'House Type: '}"/>
+							    <div class="title" style="margin-top:10px; padding:2px;"><c:out value="${'House Type :'}"/>
 								<span><c:out value="${advertisement.getHouseType()}" /></span></div>
-								<div class="title"><c:out value="${'Rent Type: '}"/>
+								<div class="title" style="padding:2px;"><c:out value="${'Rent Type :'}"/>
 								<span><c:out value="${advertisement.getRentType()}" /></span></div>
 								<c:set value="${advertisement.getFacility()}" var="facility"/>
-								<div class="title"><c:out value="${'Bed Rooms: '}"/>
+								<div class="title" style="padding:2px;"><c:out value="${'Bed Rooms :'}"/>
                                 <span><c:out value="${facility.getBedroom()}"/></span></div>
-                                <div class="title"><c:out value="${'Area: '}"/>
+                                <div class="title" style="padding:2px;"><c:out value="${'Area :'}"/>
                                 <span><c:out value="${facility.getArea()}"/></span></div>
+                                <c:set value="${advertisement.getAddress()}" var="address"/>
+                                <div class="title" style="padding:3px;"><c:out value="${'Location :'}"/>
+                                <span><c:out value="${address.getCity()}"/></span></div>
+							</td>
+							<td style="padding:10px;">
+							 <div class="title" style="padding:2px;"><c:out value="${'₹ : '}"/> 
+							 <span><c:out value="${advertisement.getPrice()}" /></span>/Month</div>
+							</td>
+							<td style="padding:10px;">
+							     <div class="title" style="margin-top:10px; padding:2px;"><c:out value="${'Availability :'}"/>
+							     <span><c:out value="${advertisement.getAvailability()}" /></span></div>
 							</td>
 							<td>
-							 <c:out value="${advertisement.getPrice()}" />
-							</td>
-							<td>
-							    <c:out value="${advertisement.getAvailability()}" />
-							</td>
-							<td>
-							    <c:out value="${advertisement.getDate()}"/>
+							    <div class="title" style="margin-top:10px; padding:2px;"><c:out value="${'Posted On :'}"/>
+							    <br><span><c:out value="${advertisement.getDate()}" /></span></div>
 							</td>
 							</tr>
 							<tr>
@@ -607,83 +777,86 @@ body {
 							</tr>
 							
 				</table>
+				<div class="title" style="float:right;">
+		        <div>@Villa<span>Pursuit</span></div>
+		        </div>
 		     </div>
-		</c:if>
-		<c:if test="${sessionScope['role'] == 'seller'}">
-		<div class="seller">
-			<form action="seller">
-				<input type="submit" value="My Posts">
-			</form>
-		</div>
 		</c:if>
 		</c:if>
 		
 		<c:if test="${viewSellerAdvertisement != null}">
+		<c:if test="${sessionScope['role'] == 'seller'}">
+		    <div class="seller">
+			<form action="seller">
+				<input type="submit" value="My Posts">
+			</form>
+		    </div>
+		</c:if>
 		<div class="home">
 		    <form action="home">
  		    <input type="submit" value="Home">
  	        </form>
- 	   </div>
+ 	    </div>
 		    <div class="ad">
 				<table>
-					<tr>
-						<th colspan="2">Pursuit Dream Villa</th>
-						<th>Price</th>
-						<th>Availability</th>
-						<th>Posted On</th>
-					</tr>
-					     <tr>
+					    <tr>
 							 <td>
-							    <c:forEach var="image" items="${viewSellerAdvertisement.getImages()}">
-									<img src="upload/<c:out value="${image.getImagePath()}"/>" width="50px" height="50px"/>
-									<br>
+							     <c:forEach var="image" items="${viewSellerAdvertisement.getImages()}">
+									<img src="upload/<c:out value="${image.getImagePath()}"/>" width="150px" height="75px"/>
+									<br></br>
 								</c:forEach>
 						     </td>
-						     <td>
+							 <td>
 							    <div class="maintitle"><c:out value="${viewSellerAdvertisement.getTitle()}" /></div>
-							    <div class="title"><c:out value="${'House Type: '}"/>
+							    <div class="title" style="margin-top:10px; padding:2px;"><c:out value="${'House Type :'}"/>
 								<span><c:out value="${viewSellerAdvertisement.getHouseType()}" /></span></div>
-								<div class="title"><c:out value="${'Rent Type: '}"/>
+								<div class="title" style="padding:2px;"><c:out value="${'Rent Type :'}"/>
 								<span><c:out value="${viewSellerAdvertisement.getRentType()}" /></span></div>
 								<c:set value="${viewSellerAdvertisement.getFacility()}" var="facility"/>
-								<div class="title"><c:out value="${'Bedroom: '}"/>
+								<div class="title" style="padding:2px;"><c:out value="${'Bed Rooms :'}"/>
                                 <span><c:out value="${facility.getBedroom()}"/></span></div>
-                                <div class="title"><c:out value="${'Area Size: '}"/>
+                                <div class="title" style="padding:2px;"><c:out value="${'Area :'}"/>
                                 <span><c:out value="${facility.getArea()}"/></span></div>
-                                <c:set value="${viewSellerAdvertisement.getAddress()}" var="address"/>
-                                <div class="title"><c:out value="${'Address: '}"/>
+							</td>
+							<td style="padding:10px;">
+							 <div class="title" style="padding:2px;"><c:out value="${'₹ : '}"/> 
+							 <span><c:out value="${viewSellerAdvertisement.getPrice()}" /></span>/Month</div>
+							</td>
+							<td style="padding:10px;">
+							     <div class="title" style="margin-top:10px; padding:2px;"><c:out value="${'Availability :'}"/>
+							     <span><c:out value="${viewSellerAdvertisement.getAvailability()}" /></span></div>
+							</td>
+							<td>
+							    <div class="title" style="margin-top:10px; padding:2px;"><c:out value="${'Posted On :'}"/>
+							    <br><span><c:out value="${viewSellerAdvertisement.getDate()}" /></span></div>
+							</td>
+							</tr>
+							<tr>
+						        <td colspan="3">
+							        <div class="viewer"><c:out value="${'Address'}"/><br></div>
+							    </td>
+							    <td colspan="2">
+							        <div class="viewer"><c:out value="${'Seller Detail'}"/><br></div>
+							    </td>
+		         		    </tr>
+							<tr>
+							<td colspan="3">
+							    <c:set value="${viewSellerAdvertisement.getAddress()}" var="address"/>
+							    <div class="title" style="padding:2px;"><c:out value="${'No: '}"/>
                                 <span><c:out value="${address.getNumber()}"/>,
                                 <c:out value="${address.getStreet()}"/>,<br>
                                 <c:out value="${address.getCity()}"/>,
                                 <c:out value="${address.getState()}"/>,
                                 <c:out value="${address.getPincode()}"/>.</span>
                                 </div>
-                                <br>
 							</td>
-							<td>
-							    <c:out value="${viewSellerAdvertisement.getPrice()}" />
+							<td colspan="2">
+							    <c:set value="${viewSellerAdvertisement.getUser()}" var="seller"/>
+                                <div class="title">Name: <span><c:out value="${seller.getFirstName()}"/>
+                                <c:out value="${seller.getLastName()}"/></span></div>
+                                <div class="title">Mobile: <span><c:out value="${seller.getMobileNumber()}"/></span></div>
+                                <div class="title">Email: <span><c:out value="${seller.getEmail()}"/></span></div>
 							</td>
-							<td>
-							    <c:out value="${viewSellerAdvertisement.getAvailability()}" />
-							</td>
-							<td>
-							    <c:out value="${viewSellerAdvertisement.getDate()}" />
-							</td>
-							
-							<tr>
-						        <td colspan="5">
-							        <div class="viewer"><c:out value="${'Seller Detail'}"/><br></div>
-							    </td>
-		         		    </tr>
-		         		    
-							<tr>
-							    <td colspan="5">
-							        <c:set value="${viewSellerAdvertisement.getUser()}" var="seller"/>
-                                    <div class="title">Name: <span><c:out value="${seller.getFirstName()}"/>
-                                    <c:out value="${seller.getLastName()}"/></span></div>
-                                    <div class="title">Mobile: <span><c:out value="${seller.getMobileNumber()}"/></span></div>
-                                    <div class="title">Email: <span><c:out value="${seller.getEmail()}"/></span></div>
-							    </td>
 							</tr>
 							
 							<tr>
@@ -701,14 +874,14 @@ body {
 		         		    </tr>
 		         		    
 		         		    <c:if test="${viewSellerAdvertisement.getAdvertisementReviews().size() == 0}">
-							<tr>
+							<tr style="border-bottom:3px solid white">
 							    <td colspan="5">
 							        <div class="emptyViewer"><c:out value="${'NOT YET REVIEWED'}"/><br></div>
 							    </td>
 							</tr>
 							</c:if>
 		         		    <c:forEach var="review" items="${viewSellerAdvertisement.getAdvertisementReviews()}">
-							<tr>
+							<tr style="border-bottom:3px solid white">
 							    <td colspan="3">
 							    <c:out value="${review.getComment()}"/>
 							    </td>
@@ -718,6 +891,9 @@ body {
 						    </tr>
 							</c:forEach>
 				</table>
+				<div class="title" style="float:right;">
+		        <div>@Villa<span>Pursuit</span></div>
+		        </div>
 		    </div>
 		</c:if>
 </body>

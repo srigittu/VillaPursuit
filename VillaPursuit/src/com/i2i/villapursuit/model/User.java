@@ -20,6 +20,8 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * <p>
@@ -64,10 +66,12 @@ public class User {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "address_id")
+	@OnDelete(action = OnDeleteAction.CASCADE) 
 	private Address address;
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(mappedBy="advertisementViewer")
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	private Set<Advertisement> advertisements = new HashSet<Advertisement>();
 	
 	public User() {
