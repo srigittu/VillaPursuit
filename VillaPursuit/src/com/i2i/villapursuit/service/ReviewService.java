@@ -20,7 +20,6 @@ import com.i2i.villapursuit.model.Review;
  * @author Team #3
  *
  * @created 09/09/16 
- *
  */
 public class ReviewService {
     private ReviewDao reviewDao = new ReviewDao();

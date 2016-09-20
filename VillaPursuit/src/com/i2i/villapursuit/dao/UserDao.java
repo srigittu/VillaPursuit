@@ -22,7 +22,6 @@ import com.i2i.villapursuit.model.User;
  * @author Team #3
  * 
  * @created 07/09/16
- *
  */
 public class UserDao {
     private SessionFactory sessionFactory = HibernateConnection.getSessionFactory();
@@ -98,8 +97,8 @@ public class UserDao {
         Session session = sessionFactory.openSession();
         try {
             for (User user : retriveAllUsers()) {
-            	if (user.getUserName().equals(userName)) {
-            		return user;
+                if (user.getUserName().equals(userName)) {
+            	    return user;
             	}
             } 
             return null;
@@ -163,7 +162,8 @@ public class UserDao {
             if (transaction!=null) {
                 transaction.rollback();
             }
-            throw new VillaPursuitException("\t\"Error occured while Updating User Salary... Please try again...\""+exceptionCause.toString());
+            throw new VillaPursuitException("\t\"Error occured while Updating User Salary... Please try again...\""+
+                    exceptionCause.toString());
         } finally {
             session.close(); 
         }
@@ -181,10 +181,9 @@ public class UserDao {
      *     Contains Id of the user.
      * @throws VillaPursuitException
      *     If there is failed or interrupted database operations. 
-     *     
      */
     public void insertUserAddress(Address address, int userId) throws VillaPursuitException {
-		Session session = sessionFactory.openSession();
+	Session session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
             session.save(address);
@@ -195,11 +194,9 @@ public class UserDao {
             if (transaction!=null) {
                 transaction.rollback();
             }
-            System.out.println(userId);
             throw new VillaPursuitException("\t\"Error occured while Adding Address... Please try again...\""+exceptionCause.toString());
         } finally {
             session.close(); 
         }
-	}
-    
+    }
 }

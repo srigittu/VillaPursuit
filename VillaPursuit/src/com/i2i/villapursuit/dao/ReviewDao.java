@@ -25,10 +25,9 @@ import com.i2i.villapursuit.model.User;
  * @author Team #3
  * 
  * @created 07/09/16
- *
  */
 public class ReviewDao {
-	private SessionFactory sessionFactory = HibernateConnection.getSessionFactory();
+    private SessionFactory sessionFactory = HibernateConnection.getSessionFactory();
     private Transaction transaction = null;
     
     /**
@@ -76,16 +75,14 @@ public class ReviewDao {
      *     If there is failed or interrupted database operations.
      */
     @SuppressWarnings("unchecked")
-	public List<Review> retriveAllReviews() throws VillaPursuitException {
+    public List<Review> retriveAllReviews() throws VillaPursuitException {
         Session session = sessionFactory.openSession();
         try {
-        	return session.createQuery("FROM Review").list();        
+            return session.createQuery("FROM Review").list();        
         } catch (HibernateException exceptionCause) {
             throw new VillaPursuitException("\t\"Error occured while retriving Reviews... Please try again...\""+exceptionCause.toString());
         } finally {
             session.close(); 
         }
     }
-		
-
 }

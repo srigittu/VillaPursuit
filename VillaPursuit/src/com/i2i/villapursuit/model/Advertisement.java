@@ -43,7 +43,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "advertisements", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Advertisement {
 
-	@Id 
+    @Id 
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id",unique = true, nullable = false)
     private int advertisementId;
@@ -60,15 +60,7 @@ public class Advertisement {
     @Column(name = "price")
     private String price;
     
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
-	@Column(name="date", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable=false, updatable=false)
+    @Column(name="date", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable=false, updatable=false)
     private Date date;
     
     @Column(name = "house_type")
@@ -77,164 +69,172 @@ public class Advertisement {
     @Column(name = "rent_type")
     private String rentType;
     
-	@Column(name = "advertisement_count")
+    @Column(name = "advertisement_count")
     private int advertisementCount;
     
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "address_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Address address;
-	
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@ManyToOne(cascade = CascadeType.PERSIST)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "address_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Address address;
+    
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private User user;
-	
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "facility_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
+    
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "facility_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Facility facility;
-	
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+    
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Image> images = new ArrayList<Image>();
-	
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+    
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Review> advertisementReviews = new ArrayList<Review>();
-	
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@ManyToMany(cascade = { CascadeType.ALL })
+    
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "ADVERTISEMENT_USER", joinColumns = { @JoinColumn(name = "advertisement_id")},
     inverseJoinColumns = { @JoinColumn(name = "user_id") })
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	private Set<User> advertisementViewer = new HashSet<User>(5);
-	
-	public Advertisement() {
-	}
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private Set<User> advertisementViewer = new HashSet<User>(5);
+         
+    public Advertisement() {
+    }
 
-	public String getHouseType() {
-		return houseType;
-	}
+    public String getHouseType() {
+            return houseType;
+    }
 
-	public void setHouseType(String houseType) {
-		this.houseType = houseType;
-	}
+    public void setHouseType(String houseType) {
+        this.houseType = houseType;
+    }
     
-	public Set<User> getAdvertisementViewer() {
-		return advertisementViewer;
-	}
+    public Set<User> getAdvertisementViewer() {
+        return advertisementViewer;
+    }
 
-	public void setAdvertisementViewer(Set<User> advertisementViewer) {
-		this.advertisementViewer.addAll(advertisementViewer);
-	}
+    public void setAdvertisementViewer(Set<User> advertisementViewer) {
+        this.advertisementViewer.addAll(advertisementViewer);
+    }
 
-	public String getRentType() {
-		return rentType;
-	}
+    public String getRentType() {
+        return rentType;
+    }
 
-	public void setRentType(String rentType) {
-		this.rentType = rentType;
-	}
+    public void setRentType(String rentType) {
+        this.rentType = rentType;
+    }
 
-	public String getAvailability() {
-		return availability;
-	}
+    public String getAvailability() {
+        return availability;
+    }
 
-	public void setAvailability(String availability) {
-		this.availability = availability;
-	}
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
 
-	public Address getAddress() {
-		return address;
-	}
+    public String getPrice() {
+        return price;
+    }
 
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
-	
-	public Facility getFacility() {
-		return facility;
-	}
+    public Address getAddress() {
+        return address;
+    }
 
-	public void setFacility(Facility facility) {
-		this.facility = facility;
-	}
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
-	public List<Image> getImages() {
-		return images;
-	}
+    public Facility getFacility() {
+        return facility;
+    }
 
-	public void setImages(List<Image> images) {
-		this.images = images;
-	}
+    public void setFacility(Facility facility) {
+        this.facility = facility;
+    }
 
-	public List<Review> getAdvertisementReviews() {
-		return advertisementReviews;
-	}
+    public List<Image> getImages() {
+        return images;
+    }
 
-	public void setAdvertisementReviews(List<Review> advertisementReviews) {
-		this.advertisementReviews = advertisementReviews;
-	}
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
 
-	public int getAdvertisementCount() {
-		return advertisementCount;
-	}
+    public List<Review> getAdvertisementReviews() {
+        return advertisementReviews;
+    }
 
-	public void setAdvertisementCount(int advertisementCount) {
-		this.advertisementCount = advertisementCount;
-	}
+    public void setAdvertisementReviews(List<Review> advertisementReviews) {
+        this.advertisementReviews = advertisementReviews;
+    }
 
-	public int getAdvertisementId() {
-		return advertisementId;
-	}
+    public int getAdvertisementCount() {
+        return advertisementCount;
+    }
 
-	public void setAdvertisementId(int advertisementId) {
-		this.advertisementId = advertisementId;
-	}
+    public void setAdvertisementCount(int advertisementCount) {
+        this.advertisementCount = advertisementCount;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public int getAdvertisementId() {
+        return advertisementId;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setAdvertisementId(int advertisementId) {
+        this.advertisementId = advertisementId;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Date getDate() {
-		return date;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	
-	public void addImages(Image image){
-		this.images.add(image);
-	}
-	
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
+    public void addImages(Image image){
+        this.images.add(image);
+    }
+    
     public void addReviews(Review review) {
-        this.advertisementReviews.add(review);
+            this.advertisementReviews.add(review);
     }
 }

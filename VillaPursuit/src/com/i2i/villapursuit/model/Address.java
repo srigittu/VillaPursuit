@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;	
+import javax.persistence.Table;    
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -24,8 +24,8 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "address", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Address {
-	
-	@Id 
+    
+    @Id 
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id",unique = true, nullable = false)
     private int addressId;
@@ -46,7 +46,7 @@ public class Address {
     private String state;
 
     public Address() {
-    	
+        
     }
     
     public void SetAddressId(int addressId) {
@@ -96,5 +96,4 @@ public class Address {
     public String getState() {
         return state;
     }
-	
 }

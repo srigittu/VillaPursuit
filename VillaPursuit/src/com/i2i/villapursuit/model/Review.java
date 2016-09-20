@@ -22,7 +22,8 @@ import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * <p>
- * Model which allows access to properties of Review using getter and setter methods.
+ * Model which allows access to properties of Review using getter and setter
+ * methods.
  * </p>
  * 
  * @author Team #3
@@ -33,92 +34,79 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "reviews", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Review {
-	@Id 
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "id",unique = true, nullable = false)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
     private int reviewId;
-    
-	@Column(name = "comment")
+
+    @Column(name = "comment")
     private String comment;
-	
+
     @Column(name = "rating")
     private String rating;
-    
-    @Column(name="date", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable=false, updatable=false)
+
+    @Column(name = "date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Date date;
-    
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	private User user;
-	
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private User user;
+    
     @ManyToOne
     @JoinColumn(name = "advertisement_id")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Advertisement advertisement;
 
-    
-	public Review() {
-	}
+    public Review() {
+    }
 
-	public int getReviewId() {
-		return reviewId;
-	}
+    public int getReviewId() {
+        return reviewId;
+    }
 
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
+    }
 
-	public void setReviewId(int reviewId) {
-		this.reviewId = reviewId;
-	}
+    public String getComment() {
+        return comment;
+    }
 
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
-	public String getComment() {
-		return comment;
-	}
+    public String getRating() {
+        return rating;
+    }
 
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+    public Date getDate() {
+        return date;
+    }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public String getRating() {
-		return rating;
-	}
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public void setRating(String rating) {
-		this.rating = rating;
-	}
+    public Advertisement getAdvertisement() {
+        return advertisement;
+    }
 
-
-	public Date getDate() {
-		return date;
-	}
-
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-
-	public User getUser() {
-		return user;
-	}
-
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-
-	public Advertisement getAdvertisement() {
-		return advertisement;
-	}
-
-
-	public void setAdvertisement(Advertisement advertisement) {
-		this.advertisement = advertisement;
-	}
-	
-		
+    public void setAdvertisement(Advertisement advertisement) {
+        this.advertisement = advertisement;
+    }
 }
