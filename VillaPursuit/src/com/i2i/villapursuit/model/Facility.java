@@ -14,7 +14,8 @@ import javax.persistence.UniqueConstraint;
 
 /**
  * <p>
- * Model which allows access to properties of Facility using getter and setter methods.
+ * Model which allows access to properties of Facility using getter and setter
+ * methods.
  * </p>
  * 
  * @author Team #3
@@ -25,30 +26,30 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "facilities", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Facility {
-    
-    @Id 
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "id",unique = true, nullable = false)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
     private int facilityId;
-    
+
     @Column(name = "parking")
-    private boolean parking; 
-    
+    private boolean parking;
+
     @Column(name = "drainage")
     private boolean drainage;
-    
+
     @Column(name = "transport")
     private boolean transport;
-    
+
     @Column(name = "bedroom")
     private String bedroom;
-    
+
     @Column(name = "area")
     private String area;
-    
+
     @OneToOne
     private Advertisement advertisement;
-    
+
     public Facility() {
     }
 

@@ -15,7 +15,8 @@ import javax.persistence.UniqueConstraint;
 
 /**
  * <p>
- * Model which allows access to properties of Image using getter and setter methods.
+ * Model which allows access to properties of Image using getter and setter
+ * methods.
  * </p>
  * 
  * @author Team #3
@@ -27,16 +28,16 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "images", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Image {
 
-    @Id 
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "id",unique = true, nullable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
     private int imageId;
 
     @Column(name = "image_path")
     private String imagePath;
 
     @ManyToOne
-    @JoinColumn(name="advertisement_id")
+    @JoinColumn(name = "advertisement_id")
     private Advertisement advertisement;
 
     public Image() {
@@ -59,7 +60,7 @@ public class Image {
     }
 
     public Advertisement getAdvertisement() {
-         return advertisement;
+        return advertisement;
     }
 
     public void setAdvertisement(Advertisement advertisement) {

@@ -17,9 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 /**
  * <p>
  * Model which allows access to properties of Review using getter and setter
@@ -49,14 +46,12 @@ public class Review {
     @Column(name = "date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Date date;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private User user;
-    
+
     @ManyToOne
     @JoinColumn(name = "advertisement_id")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Advertisement advertisement;
 
     public Review() {

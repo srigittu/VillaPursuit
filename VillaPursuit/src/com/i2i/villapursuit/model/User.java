@@ -20,12 +20,11 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * <p>
- * Model which allows access to properties of User using getter and setter methods.
+ * Model which allows access to properties of User using getter and setter
+ * methods.
  * </p>
  * 
  * @author Team #3
@@ -35,47 +34,45 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class User {
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private int id;
-    
+
     @Column(name = "user_name")
     private String userName;
-    
+
     @Column(name = "first_name")
     private String firstName;
-    
+
     @Column(name = "last_name")
     private String lastName;
-    
+
     @Column(name = "password")
     private String password;
-    
+
     @Column(name = "mobile_number")
     private String mobileNumber;
-    
+
     @Column(name = "email")
     private String email;
-    
+
     @Column(name = "role")
     private String role;
-    
+
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
-    @OnDelete(action = OnDeleteAction.CASCADE) 
     private Address address;
-    
+
     @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToMany(mappedBy="advertisementViewer")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @ManyToMany(mappedBy = "advertisementViewer", cascade = CascadeType.ALL)
     private Set<Advertisement> advertisements = new HashSet<Advertisement>();
-    
+
     public User() {
     }
-    
+
     public Set<Advertisement> getAdvertisements() {
         return advertisements;
     }
@@ -147,7 +144,7 @@ public class User {
     public void setAddress(Address address) {
         this.address = address;
     }
-    
+
     public String getRole() {
         return role;
     }

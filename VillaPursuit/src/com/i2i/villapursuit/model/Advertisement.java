@@ -26,12 +26,11 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * <p>
- * Model which allows access to properties of Advertisement using getter and setter methods.
+ * Model which allows access to properties of Advertisement using getter and
+ * setter methods.
  * </p>
  * 
  * @author Team #3
@@ -43,9 +42,9 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "advertisements", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Advertisement {
 
-    @Id 
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "id",unique = true, nullable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
     private int advertisementId;
 
     @Column(name = "title")
@@ -53,71 +52,65 @@ public class Advertisement {
 
     @Column(name = "status")
     private String status;
-    
+
     @Column(name = "availability")
     private String availability;
-    
+
     @Column(name = "price")
     private String price;
-    
-    @Column(name="date", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable=false, updatable=false)
+
+    @Column(name = "date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Date date;
-    
+
     @Column(name = "house_type")
     private String houseType;
-    
+
     @Column(name = "rent_type")
     private String rentType;
-    
+
     @Column(name = "advertisement_count")
     private int advertisementCount;
-    
+
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Address address;
-    
+
     @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private User user;
-    
+
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "facility_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Facility facility;
-    
+
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Image> images = new ArrayList<Image>();
-    
+
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Review> advertisementReviews = new ArrayList<Review>();
-    
+
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(name = "ADVERTISEMENT_USER", joinColumns = { @JoinColumn(name = "advertisement_id")},
-    inverseJoinColumns = { @JoinColumn(name = "user_id") })
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JoinTable(name = "ADVERTISEMENT_USER", joinColumns = {
+            @JoinColumn(name = "advertisement_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
     private Set<User> advertisementViewer = new HashSet<User>(5);
-         
+
     public Advertisement() {
     }
 
     public String getHouseType() {
-            return houseType;
+        return houseType;
     }
 
     public void setHouseType(String houseType) {
         this.houseType = houseType;
     }
-    
+
     public Set<User> getAdvertisementViewer() {
         return advertisementViewer;
     }
@@ -229,12 +222,12 @@ public class Advertisement {
     public void setDate(Date date) {
         this.date = date;
     }
-    
-    public void addImages(Image image){
+
+    public void addImages(Image image) {
         this.images.add(image);
     }
-    
+
     public void addReviews(Review review) {
-            this.advertisementReviews.add(review);
+        this.advertisementReviews.add(review);
     }
 }
