@@ -56,7 +56,7 @@ public class AdvertisementDao {
      *             If there is failed or interrupted database operations.
      */
     public void insertAdvertisement(Advertisement advertisement, List<Image> images, Facility facility,
-            Address advertisementAddress, int userId) throws VillaPursuitException {
+        Address advertisementAddress, int userId) throws VillaPursuitException {
         Session session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
@@ -274,9 +274,6 @@ public class AdvertisementDao {
 		Session session = sessionFactory.openSession();
         try {
         	Criteria criteria = session.createCriteria(Advertisement.class);
-            System.out.println(rentType);
-            System.out.println(houseType);
-            System.out.println(price);
             if ((rentType.equals("Choose Rent Type"))&&(price.equals("10000"))) {
             	criteria.add(Restrictions.eq("houseType", houseType));
             	return criteria.list();

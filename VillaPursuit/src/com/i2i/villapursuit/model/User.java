@@ -22,6 +22,8 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.validator.NotEmpty;
+import org.hibernate.validator.Size;
 
 /**
  * <p>
@@ -42,24 +44,33 @@ public class User {
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
+    @NotEmpty
     @Column(name = "user_name")
     private String userName;
 
+    @NotEmpty
     @Column(name = "first_name")
     private String firstName;
 
+    @NotEmpty
     @Column(name = "last_name")
     private String lastName;
 
+    @NotEmpty
+	@Size(min = 5, max = 8, message = "Password length should be between 5 to 8 Characters.")
     @Column(name = "password")
     private String password;
 
+    @NotEmpty
+	@Size(min = 10, max = 10)
     @Column(name = "mobile_number")
     private String mobileNumber;
 
+    @NotEmpty
     @Column(name = "email")
     private String email;
 
+    @NotEmpty
     @Column(name = "role")
     private String role;
 

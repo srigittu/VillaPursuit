@@ -23,11 +23,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.validator.NotEmpty;
 
 /**
  * <p>
@@ -45,31 +47,40 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Advertisement {
 
     @Id
+    @NotEmpty
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
     private int advertisementId;
 
+    @NotEmpty
     @Column(name = "title")
     private String title;
 
+    @NotEmpty
     @Column(name = "status")
     private String status;
 
+    @NotEmpty
     @Column(name = "availability")
     private String availability;
 
+    @NotEmpty
     @Column(name = "price")
     private String price;
 
+    @NotEmpty
     @Column(name = "date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Date date;
 
+    @NotEmpty
     @Column(name = "house_type")
     private String houseType;
 
+    @NotEmpty
     @Column(name = "rent_type")
     private String rentType;
 
+    @NotNull
     @Column(name = "advertisement_count")
     private int advertisementCount;
 
