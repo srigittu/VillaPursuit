@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.validator.NotEmpty;
+import org.hibernate.validator.Size;
+
 /**
  * <p>
  * Model which allows access to properties of Address using getter and setter
@@ -31,18 +34,24 @@ public class Address {
     @Column(name = "id", unique = true, nullable = false)
     private int addressId;
 
+    @NotEmpty
     @Column(name = "number")
     private String number;
 
+    @NotEmpty
     @Column(name = "street")
     private String street;
 
+    @NotEmpty
+    @Size(min = 4, max = 20)
     @Column(name = "city")
     private String city;
 
+    @NotEmpty
     @Column(name = "pincode")
     private String pincode;
 
+    @NotEmpty
     @Column(name = "state")
     private String state;
 

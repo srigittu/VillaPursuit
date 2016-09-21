@@ -258,14 +258,22 @@ body{
 		<div class="register">
 			<h2>Create<span>Account!</span></h2>
                 <form:form action="register" commandName="user" name="myForm">
-                <form:input path="firstName" placeholder="First Name" required="required"/>
-                <form:input path="lastName" placeholder="Last Name" required="required"/>
-                <form:input path="userName" placeholder="username" required="required"/>
-                <form:password path="password" placeholder="password" required="required"/>
-                <form:input path="mobileNumber" placeholder="Mobile Number" required="required"/>
-                <form:input path="email" placeholder="Email Id" required="required"/><br>
+                <form:input path="firstName" placeholder="First Name" />
+                <form:errors path="firstName"></form:errors>
+                <form:input path="lastName" placeholder="Last Name" />
+                <form:errors path="lastName"></form:errors>
+                <form:input path="userName" placeholder="username" />
+                <form:errors path="userName"></form:errors>
+                <form:password path="password" placeholder="password" />
+                <form:errors path="password"></form:errors>
+                <form:input path="mobileNumber" placeholder="Mobile Number" />
+                <form:errors path="mobileNumber"></form:errors>
+                <form:input path="email" placeholder="Email Id" /><br>
+                <form:errors path="email"></form:errors>
                 <form:radiobutton path="role" value="buyer" />Buy<span>er</span>
+                <form:errors path="role"></form:errors>
                 <form:radiobutton path="role" value="seller" />Sell<span>er</span>
+                <form:errors path="role"></form:errors>
  			    <input type="submit" value="Register" onclick="return validateForm()">
  			    </form:form>
 		</div>

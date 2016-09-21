@@ -411,23 +411,28 @@ body {
                 <form:form name="advertisement" action="add_advertisement" modelAttribute="advertisement" >
                     <tr>
                     <td>
-                    <form:input type="file" path="images[0].imagePath" placeholder="images" required="required"/><br>
+                    <form:input type="file" path="images[0].imagePath" placeholder="images" /><br>
                     <form:input type="file" path="images[1].imagePath" placeholder="images"/><br>
                     </td>
                     
                     <td>
-                    <form:input path="title" placeholder="Title" required="required"/><br>
-                    <form:input path="status" type="hidden" value="active" required="required"/><br>
-                    <form:input path="availability" placeholder="Availability" required="required"/><br>
+                    <form:input path="title" placeholder="Title"/><br>
+                    <form:errors path="title"></form:errors>
+                    <form:input path="status" type="hidden" value="inactive"/><br>
+                    <form:errors path="status"></form:errors>
+                    <form:input path="availability" placeholder="Availability"/><br>
+                    <form:errors path="availability"></form:errors>
                     <form:input path="price" placeholder="Price"/><br>
+                    <form:errors path="price"></form:errors>
                     </td>
                     </tr>
                     <td>
- 			            <form:select path="houseType" required="required">
+ 			            <form:select path="houseType">
                             <form:option value="Individual" label="Individual" />
                             <form:option value="Appartment" label="Appartment" />
                         </form:select><br>
-                        <form:select path="rentType" required="required">
+                        <form:select path="rentType">
+                        <form:errors path="rentType"></form:errors>
                             <form:option value="Rent" label="Rent" />
                             <form:option value="Lease" label="Lease" />
                         </form:select><br>
@@ -439,20 +444,27 @@ body {
                     <form:checkbox path="facility.transport"/>Transport
                     </td>
                     <td>
-                        <form:select path="facility.bedroom" required="required">
+                        <form:select path="facility.bedroom">
+                        <form:errors path="facility.bedroom"></form:errors>
                             <form:option value="NONE" label="--- Bedroom ---"/>
                             <form:option value="1BHK" label="--- 1BHK ---" />
                             <form:option value="2BHK" label="--- 2BHK ---" />
                             <form:option value="3BHK" label="--- 3BHK ---" />
                         </form:select><br>
-                        <form:input path="facility.area" placeholder="Area-Size" required="required"/><br>
+                        <form:input path="facility.area" placeholder="Area-Size"/><br>
+                        <form:errors path="facility.area"></form:errors>
  			        </td>
  			        <td  colspan="2">
-                    <form:input path="address.number" placeholder="Number" required="required"/><br>
-                    <form:input path="address.street" placeholder="Street" required="required"/><br>
-                    <form:input path="address.city" placeholder="City" required="required"/><br>
-                    <form:input path="address.state" placeholder="State" required="required"/><br>
-                    <form:input path="address.pincode" placeholder="Pincode" required="required"/><br>
+                    <form:input path="address.number" placeholder="Number" /><br>
+                    <form:errors path="address.number"></form:errors>
+                    <form:input path="address.street" placeholder="Street"/><br>
+                    <form:errors path="address.street"></form:errors>
+                    <form:input path="address.city" placeholder="City" /><br>
+                    <form:errors path="address.city"></form:errors>
+                    <form:input path="address.state" placeholder="State"/><br>
+                    <form:errors path="address.state"></form:errors>
+                    <form:input path="address.pincode" placeholder="Pincode"/><br>
+                    <form:errors path="address.pincode"></form:errors>
  			        </td>
  			        </tr>
  			        <tr>

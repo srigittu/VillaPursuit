@@ -56,7 +56,7 @@ public class AdvertisementDao {
      *             If there is failed or interrupted database operations.
      */
     public void insertAdvertisement(Advertisement advertisement, List<Image> images, Facility facility,
-            Address advertisementAddress, int userId) throws VillaPursuitException {
+        Address advertisementAddress, int userId) throws VillaPursuitException {
         Session session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();

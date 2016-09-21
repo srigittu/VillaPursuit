@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -66,18 +67,18 @@ public class VillaPursuitController {
      * </p>
      * 
      * @param userName
-     *     Contains user name of the user.
+     *            Contains user name of the user.
      * @param password
-     *     Contains password of the user.
+     *            Contains password of the user.
      * @param model
-     *     Contains object of ModelMap class with an advertisements
-     *     attribute to list the set of advertisements.
+     *            Contains object of ModelMap class with an advertisements
+     *            attribute to list the set of advertisements.
      * @param session
-     *     Contains session object such as userId and role.
+     *            Contains session object such as userId and role.
      * @return "home_buyer" 
-     *     Returning to the Buyer home page. If the credentials
-     *     are not match with the database then it, redirects back to the
-     *     login page.
+     *              Returning to the Buyer home page. If the credentials
+     *              are not match with the database then it, redirects back to the
+     *              login page.
      */
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String userLogin(@RequestParam("userName") String userName, @RequestParam("password") String password,
@@ -114,7 +115,7 @@ public class VillaPursuitController {
      * </p>
      * 
      * @return "home_seller" 
-     *     Returning to the seller home page.
+     *              Returning to the seller home page.
      */
     @RequestMapping(value = "seller")
     public String sellerHome(ModelMap model, HttpSession session) {
@@ -143,11 +144,11 @@ public class VillaPursuitController {
      * </p>
      * 
      * @param user
-     *     Contains object of the user model such as user name, first
-     *     name, last name, password, mobile number, email id and user
-     *     role.
+     *            Contains object of the user model such as user name, first
+     *            name, last name, password, mobile number, email id and user
+     *            role.
      * @return "register" 
-     *     Returning to the registration form page.
+     *              Returning to the registration form page.
      */
     @RequestMapping(value = "register_form", method = RequestMethod.GET)
     public String createUser(User user) {
@@ -161,13 +162,13 @@ public class VillaPursuitController {
      * </p>
      * 
      * @param address
-     *     Contains object of the user model such as number, street,
-     *     city, state and pin code.
+     *            Contains object of the user model such as number, street,
+     *            city, state and pin code.
      * @param model
-     *     Contains object of ModelMap class with an addAdresss attribute
-     *     to acknowledge back to the user.
+     *            Contains object of ModelMap class with an addAdresss attribute
+     *            to acknowledge back to the user.
      * @return "home_buyer" 
-     *     Returning back buyer home page with address form.
+     *              Returning back buyer home page with address form.
      */
     @RequestMapping(value = "address_form", method = RequestMethod.GET)
     public String createAddress(Address address, ModelMap model) {
@@ -184,10 +185,10 @@ public class VillaPursuitController {
      * </p>
      * 
      * @param model
-     *     Contains object of ModelMap class with an advertisement
-     *     attribute to acknowledge back to the seller.
+     *            Contains object of ModelMap class with an advertisement
+     *            attribute to acknowledge back to the seller.
      * @return "advertisement" 
-     *     Returning to the advertisement form page.
+     *              Returning to the advertisement form page.
      */
     @RequestMapping(value = "advertisement_form", method = RequestMethod.GET)
     public String postAdvertisement(ModelMap model) {
@@ -206,12 +207,12 @@ public class VillaPursuitController {
      * redirects the review Object to the review form page.
      * 
      * @param review
-     *     Contains review object such as comment and rating.
+     *            Contains review object such as comment and rating.
      * @param model
-     *     Contains object of ModelMap class with an addRewiew attribute
-     *     to acknowledge back to the buyer.
+     *            Contains object of ModelMap class with an addRewiew attribute
+     *            to acknowledge back to the buyer.
      * @return "home_buyer" 
-     *     Returning back buyer home page with review form.
+     *              Returning back buyer home page with review form.
      */
     @RequestMapping(value = "review_form", method = RequestMethod.GET)
     public String postReview(@RequestParam("advertisementId") String advertisementId, Review review, ModelMap model) {
@@ -237,25 +238,29 @@ public class VillaPursuitController {
      * </p>
      * 
      * @param user
-     *     Contains user object with it values such as user name, first
-     *     name, last name, password, mobile number, email id and user
-     *     role.
+     *            Contains user object with it values such as user name, first
+     *            name, last name, password, mobile number, email id and user
+     *            role.
      * @param result
-     *     Contains object of BindingResult class with any errors in the
-     *     user provided values.
+     *            Contains object of BindingResult class with any errors in the
+     *            user provided values.
      * @param model
-     *     Contains object of ModelMap class in order to send a
-     *     acknowledgement message to the user whether the user is added
-     *     are not with an Attribute userAddMessage.
+     *            Contains object of ModelMap class in order to send a
+     *            acknowledgement message to the user whether the user is added
+     *            are not with an Attribute userAddMessage.
      * @return "home_buyer" 
-     *     Returning to the buyer home page.
+     *              Returning to the buyer home page.
      */
     @RequestMapping(value = "register")
-    public String addUser(User user, BindingResult result, ModelMap model) {
+    public String addUser(@Valid User user, BindingResult result, ModelMap model) {
         try {
-            userService.addUser(user);
-            model.addAttribute("userAddMessage", "Account Created Successfully");
-            return "register";
+        	if(result.hasErrors()){
+        		return "register";
+        	} else{
+        		userService.addUser(user);
+                model.addAttribute("userAddMessage", "Account Created Successfully");
+                return "register";
+        	}
         } catch (VillaPursuitException e) {
             model.addAttribute("userAddException", e.toString());
             return "register";
@@ -270,28 +275,32 @@ public class VillaPursuitController {
      * </p>
      * 
      * @param address
-     *     Contains user object with it values such as number, street,
-     *     city, state and pin code.
+     *            Contains user object with it values such as number, street,
+     *            city, state and pin code.
      * @param result
-     *     Contains object of BindingResult class with any errors in the
-     *     address provided values.
+     *            Contains object of BindingResult class with any errors in the
+     *            address provided values.
      * @param model
-     *     Contains object of ModelMap class in order to send a
-     *     acknowledgement message to the user whether the user address
-     *     is added are not with an Attribute addressAddMessage.
+     *            Contains object of ModelMap class in order to send a
+     *            acknowledgement message to the user whether the user address
+     *            is added are not with an Attribute addressAddMessage.
      * @param session
-     *     Contains session object such as userId in order to add the
-     *     address to the user.
+     *            Contains session object such as userId in order to add the
+     *            address to the user.
      * @return "home_buyer" 
-     *     Returning to the buyer home page.
+     *              Returning to the buyer home page.
      */
     @RequestMapping(value = "user_address")
-    public String addAddress(Address address, BindingResult result, ModelMap model, HttpSession session) {
+    public String addAddress(@Valid Address address, BindingResult result, ModelMap model, HttpSession session) {
         try {
-            userService.addUserAddress(address, Integer.parseInt(session.getAttribute("userId").toString()));
-            model.addAttribute("addressAddMessage", "Address Updated Successfully");
-            model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
-            return "home_buyer";
+        	if(result.hasErrors()){
+        		return "redirect:address_form";
+        	} else{
+                userService.addUserAddress(address, Integer.parseInt(session.getAttribute("userId").toString()));
+                model.addAttribute("addressAddMessage", "Address Updated Successfully");
+                model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
+                return "home_buyer";
+        	}
         } catch (VillaPursuitException e) {
             model.addAttribute("addressAddException", e.toString());
             return "home_buyer";
@@ -304,31 +313,35 @@ public class VillaPursuitController {
      * added to the database Then, it redirects to the seller home page.
      * 
      * @param advertisement
-     *     Contains advertisement object with it values, where various
-     *     model class objects such as images, facility and address are
-     *     binded to it.
+     *            Contains advertisement object with it values, where various
+     *            model class objects such as images, facility and address are
+     *            binded to it.
      * @param result
-     *     Contains object of BindingResult class with any errors in the
-     *     advertisement provided values.
+     *            Contains object of BindingResult class with any errors in the
+     *            advertisement provided values.
      * @param model
-     *     Contains object of ModelMap class in order to send a
-     *     acknowledgement message to the seller whether the
-     *     advertisement is posted are not with an Attribute
-     *     advertisementAddMessage.
+     *            Contains object of ModelMap class in order to send a
+     *            acknowledgement message to the seller whether the
+     *            advertisement is posted are not with an Attribute
+     *            advertisementAddMessage.
      * @param session
-     *      Contains session object such as userId in order to add the
-     *      user to which posted the advertisement.
+     *            Contains session object such as userId in order to add the
+     *            user to which posted the advertisement.
      * @return "home_seller" 
-     *     Returning to the seller home page.
+     *              Returning to the seller home page.
      */
     @RequestMapping(value = "add_advertisement")
-    public String addAdvertisement(@ModelAttribute("advertisement") Advertisement advertisement, BindingResult result,
+    public String addAdvertisement(@ModelAttribute("advertisement") @Valid Advertisement advertisement, BindingResult result,
             ModelMap model, HttpSession session) {
         try {
-            advertisementService.addAdvertisement(advertisement, advertisement.getImages(), advertisement.getFacility(),
-                    advertisement.getAddress(), Integer.parseInt(session.getAttribute("userId").toString()));
-            model.addAttribute("advertisementAddMessage", "Advertisement Posted Successfully");
-            return "advertisement";
+        	if(result.hasErrors()){
+        		return "register";
+        	} else{
+                advertisementService.addAdvertisement(advertisement, advertisement.getImages(), advertisement.getFacility(),
+                        advertisement.getAddress(), Integer.parseInt(session.getAttribute("userId").toString()));
+                model.addAttribute("advertisementAddMessage", "Advertisement Posted Successfully");
+                return "advertisement";
+        	}
         } catch (VillaPursuitException e) {
             model.addAttribute("advertisementAddException", e.toString());
             return "advertisement";
@@ -342,22 +355,22 @@ public class VillaPursuitController {
      * the buyer home page.
      * 
      * @param advertisementId
-     *      Contains id for the particular advertisement to which buyer
-     *      provides the review.
+     *            Contains id for the particular advertisement to which buyer
+     *            provides the review.
      * @param review
-     *      Contains the review object such as comment and rating.
+     *            Contains the review object such as comment and rating.
      * @param result
-     *      Contains object of BindingResult class with any errors in the
-     *      advertisement provided values.
+     *            Contains object of BindingResult class with any errors in the
+     *            advertisement provided values.
      * @param model
-     *      Contains object of ModelMap class in order to send a
-     *      acknowledgement message to the buyer whether the advertisement
-     *      review is posted are not with an Attribute reviewAddMessage.
+     *            Contains object of ModelMap class in order to send a
+     *            acknowledgement message to the buyer whether the advertisement
+     *            review is posted are not with an Attribute reviewAddMessage.
      * @param session
-     *      Contains session object such as userId in order to add the
-     *      user to which posted the advertisement review.
+     *            Contains session object such as userId in order to add the
+     *            user to which posted the advertisement review.
      * @return "home_buyer" 
-     *     Returning to the buyer home page.
+     *              Returning to the buyer home page.
      */
     @RequestMapping(value = "add_review")
     public String addAdvertisementReview(@RequestParam("advertisementId") String advertisementId, Review review,
@@ -380,18 +393,18 @@ public class VillaPursuitController {
      * the database Then, it redirects to the buyer home page.
      * 
      * @param advertisementId
-     *      Contains id for the particular advertisement to which buyer
-     *      provides the review.
+     *            Contains id for the particular advertisement to which buyer
+     *            provides the review.
      * @param model
-     *      Contains object of ModelMap class in order to send a
-     *      acknowledgement message to the seller whenever buyer viewed
-     *      the advertisement are not with an Attribute
-     *      viewSellerAdvertisement.
+     *           Contains object of ModelMap class in order to send a
+     *           acknowledgement message to the seller whenever buyer viewed
+     *           the advertisement are not with an Attribute
+     *           viewSellerAdvertisement.
      * @param session
-     *      Contains session object such as userId in order to add the
-     *      user to which posted the advertisement.
+     *            Contains session object such as userId in order to add the
+     *            user to which posted the advertisement.
      * @return "home_buyer" 
-     *     Returning to the buyer home page.
+     *              Returning to the buyer home page.
      */
     @RequestMapping(value = "view_seller")
     public String viewSeller(@RequestParam("advertisementId") String advertisementId, ModelMap model,
@@ -413,10 +426,10 @@ public class VillaPursuitController {
      * redirects to the buyer home page.
      * 
      * @param model
-     *      Contains object of ModelMap class with an advertisements
-     *      attribute to list the set of advertisements.
+     *           Contains object of ModelMap class with an advertisements
+     *           attribute to list the set of advertisements.
      * @return "home_buyer" 
-     *      Returning to the buyer home page.
+     *              Returning to the buyer home page.
      */
     @RequestMapping(value = "home")
     public String gotoHomePage(ModelMap model) {
@@ -439,10 +452,10 @@ public class VillaPursuitController {
      * Redirects it to the admin home page.
      * 
      * @param model
-     *     Contains object of ModelMap class with an advertisements
-     *     attribute to list the set of advertisements.
+     *            Contains object of ModelMap class with an advertisements
+     *            attribute to list the set of advertisements.
      * @return "admin" 
-     *     Returning to the admin home page.
+     *              Returning to the admin home page.
      */
     @RequestMapping(value = "ad_admin")
     public String gotoAdvertisementPage(ModelMap model) {
@@ -460,10 +473,10 @@ public class VillaPursuitController {
      * to the admin home page.
      * 
      * @param model
-     *      Contains object of ModelMap class with an advertisements
-     *      attribute to list the set of advertisements.
+     *            Contains object of ModelMap class with an advertisements
+     *            attribute to list the set of advertisements.
      * @return "admin" 
-     *     Returning to the admin home page.
+     *              Returning to the admin home page.
      */
     @RequestMapping(value = "user_admin")
     public String gotoUserPage(ModelMap model) {
@@ -481,12 +494,12 @@ public class VillaPursuitController {
      * to the admin home page.
      * 
      * @param userId
-     *     Contains Id of the User.
+     *            Contains Id of the User.
      * @param model
-     *     Contains object of ModelMap class with an advertisements
-     *     attribute to list the set of advertisements.
+     *            Contains object of ModelMap class with an advertisements
+     *            attribute to list the set of advertisements.
      * @return "admin" 
-     *     Returning to the admin home page.
+     *              Returning to the admin home page.
      */
     @RequestMapping(value = "delete_user")
     public String deleteUser(@RequestParam("userId") int userId, ModelMap model) {
@@ -505,12 +518,12 @@ public class VillaPursuitController {
      * advertisement. Redirects it to the admin home page.
      * 
      * @param advertisementId
-     *     Contains Id of the Advertisement.
+     *             Contains Id of the Advertisement.
      * @param model
-     *     Contains object of ModelMap class with an advertisements
-     *     attribute to list the set of advertisements.
+     *            Contains object of ModelMap class with an advertisements
+     *            attribute to list the set of advertisements.
      * @return "admin" 
-     *     Returning to the admin home page.
+     *              Returning to the admin home page.
      */
     @RequestMapping(value = "update_status")
     public String updateAdvertisementStatus(@RequestParam("advertisementId") int advertisementId, ModelMap model) {
@@ -527,12 +540,12 @@ public class VillaPursuitController {
     /**
      * <p>
      * Method which performs logout operation.
-     * </p>
+     * </p> 
      * 
      * @param session
-     *      Contains object of the HTTP session.
+     *            Contains object of the HTTP session.
      * @return "login" 
-     *     JSP page that contains login form.
+     *              JSP page that contains login form.
      */
     @RequestMapping(value = "logout")
     public String logout(HttpSession session) {

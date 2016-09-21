@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.validator.NotEmpty;
+
 /**
  * <p>
  * Model which allows access to properties of Facility using getter and setter
@@ -28,6 +30,7 @@ import javax.persistence.UniqueConstraint;
 public class Facility {
 
     @Id
+    @NotEmpty
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
     private int facilityId;
@@ -41,9 +44,11 @@ public class Facility {
     @Column(name = "transport")
     private boolean transport;
 
+    @NotEmpty
     @Column(name = "bedroom")
     private String bedroom;
 
+    @NotEmpty
     @Column(name = "area")
     private String area;
 

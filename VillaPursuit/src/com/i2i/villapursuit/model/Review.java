@@ -16,6 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.NotEmpty;
 
 /**
  * <p>
@@ -37,12 +40,15 @@ public class Review {
     @Column(name = "id", unique = true, nullable = false)
     private int reviewId;
 
+    @NotEmpty
     @Column(name = "comment")
     private String comment;
 
+    @NotEmpty
     @Column(name = "rating")
     private String rating;
 
+    @NotEmpty
     @Column(name = "date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Date date;
 

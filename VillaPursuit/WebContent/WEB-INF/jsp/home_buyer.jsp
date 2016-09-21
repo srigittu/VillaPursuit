@@ -581,12 +581,17 @@ body {
 				<h2>
 					Add<span>Address!</span>
 				</h2>
-				<form:form action="user_address" commandName="address" required="required">
-					<form:input path="number" placeholder="Number" required="required"/>
-					<form:input path="street" placeholder="Street" required="required"/>
-					<form:input path="city" placeholder="City" required="required"/>
-					<form:input path="state" placeholder="State" required="required"/>
-					<form:input path="pincode" placeholder="Pincode" required="required"/>
+				<form:form action="user_address" commandName="address">
+					<form:input path="number" placeholder="Number" />
+					<form:errors path="number"></form:errors>
+					<form:input path="street" placeholder="Street" />
+					<form:errors path="street"></form:errors>
+					<form:input path="city" placeholder="City" />
+					<form:errors path="city"></form:errors>
+					<form:input path="state" placeholder="State" />
+					<form:errors path="state"></form:errors>
+					<form:input path="pincode" placeholder="Pincode" />
+					<form:errors path="pincode"></form:errors>
 					<input type="submit" value="Save">
 				</form:form>
 			</c:if>
