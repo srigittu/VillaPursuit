@@ -309,6 +309,10 @@ body {
 	padding: 6px;
 }
 
+.viewer span {
+	color: #ffffff;
+}
+
 .emptyViewer {
     color: #fff;
 	border: #fff;
@@ -630,6 +634,14 @@ body {
 							    <br><span><c:out value="${advertisement.getDate()}" /></span></div>
 							</td>
 							</tr>
+							<c:if test="${advertisement.getStatus() == 'inactive'}">
+							<tr>
+						        <td colspan="5">
+							        <div class="viewer"><c:out value="${'Post Status :'}"/>
+							        <span><c:out value="${'Pending'}"/></span></div>
+							    </td>
+		         		    </tr>
+		         		    </c:if>
 							<tr>
 						        <td colspan="5">
 							        <div class="viewer"><c:out value="${'Address'}"/><br></div>

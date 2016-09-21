@@ -216,12 +216,11 @@ public class VillaPursuitController {
     @RequestMapping(value = "review_form", method = RequestMethod.GET)
     public String postReview(@RequestParam("advertisementId") String advertisementId, Review review, ModelMap model) {
         try {
-            for (Advertisement advertisement : advertisementService.getAllAdvertisements()) {
+            for (Advertisement advertisement : advertisementService.getAllActiveAdvertisements()) {
                 if (advertisement.getAdvertisementId() == Integer.parseInt(advertisementId)) {
                     model.addAttribute("reviewAdvertisement", advertisement);
                 }
             }
-            model.addAttribute("addReview", "reviewObject");
             return "home_buyer";
         } catch (VillaPursuitException e) {
             model.addAttribute("loginException", e.toString());
@@ -290,7 +289,7 @@ public class VillaPursuitController {
         try {
             userService.addUserAddress(address, Integer.parseInt(session.getAttribute("userId").toString()));
             model.addAttribute("addressAddMessage", "Address Updated Successfully");
-            model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
+            model.addAttribute("advertisements", advertisementService.getAllActiveAdvertisements());
             return "home_buyer";
         } catch (VillaPursuitException e) {
             model.addAttribute("addressAddException", e.toString());
@@ -328,10 +327,10 @@ public class VillaPursuitController {
             advertisementService.addAdvertisement(advertisement, advertisement.getImages(), advertisement.getFacility(),
                     advertisement.getAddress(), Integer.parseInt(session.getAttribute("userId").toString()));
             model.addAttribute("advertisementAddMessage", "Advertisement Posted Successfully");
-            return "advertisement";
+            return "home_seller";
         } catch (VillaPursuitException e) {
             model.addAttribute("advertisementAddException", e.toString());
-            return "advertisement";
+            return "home_seller";
         }
     }
 
@@ -366,7 +365,7 @@ public class VillaPursuitController {
             reviewService.addAdvertisementReview(review, Integer.parseInt(advertisementId),
                     Integer.parseInt(session.getAttribute("userId").toString()));
             model.addAttribute("reviewAddMessage", "Review Posted Successfully");
-            model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
+            model.addAttribute("advertisements", advertisementService.getAllActiveAdvertisements());
             return "home_buyer";
         } catch (VillaPursuitException e) {
             model.addAttribute("addressAddException", e.toString());
@@ -407,7 +406,38 @@ public class VillaPursuitController {
             return "home_buyer";
         }
     }
-
+    
+    /**
+     *  <p>
+     * Method which gets request from buyer page. Performs search operations
+     * based on the parameters to get the advertisements .
+     * </p>
+     * 
+     * @param houseType
+     *            Contains houseType value to search the match advertisements.
+     * @param rentType
+     *            Contains rentType value to search the match advertisements.
+     * @param price
+     *            Contains price value to search the advertisements.
+     * @return "home_buyer"
+     *             Returns the list of search parameter matched advertisements to the buyer page.
+     */
+    @RequestMapping(value = "filter_search")
+    public String filterSearch(@RequestParam("houseType") String houseType, @RequestParam("rentType") String rentType, @RequestParam("price") String price,ModelMap model) {
+        try {
+            System.out.println(houseType);
+        	model.addAttribute("advertisements", advertisementService.filterSearchAdvertisements(houseType, rentType, price));
+        	System.out.println(advertisementService.filterSearchAdvertisements(houseType, rentType, price).size());
+        	for (Advertisement advertisement : advertisementService.filterSearchAdvertisements(houseType, rentType, price)) {
+        		System.out.println(advertisement.getHouseType());
+        	}
+        	System.out.println(houseType+"1");
+        	return "home_buyer";
+        } catch (VillaPursuitException e) {
+            model.addAttribute("filterSearchException", e.toString());
+            return "home_buyer";
+        }
+    }
     /**
      * Method which gets request from the user privileged page. Then, it
      * redirects to the buyer home page.
@@ -492,7 +522,7 @@ public class VillaPursuitController {
     public String deleteUser(@RequestParam("userId") int userId, ModelMap model) {
         try {
             userService.removeUser(userId);
-            model.addAttribute("deletionSuccessMessage", "User removed successfully");
+            model.addAttribute("userDeleteMessage", "User removed successfully");
             return "admin";
         } catch (VillaPursuitException e) {
             model.addAttribute("addressAddException", e.toString());

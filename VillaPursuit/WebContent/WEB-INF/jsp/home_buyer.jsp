@@ -258,9 +258,6 @@ body {
 	padding-top: .5em;
 	border
 }
-.ad table .backNo {
-   background: none;
-}
 
 .ad table tr th {
 	color: #00ffff;
@@ -297,6 +294,11 @@ body {
 
 .ad input[type=submit]:hover {
 	opacity: 0.6;
+}
+
+.hoverTable tr:hover {
+    background-color: #000;
+    opacity: 0.6;
 }
 
 .viewer {
@@ -594,7 +596,7 @@ body {
 		<c:if test="${advertisements != null}">
  	        <div class="location">
 		     <label>Search For:</label>
-		     <form action="filter" method="post">
+		     <form action="filter_search">
 		        <div class="myselect">
 		        <select name="houseType">
                     <option>Choose House Type</option>
@@ -691,6 +693,7 @@ body {
 					        <td colspan="5">
 					        </td>
 					        </tr>
+					        
 					        <tr style="background: none;">
 					        <td colspan="5" >
 					         </td>
@@ -703,7 +706,7 @@ body {
 		        </div>
 		  </div>
 		</c:if>
-	    <c:if test="${addReview != null}">
+	    <c:if test="${reviewAdvertisement != null}">
 			<c:if test="${sessionScope['role'] == 'seller'}">
 		    <div class="seller">
 			<form action="seller">

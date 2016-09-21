@@ -120,12 +120,12 @@ public class UserDao {
 
     /**
      * <p>
-     * Method which gets request from service. Delete user by user name from
+     * Method which gets request from service. Delete user by userId  from
      * database.
      * </p>
      * 
-     * @param userName
-     *            Contains name of the user.
+     * @param userId
+     *            Contains id of the user.
      * @throws VillaPursuitException
      *             If there is failed or interrupted database operations.
      */
@@ -134,7 +134,9 @@ public class UserDao {
         try {
             transaction = session.beginTransaction();
             User user = (User) session.get(User.class, userId);
+            System.out.println(user.getFirstName());
             session.delete(user); // Deleting User
+            System.out.println(user.getFirstName());
             transaction.commit();
         } catch (HibernateException exceptionCause) {
             if (transaction != null) {
@@ -164,9 +166,7 @@ public class UserDao {
         Session session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
-            User user = (User) session.get(User.class, userName); // Updating
-                                                                    // User
-                                                                    // Salary
+            User user = (User) session.get(User.class, userName); // Updating User Salary
             user.setPassword(password);
             transaction.commit();
         } catch (HibernateException exceptionCause) {

@@ -417,7 +417,7 @@ body {
                     
                     <td>
                     <form:input path="title" placeholder="Title" required="required"/><br>
-                    <form:input path="status" type="hidden" value="active" required="required"/><br>
+                    <form:input path="status" type="hidden" value="inactive" required="required"/><br>
                     <form:input path="availability" placeholder="Availability" required="required"/><br>
                     <form:input path="price" placeholder="Price"/><br>
                     </td>

@@ -17,6 +17,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 /**
  * <p>
  * Model which allows access to properties of Review using getter and setter
@@ -52,6 +55,7 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "advertisement_id")
+    @OnDelete(action =OnDeleteAction.NO_ACTION)
     private Advertisement advertisement;
 
     public Review() {

@@ -60,7 +60,7 @@ public class AdvertisementService {
      * @return list 
      *             Contains list of advertisements
      * @throws VillaPursuitException
-     *             If there is failed or interrupted .
+     *             If there is failed or interrupted database operations.
      */
     public List<Advertisement> getAllAdvertisements() throws VillaPursuitException {
         return advertisementDao.retriveAllAdvertisements();
@@ -144,4 +144,25 @@ public class AdvertisementService {
     public void updateStatus(int advertisementId) throws VillaPursuitException {
         advertisementDao.updateAdStatus(advertisementId);
     }
+    
+    /**
+     *  <p>
+     * Method which gets request from advertisement service. Performs search operations
+     * based on the parameters to get the advertisements .
+     * </p>
+     * 
+     * @param houseType
+     *            Contains houseType value to search the match advertisements.
+     * @param rentType
+     *            Contains rentType value to search the match advertisements.
+     * @param price
+     *            Contains price value to search the advertisements.
+     * @return list
+     *             Returns the list of search parameter matched  advertisements.
+     * @throws VillaPursuitException
+     *             If there is failed or interrupted database and hibernate operations.
+     */
+	public List<Advertisement> filterSearchAdvertisements(String houseType, String rentType, String price) throws VillaPursuitException {
+        return advertisementDao.filterSearchAdvertisements(houseType, rentType, price);
+	}
 }

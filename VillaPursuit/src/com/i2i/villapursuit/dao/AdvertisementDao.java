@@ -251,4 +251,51 @@ public class AdvertisementDao {
             session.close();
         }
     }
+    
+    /**
+     * <p>
+     * Method which gets request from controller. Performs search operations
+     * based on the parameters to get the advertisements .
+     * </p>
+     * 
+     * @param houseType
+     *            Contains houseType value to search the match advertisements.
+     * @param rentType
+     *            Contains rentType value to search the match advertisements.
+     * @param price
+     *            Contains price value to search the advertisements.
+     * @return list
+     *             Returns the list of search parameter matched  advertisements.
+     * @throws VillaPursuitException
+     *             If there is failed or interrupted database and hibernate operations.
+     */
+	@SuppressWarnings("unchecked")
+	public List<Advertisement> filterSearchAdvertisements(String houseType, String rentType, String price) throws VillaPursuitException {
+		Session session = sessionFactory.openSession();
+        try {
+        	Criteria criteria = session.createCriteria(Advertisement.class);
+            System.out.println(rentType);
+            System.out.println(houseType);
+            System.out.println(price);
+            if ((rentType.equals("Choose Rent Type"))&&(price.equals("10000"))) {
+            	criteria.add(Restrictions.eq("houseType", houseType));
+            	return criteria.list();
+            } else if ((houseType.equals("Choose House Type"))&&(price.equals("10000"))){
+                criteria.add(Restrictions.eq("rentType", rentType));
+                return criteria.list();
+            } else if ((houseType.equals("Choose House Type"))&&(rentType.equals("Choose Rent Type"))) {
+            	criteria.add(Restrictions.between("price", "10000", price));
+            	return criteria.list();
+            }
+            else {
+            	criteria.add(Restrictions.eq("houseType", houseType)).add(Restrictions.eq("rentType", rentType)).add(Restrictions.between("price", "10000", price));
+                return criteria.list();
+            }
+        } catch (HibernateException exceptionCause) {
+            throw new VillaPursuitException("\t\"Error occured while retriving Advertisements... Please try again...\""
+                    + exceptionCause.toString());
+        } finally {
+            session.close();
+        }
+	}
 }
