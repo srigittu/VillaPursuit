@@ -2,15 +2,20 @@
 
 <head>
     <title><fmt:message key="signup.title"/></title>
+    <link rel="stylesheet" type="text/css" href="styles/signup.css">
 </head>
 
-<body class="signup"/>
-
-<div class="col-sm-2">
-    <h2><fmt:message key="signup.heading"/></h2>
-    <p><fmt:message key="signup.message"/></p>
+<body>
+<div class="body"></div>
+    <div class="grad"></div>
+		<div class="header">
+			<div>Villa<span>Pursuit</span></div>
+		</div>
+		<br>
+<div class="message">
+    <div>Sign<span>up</span></div>
 </div>
-<div class="col-sm-7">
+<div class="col-sm-7" style="position: absolute; top: calc(32% - 35px); left: calc(42% - 255px); z-index: 3; background-color: #000; opacity:0.8;">
     <spring:bind path="user.*">
         <c:if test="${not empty status.errorMessages}">
             <div class="alert alert-danger alert-dismissable">
@@ -23,7 +28,7 @@
     </spring:bind>
 
     <form:form commandName="user" method="post" action="signup" id="signupForm" autocomplete="off"
-               cssClass="well" onsubmit="return validateSignup(this)">
+               cssClass="well" onsubmit="return validateSignup(this)" style="padding: 5px; background-color: #000; opacity:0.8; border-color: #000">
         <spring:bind path="user.username">
         <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
@@ -95,7 +100,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" style="float: right">
             <button type="submit" class="btn btn-primary" name="save" onclick="bCancel=false">
                 <i class="icon-ok icon-white"></i> <fmt:message key="button.register"/>
             </button>

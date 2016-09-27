@@ -5,5 +5,4 @@
     <meta name="menu" content="AdminMenu"/>
 </head>
 <div class="col-sm-10">
-<h1>Advertisements</h1>
 </div>

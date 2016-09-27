@@ -1,36 +1,40 @@
 <%@ include file="/common/taglibs.jsp" %>
 
 <head>
-    <title><fmt:message key="login.title"/></title>
-    <meta name="menu" content="Login"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="styles/login.css">
 </head>
-<body id="login">
 
+<body>
+
+<div class="body"></div>
+    <div class="grad"></div>
+		<div class="header">
+			<div>Villa<span>Pursuit</span></div>
+		</div>
+		<br>
+		
+<div class="login">
 <form method="post" id="loginForm" action="<c:url value='/j_security_check'/>"
-    onsubmit="saveUsername(this);return validateForm(this)" class="form-signin" autocomplete="off">
-    <h2 class="form-signin-heading">
-        <fmt:message key="login.heading"/>
-    </h2>
+    onsubmit="saveUsername(this);return validateForm(this)" autocomplete="off">
+    <h2>Log<span>in!</span></h2>
 <c:if test="${param.error != null}">
     <div class="alert alert-danger alert-dismissable">
         <fmt:message key="errors.password.mismatch"/>
     </div>
 </c:if>
-    <input type="text" name="j_username" id="j_username" class="form-control"
-           placeholder="<fmt:message key="label.username"/>" required tabindex="1">
-    <input type="password" class="form-control" name="j_password" id="j_password" tabindex="2"
+    <input type="text" name="j_username" id="j_username"
+           placeholder="<fmt:message key="label.username"/>" required>
+    <input type="password" name="j_password" id="j_password"
            placeholder="<fmt:message key="label.password"/>" required>
-
+    <input type="submit" value="Login"><br>
 <c:if test="${appConfig['rememberMeEnabled']}">
-    <label for="rememberMe" class="checkbox">
-        <input type="checkbox" name="_spring_security_remember_me" id="rememberMe" tabindex="3"/>
+    <label for="rememberMe">
+        <input type="checkbox" name="_spring_security_remember_me" id="rememberMe"/>
         <fmt:message key="login.rememberMe"/></label>
 </c:if>
-
-    <button type="submit" class="btn btn-lg btn-primary btn-block" name="login" tabindex="4">
-        <fmt:message key='button.login'/>
-    </button>
-</form>
+</form><br>
 
 <p>
     <fmt:message key="login.signup">
@@ -45,5 +49,5 @@
 <p><fmt:message key="login.passwordHint"/></p>
 
 <p><fmt:message key="updatePassword.requestRecoveryTokenLink"/></p>
-
+</div>
 </body>

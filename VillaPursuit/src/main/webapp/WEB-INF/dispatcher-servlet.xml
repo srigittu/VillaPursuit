@@ -29,7 +29,7 @@
     <context:component-scan base-package="com.i2i.villapursuit.webapp"/>
     <!-- Configures the @Controller programming model -->
     <mvc:annotation-driven/>
-
+    
     <!-- Convenient way to map URLs to JSPs w/o having a Controller -->
     <mvc:view-controller path="/admin/activeUsers" view-name="admin/activeUsers"/>
     <mvc:view-controller path="/home" view-name="home"/>
