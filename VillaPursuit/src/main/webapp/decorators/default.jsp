@@ -17,6 +17,5 @@
 <decorator:getProperty property="body.class" writeEntireProperty="true"/>
 <decorator:body/>
 <decorator:getProperty property="meta.menu"/>
-
 </body>
 </html>
