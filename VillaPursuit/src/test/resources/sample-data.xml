@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <table name="app_user">
+        <column>id</column>
+        <column>username</column>
+        <column>password</column>
+        <column>first_name</column>
+        <column>last_name</column>
+        <column>address</column>
+        <column>city</column>
+        <column>land_mark</column>
+        <column>email</column>
+        <column>phone_number</column>
+        <column>pincode</column>
+        <column>state</column>
+        <column>website</column>
+        <column>password_hint</column>
+        <column>version</column>
+        <column>account_enabled</column>
+        <column>account_expired</column>
+        <column>account_locked</column>
+        <column>credentials_expired</column>
+        <row>
+            <value description="id">-1</value>
+            <value description="username">user</value>
+            <value description="password">$2a$10$CnQVJ9bsWBjMpeSKrrdDEeuIptZxXrwtI6CZ/OgtNxhIgpKxXeT9y</value>
+            <value description="first_name">Tomcat</value>
+            <value description="last_name">User</value>
+            <value description="address"></value>
+            <value description="city">Denver</value>
+            <value description="land_mark">US</value>
+            <value description="email">matt_raible@yahoo.com</value>
+            <value description="phone_number"></value>
+            <value description="pincode">80210</value>
+            <value description="state">CO</value>
+            <value description="website">http://tomcat.apache.org</value>
+            <value description="password_hint"><![CDATA[A male kitty.]]></value>
+            <value description="version">1</value>
+            <value description="account_enabled">1</value>
+            <value description="account_expired">0</value>
+            <value description="account_locked">0</value>
+            <value description="credentials_expired">0</value>
+        </row>
+        <row>
+            <value description="id">-2</value>
+            <value description="username">admin</value>
+            <value description="password">$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO</value>
+            <value description="first_name">Matt</value>
+            <value description="last_name">Raible</value>
+            <value description="address"></value>
+            <value description="city">Denver</value>
+            <value description="land_mark">US</value>
+            <value description="email">matt@raibledesigns.com</value>
+            <value description="phone_number"></value>
+            <value description="pincode">80210</value>
+            <value description="state">CO</value>
+            <value description="website">http://raibledesigns.com</value>
+            <value description="password_hint"><![CDATA[Not a female kitty.]]></value>
+            <value description="version">1</value>
+            <value description="account_enabled">1</value>
+            <value description="account_expired">0</value>
+            <value description="account_locked">0</value>
+            <value description="credentials_expired">0</value>
+        </row>
+        <row>
+            <value description="id">-3</value>
+            <value description="username">two_roles_user</value>
+            <value description="password">$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO</value>
+            <value description="first_name">Two Roles</value>
+            <value description="last_name">User</value>
+            <value description="address"></value>
+            <value description="city">Denver</value>
+            <value description="land_mark">US</value>
+            <value description="email">two_roles_user@appfuse.org</value>
+            <value description="phone_number"></value>
+            <value description="pincode">80210</value>
+            <value description="state">CO</value>
+            <value description="website">http://raibledesigns.com</value>
+            <value description="password_hint"><![CDATA[Not a female kitty.]]></value>
+            <value description="version">1</value>
+            <value description="account_enabled">1</value>
+            <value description="account_expired">0</value>
+            <value description="account_locked">0</value>
+            <value description="credentials_expired">0</value>
+        </row>
+        <row>
+            <value description="id">-4</value>
+            <value description="username">buyer</value>
+            <value description="password">$2a$10$CnQVJ9bsWBjMpeSKrrdDEeuIptZxXrwtI6CZ/OgtNxhIgpKxXeT9y</value>
+            <value description="first_name">villa</value>
+            <value description="last_name">buyer</value>
+            <value description="address"></value>
+            <value description="city">Denver</value>
+            <value description="land_mark">US</value>
+            <value description="email">buyer@appfuse.org</value>
+            <value description="phone_number"></value>
+            <value description="pincode">80210</value>
+            <value description="state">CO</value>
+            <value description="website">http://raibledesigns.com</value>
+            <value description="password_hint"><![CDATA[Not a female kitty.]]></value>
+            <value description="version">1</value>
+            <value description="account_enabled">1</value>
+            <value description="account_expired">0</value>
+            <value description="account_locked">0</value>
+            <value description="credentials_expired">0</value>
+        </row>
+        <row>
+            <value description="id">-5</value>
+            <value description="username">seller</value>
+            <value description="password">$2a$10$CnQVJ9bsWBjMpeSKrrdDEeuIptZxXrwtI6CZ/OgtNxhIgpKxXeT9y</value>
+            <value description="first_name">villa</value>
+            <value description="last_name">seller</value>
+            <value description="address"></value>
+            <value description="city">Denver</value>
+            <value description="land_mark">US</value>
+            <value description="email">seller@appfuse.org</value>
+            <value description="phone_number"></value>
+            <value description="pincode">80210</value>
+            <value description="state">CO</value>
+            <value description="website">http://raibledesigns.com</value>
+            <value description="password_hint"><![CDATA[Not a female kitty.]]></value>
+            <value description="version">1</value>
+            <value description="account_enabled">1</value>
+            <value description="account_expired">0</value>
+            <value description="account_locked">0</value>
+            <value description="credentials_expired">0</value>
+        </row>
+    </table>
+    <table name="role">
+        <column>id</column>
+        <column>name</column>
+        <column>description</column>
+        <row>
+            <value description="id">-1</value>
+            <value description="name">ROLE_ADMIN</value>
+            <value description="description"><![CDATA[Administrator role (can edit Users)]]></value>
+        </row>
+        <row>
+            <value description="id">-2</value>
+            <value description="name">ROLE_USER</value>
+            <value description="description"><![CDATA[Default role for all Users]]></value>
+        </row>
+        <row>
+            <value description="id">-3</value>
+            <value description="name">ROLE_BUYER</value>
+        </row>
+        <row>
+            <value description="id">-4</value>
+            <value description="name">ROLE_SELLER</value>
+        </row>
+    </table>
+    <table name="user_role">
+        <column>user_id</column>
+        <column>role_id</column>
+        <row>
+            <value description="user_id">-1</value>
+            <value description="role_id">-2</value>
+        </row>
+        <row>
+            <value description="user_id">-2</value>
+            <value description="role_id">-1</value>
+        </row>
+        <row>
+            <value description="user_id">-3</value>
+            <value description="role_id">-1</value>
+        </row>
+        <row>
+            <value description="user_id">-3</value>
+            <value description="role_id">-2</value>
+        </row>
+        <row>
+            <value description="user_id">-4</value>
+            <value description="role_id">-3</value>
+        </row>
+        <row>
+            <value description="user_id">-5</value>
+            <value description="role_id">-4</value>
+        </row>
+    </table>
+    <table name="seller_advertisement">
+        <column>id</column>
+        <column>title</column>
+        <column>status</column>
+        <column>availability</column>
+        <column>price</column>
+        <column>house_type</column>
+        <column>rent_type</column>
+        <column>address</column>
+        <column>city</column>
+        <column>land_mark</column>
+        <column>pincode</column>
+        <column>state</column>
+        <column>user_id</column>
+        <row>
+            <value description="id">-1</value>
+            <value description="title">Casa Grande</value>
+            <value description="status">active</value>
+            <value description="availability">Vacant</value>
+            <value description="price">17,000</value>
+            <value description="house_type">Individual</value>
+            <value description="rent_type">Rent</value>
+            <value description="address">No:5, Krishna Street, Andal Nagar, Vadapalani.</value>
+            <value description="city">Chennai</value>
+            <value description="pincode">600094</value>
+            <value description="state">TN</value>
+            <value description="land_mark">Back Side to Forum Mall</value>
+            <value description="id">-5</value>
+        </row>
+        <row>
+            <value description="id">-2</value>
+            <value description="title">Casa Grande</value>
+            <value description="status">active</value>
+            <value description="availability">Vacant</value>
+            <value description="price">12,000</value>
+            <value description="house_type">Appartment</value>
+            <value description="rent_type">Lease</value>
+            <value description="address">No:14, Kannan Street, Lakshmi Nagar, Valasaravakkam.</value>
+            <value description="city">Chennai</value>
+            <value description="pincode">600047</value>
+            <value description="state">TN</value>
+            <value description="land_mark">Back Side to Mega Mart</value>
+            <value description="id">-5</value>
+            
+        </row>
+    </table>
+</dataset>
