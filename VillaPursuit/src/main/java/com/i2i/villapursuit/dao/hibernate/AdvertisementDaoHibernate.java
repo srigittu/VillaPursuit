@@ -35,8 +35,7 @@ public class AdvertisementDaoHibernate extends GenericDaoHibernate<Advertisement
      */
     @SuppressWarnings("unchecked")
     public List<Advertisement> getActiveAdvertisements() {
-        Query qry = getSession().createQuery("from Advertisement a where a.status = active");
-        return qry.list();
+    	return getSession().createCriteria(Advertisement.class).add(Restrictions.eq("status", "active")).list();
     }
     
     /**
@@ -44,7 +43,7 @@ public class AdvertisementDaoHibernate extends GenericDaoHibernate<Advertisement
      */
 	@SuppressWarnings("unchecked")
 	public List<Advertisement> getInactiveAdvertisements() {
-        return getSession().createCriteria(Advertisement.class).add(Restrictions.eq("status", "active")).list();
+        return getSession().createCriteria(Advertisement.class).add(Restrictions.eq("status", "inactive")).list();
 	}
     
 	/**

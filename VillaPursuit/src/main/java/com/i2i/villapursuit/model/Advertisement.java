@@ -1,7 +1,11 @@
 package com.i2i.villapursuit.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -11,7 +15,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -46,32 +53,14 @@ public class Advertisement implements Serializable {
     private String advertisementCount;
     private String notificationCount;
     private Address address;
-    private User user;
-
-    /*@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "facility_id")
-    @OnDelete(action =OnDeleteAction.CASCADE)
     private Facility facility;
-
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST)
-    @OnDelete(action =OnDeleteAction.CASCADE)
-    private List<Image> images = new ArrayList<Image>();
-
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "advertisement", cascade = CascadeType.PERSIST)
-    @OnDelete(action =OnDeleteAction.CASCADE)
-    private List<Review> advertisementReviews = new ArrayList<Review>();
-
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(name = "ADVERTISEMENT_USER", joinColumns = {
-    @JoinColumn(name = "advertisement_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
-    @OnDelete(action =OnDeleteAction.NO_ACTION)
-    private Set<User> advertisementViewer = new HashSet<User>(5);*/
+    private User user;
+    private Set<User> advertisementViewer = new HashSet<User>();
     
-    @Id
+    public Advertisement() {
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
 		return id;
@@ -144,6 +133,31 @@ public class Advertisement implements Serializable {
     @JoinColumn(name = "user_id")
 	public User getUser() {
 		return user;
+	}
+    
+    @Embedded
+    @IndexedEmbedded
+	public Facility getFacility() {
+		return facility;
+	}
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
+    @JoinTable(
+            name = "advertisement_viewer",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = @JoinColumn(name = "advertisement_id")
+    )
+    
+	public Set<User> getAdvertisementViewer() {
+		return advertisementViewer;
+	}
+
+	public void setFacility(Facility facility) {
+	}
+
+	public void setAdvertisementViewer(Set<User> advertisementViewer) {
+		this.advertisementViewer = advertisementViewer;
 	}
 
 	public void setId(Long id) {

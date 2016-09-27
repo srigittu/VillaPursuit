@@ -1,7 +1,7 @@
 AppFuse Basic Spring MVC Archetype
 --------------------------------------------------------------------------------
 If you're reading this then you've created your new project using Maven and
-OnlineRental.  You have only created the shell of an AppFuse Java EE
+VillaPursuit.  You have only created the shell of an AppFuse Java EE
 application.  The project object model (pom) is defined in the file pom.xml.
 The application is ready to run as a web application. The pom.xml file is
 pre-defined with Hibernate as a persistence model and Spring MVC as the web

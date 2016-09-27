@@ -101,24 +101,7 @@
                     <appfuse:label styleClass="control-label" key="user.address.address"/>
                     <form:input cssClass="form-control" path="address.address" id="address.address"/>
                 </div>
-                <div class="row">
-                    <div class="col-sm-7 form-group">
-                        <appfuse:label styleClass="control-label" key="user.address.city"/>
-                        <form:input cssClass="form-control" path="address.city" id="address.city"/>
-                    </div>
-                    <div class="col-sm-2 form-group">
-                        <appfuse:label styleClass="control-label" key="user.address.province"/>
-                        <form:input cssClass="form-control" path="address.province" id="address.province"/>
-                    </div>
-                    <div class="col-sm-3 form-group">
-                        <appfuse:label styleClass="control-label" key="user.address.postalCode"/>
-                        <form:input cssClass="form-control" path="address.postalCode" id="address.postalCode"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <appfuse:label styleClass="control-label" key="user.address.country"/>
-                    <appfuse:country name="address.country" prompt="" default="${user.address.country}"/>
-                </div>
+                
             </div>
         </div>
 <c:choose>

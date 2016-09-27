@@ -12,7 +12,7 @@
             <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/>
             <Item name="FileUpload" title="menu.selectFile" page="/fileupload"/>
         </Menu>
-        <Menu name="Seller" title="menu.seller" page="/seller" roles="ROLE_ADMIN,ROLE_SELLER,ROLE_USER"/>
+        <Menu name="Seller" title="menu.seller" page="/seller" roles="ROLE_ADMIN,ROLE_SELLER"/>
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER,ROLE_SELLER,ROLE_BUYER"/>
     </Menus>
 </MenuConfig>

@@ -1,8 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
-
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home Buyer</title>
 <link rel="stylesheet" type="text/css" href="styles/home.css">
 </head>
@@ -25,12 +23,6 @@
 		</script>
 		</c:if>
 		
-		<c:if test="${addressAddMessage != null}">
-		<script>
-		   window.alert("<c:out value="${addressAddMessage}"/>");
-		</script>
-		</c:if>
-		
 		<div class="logout">
 			<form action="logout">
 				<input type="submit" value="Logout">
@@ -42,30 +34,8 @@
 				<input type="submit" value="Profile">
 			</form>
 		</div>
-		<c:if test="${sessionScope['userId'] != null}">
-		<div class="register">
-			<c:if test="${addAddress != null}">
-				<h2>
-					Add<span>Address!</span>
-				</h2>
-				<form:form action="user_address" commandName="address">
-					<form:input path="number" placeholder="Number" />
-					<form:errors path="number"></form:errors>
-					<form:input path="street" placeholder="Street" />
-					<form:errors path="street"></form:errors>
-					<form:input path="location" placeholder="Location" /><br>
-                    <form:errors path="location"></form:errors>
-					<form:input path="city" placeholder="City" />
-					<form:errors path="city"></form:errors>
-					<form:input path="state" placeholder="State" />
-					<form:errors path="state"></form:errors>
-					<form:input path="pincode" placeholder="Pincode" />
-					<form:errors path="pincode"></form:errors>
-					<input type="submit" value="Save">
-				</form:form>
-			</c:if>
-		</div>
-		<c:if test="${advertisements != null}">
+		
+		<c:if test="${advertisements.size() != 0}">
  	        <div class="location">
 		     <label>Search For:</label>
 		     <form action="filter_search">
@@ -99,25 +69,11 @@
  				<input type="submit" value="Filter">
  		    </form>
 		    </div>
- 	        <c:if test="${sessionScope['role'] == 'seller'}">
-		    <div class="home">
-			<form action="seller">
-				<input type="submit" value="My Posts">
-			</form>
-		    </div>
-		    </c:if>
- 	        <div class="ad" >
+		    <div class="ad" >
 				<table>
 				    <c:forEach var="advertisement" items="${advertisements}">
-						<c:set value="${advertisement.getUser()}" var="user"/>
-						<c:if test="${user.getId() != sessionScope['userId']}">
 						     <tr>
 							 <td>
-							    <c:forEach var="image"
-									items="${advertisement.getImages()}">
-									<img src="upload/<c:out value="${image.getImagePath()}"/>" width="150px" height="75px"/>
-									<br>
-								</c:forEach>
 						     </td>
 						     <td>
 							    <div class="maintitle"><c:out value="${advertisement.getTitle()}" /></div>
@@ -128,14 +84,14 @@
 								<c:set value="${advertisement.getFacility()}" var="facility"/>
 								<div class="title" style="padding:2px;"><c:out value="${'Bed Rooms :'}"/>
                                 <span><c:out value="${facility.getBedroom()}"/></span></div>
-                                <div class="title" style="padding:2px;"><c:out value="${'Area :'}"/>
+                                <div class="title" style="padding:2px;"><c:out value="${'Area Size:'}"/>
                                 <span><c:out value="${facility.getArea()}"/></span></div>
                                 <c:set value="${advertisement.getAddress()}" var="address"/>
-                                <div class="title" style="padding:3px;"><c:out value="${'Location :'}"/>
+                                <div class="title" style="padding:2px;"><c:out value="${'Location :'}"/>
                                 <span><c:out value="${address.getCity()}"/></span></div>
 							</td>
 							<td style="padding:10px;">
-							 <div class="title" style="padding:2px;"><c:out value="${'₹ : '}"/> 
+							 <div class="title" style="padding:2px;">&#8377;<c:out value="${' : '}"/> 
 							 <span><c:out value="${advertisement.getPrice()}" /></span>/Month</div>
 							</td>
 							<td style="padding:10px;">
@@ -151,13 +107,13 @@
 							    <td colspan="3"></td>
 							    <td style="padding:1px; text-align:right;">
 							    <form action="review_form">
-						            <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
+						            <input type="hidden" value="${advertisement.getId()}" name="advertisementId">
 						            <input type="submit" value="Add Review">
 					            </form>
 					            </td>
 					            <td style="padding:1px;">
 							    <form action="view_seller">
-						            <input type="hidden" value="${advertisement.getAdvertisementId()}" name="advertisementId">
+						            <input type="hidden" value="${advertisement.getId()}" name="advertisementId">
 						            <input type="submit" value="More Info">
 					            </form>
 					            </td>
@@ -170,16 +126,15 @@
 					        <td colspan="5" >
 					         </td>
 					        </tr>
-						</c:if>
 						</c:forEach>
 				</table>
 				<div class="title" style="float:right;">
 		        <div>@Villa<span>Pursuit</span></div>
 		        </div>
 		  </div>
-		</c:if>
+ 	        </c:if>
 	    <c:if test="${reviewAdvertisement != null}">
-			<c:if test="${sessionScope['role'] == 'seller'}">
+			<c:if test="${sessionScope['role'] == 'ROLE_SELLER'}">
 		    <div class="seller">
 			<form action="seller">
 				<input type="submit" value="My Posts">
@@ -257,10 +212,9 @@
 		        </div>
 		     </div>
 		</c:if>
-		</c:if>
 		
 		
-		<c:if test="${sessionScope['role'] != 'ROLE_BUYER'}">
+		<c:if test="${sessionScope['role'] != 'ROLE_SELLER'}">
 		    <div class="seller">
 			<form action="seller">
 				<input type="submit" value="My Posts">
