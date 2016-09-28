@@ -23,14 +23,14 @@ import com.i2i.villapursuit.model.Advertisement;
 public class AdvertisementDaoHibernate extends GenericDaoHibernate<Advertisement, Long> implements AdvertisementDao {
     
 	/**
-     * Constructor that sets the entity to Advertisement.class.
-     */
+	 * Default constructor of AdvertisementDaoHibernate
+	 */
     public AdvertisementDaoHibernate() {
         super(Advertisement.class);
     }
     
     /**
-     * {@inheritDoc}
+     * Method which retrieves all active advertisements from advertisement database.
      */
     @SuppressWarnings("unchecked")
     public List<Advertisement> getActiveAdvertisements() {
@@ -38,7 +38,7 @@ public class AdvertisementDaoHibernate extends GenericDaoHibernate<Advertisement
     }
     
     /**
-     * {@inheritDoc}
+     * Method which retrieves all inactive advertisements from advertisement database.
      */
 	@SuppressWarnings("unchecked")
 	public List<Advertisement> getInactiveAdvertisements() {
@@ -46,7 +46,7 @@ public class AdvertisementDaoHibernate extends GenericDaoHibernate<Advertisement
 	}
     
 	/**
-     * {@inheritDoc}
+     * Method which retrieves all advertisements from advertisement database.
      */
 	@SuppressWarnings("unchecked")
 	public List<Advertisement> getAdvertisements() {
@@ -55,22 +55,27 @@ public class AdvertisementDaoHibernate extends GenericDaoHibernate<Advertisement
 	}
     
 	/**
-     * {@inheritDoc}
-     */
+	 * Method which saves advertisement's details to advertisement database.
+	 */
 	public Advertisement saveAdvertisement(Advertisement advertisement) {
 		getSession().saveOrUpdate(advertisement);
 		return advertisement;
 	}
 	
 	/**
-     * {@inheritDoc}
+     * Method which retrieves advertisement by advertisement id.
+     * param advertisementId
+     *           Contains id of an advertisement.
      */
 	public Advertisement getAdvertisementById(Long advertisementId) {
 		return (Advertisement)getSession().get(Advertisement.class, advertisementId);
 	}
+	
 	/**
-     * {@inheritDoc}
-     */
+	 * Method which removes advertisement by advertisement Id.
+	 * param advertisementId
+	 *           Contains id of an advertisement
+	 */
 	public void removeAdvertisementById(Long advertisementId) {
         Session session = getSessionFactory().getCurrentSession();
         Advertisement advertisement = (Advertisement) session.get(Advertisement.class, advertisementId);

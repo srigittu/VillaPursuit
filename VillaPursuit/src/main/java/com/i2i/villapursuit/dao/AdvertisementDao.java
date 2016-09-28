@@ -40,8 +40,8 @@ public interface AdvertisementDao extends GenericDao<Advertisement, Long> {
     Advertisement saveAdvertisement(Advertisement advertisement);
     
     /**
-     * Saves a advertisement's information.
-     * @param advertisement the object to be saved
+     * Gets a advertisement's information.
+     * @param advertisementId the object to be saved
      * @return the persisted advertisement object
      */
     Advertisement getAdvertisementById(Long advertisementId);

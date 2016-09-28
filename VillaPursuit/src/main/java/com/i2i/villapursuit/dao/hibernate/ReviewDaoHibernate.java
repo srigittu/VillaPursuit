@@ -14,6 +14,7 @@ import com.i2i.villapursuit.model.Review;
  *
  * @author Team #3
  */
+@Transactional
 @Repository("reviewDao")
 public class ReviewDaoHibernate extends GenericDaoHibernate<Review, Long> implements ReviewDao {
 
@@ -25,7 +26,9 @@ public class ReviewDaoHibernate extends GenericDaoHibernate<Review, Long> implem
     }
     
     /**
-     * {@inheritDoc}
+     * Method which saves review details into database.
+     * @param review
+     *            Contains object of the review database.
      */
 	public Review saveReview(Review review) {
 		System.out.println("inside add review Dao");

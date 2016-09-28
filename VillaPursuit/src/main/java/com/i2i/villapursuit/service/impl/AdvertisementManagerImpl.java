@@ -18,6 +18,11 @@ import com.i2i.villapursuit.service.AdvertisementManager;
 public class AdvertisementManagerImpl extends GenericManagerImpl<Advertisement, Long> implements AdvertisementManager{
 	AdvertisementDao advertisementDao;
 
+	/**
+	 * Constructor of current class.
+	 * @param advertisementDao
+	 *            Contains object of Advertisement Dao class.
+	 */
     @Autowired
     public AdvertisementManagerImpl(AdvertisementDao advertisementDao) {
         super(advertisementDao);
@@ -25,42 +30,48 @@ public class AdvertisementManagerImpl extends GenericManagerImpl<Advertisement, 
     }
 	
     /**
-     * {@inheritDoc}
+     * Method which gets request to get all active advertisements.
      */
 	public List<Advertisement> getActiveAdvertisements() {
 		return advertisementDao.getActiveAdvertisements();
 	}
     
 	/**
-     * {@inheritDoc}
+     * Method which gets request to get all inactive advertisements.
      */
 	public List<Advertisement> getInctiveAdvertisements() {
 		return advertisementDao.getInactiveAdvertisements();
 	}
     
 	/**
-     * {@inheritDoc}
+     * Method which gets request to get all advertisements.
      */
 	public List<Advertisement> getAdvertisements() {
 		return advertisementDao.getAdvertisements();
 	}
     
 	/**
-     * {@inheritDoc}
+     * Method which gets request to save an advertisement.
+     * @param advertisement
+     *           Contains object of the advertisement.
      */
 	public Advertisement saveAdvertisement(Advertisement advertisement) {
 		return advertisementDao.saveAdvertisement(advertisement);
 	}
     
 	/**
-     * {@inheritDoc}
-     */
+	 * Method which gets request to get an advertisement by advertisement id.
+	 * @param advertisementId
+	 *            Contains id of the advertisement.
+	 */
 	public Advertisement getAdvertisementById(Long advertisementId) {
 		return advertisementDao.getAdvertisementById(advertisementId);
 	}
 	
 	/**
-     * {@inheritDoc}
+     * Method which gets request to remove an advertisement by advertisement id.
+     * @param advertisementId
+     *            Contains id of the advertisement.
      */
 	public void removeAdvertisementById(long advertisementId) {
 		advertisementDao.removeAdvertisementById(advertisementId);

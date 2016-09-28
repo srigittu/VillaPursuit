@@ -18,11 +18,31 @@ import com.i2i.villapursuit.model.User;
 @Controller
 public class AdvertisementController extends BaseFormController {
     
+	/**
+	 * Method which gets request to post advertisement from seller.
+	 * Redirects it to the advertisement page.
+	 * @param advertisement
+	 *            Contains object of the advertisement
+	 * @return "advertisement"
+	 *             Returning to the advertisement page.
+	 */
     @RequestMapping(value = "/advertisementForm", method = RequestMethod.GET)
     public String showForm(Advertisement advertisement) {
         return "advertisement";
     }
     
+    /**
+     * Method which gets request to add an advertisement's details.
+     * If advertisement added successfully, redirects it to seller page.
+     * @param advertisement
+     *            Contains object of the advertisement.
+     * @param errors
+     *            Contains error message.
+     * @param request
+     *            Contains object of HTTP Request.
+     * @return "advertisement"
+     *             Returning to advertisement page.
+     */
     @RequestMapping(value = "/addAdvertisement", method = RequestMethod.POST)
     public String onSubmit(Advertisement advertisement, BindingResult errors, HttpServletRequest request) {
     	if (request.getParameter("cancel") != null) {
@@ -45,4 +65,6 @@ public class AdvertisementController extends BaseFormController {
         request.setAttribute("advertisement", this.getAdvertisementManager().saveAdvertisement(advertisement));
     	return getSuccessView();
     }
+    
+    
 }
