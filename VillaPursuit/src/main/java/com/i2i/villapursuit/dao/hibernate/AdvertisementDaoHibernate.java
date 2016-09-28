@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.i2i.villapursuit.dao.AdvertisementDao;
 import com.i2i.villapursuit.model.Advertisement;
-import com.i2i.villapursuit.model.User;
 
 /**
  * This class interacts with Hibernate session to save/delete and
@@ -66,7 +65,13 @@ public class AdvertisementDaoHibernate extends GenericDaoHibernate<Advertisement
 	/**
      * {@inheritDoc}
      */
-	public void removeAdvertisementById(long advertisementId) {
+	public Advertisement getAdvertisementById(Long advertisementId) {
+		return (Advertisement)getSession().get(Advertisement.class, advertisementId);
+	}
+	/**
+     * {@inheritDoc}
+     */
+	public void removeAdvertisementById(Long advertisementId) {
         Session session = getSessionFactory().getCurrentSession();
         Advertisement advertisement = (Advertisement) session.get(Advertisement.class, advertisementId);
         session.delete(advertisement);

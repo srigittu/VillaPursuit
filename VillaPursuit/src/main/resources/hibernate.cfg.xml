@@ -9,5 +9,6 @@
         <mapping class="com.i2i.villapursuit.model.User"/>
         <mapping class="com.i2i.villapursuit.model.Role"/>
         <mapping class="com.i2i.villapursuit.model.Advertisement"/>
+        <mapping class="com.i2i.villapursuit.model.Review"/>
     </session-factory>
 </hibernate-configuration>

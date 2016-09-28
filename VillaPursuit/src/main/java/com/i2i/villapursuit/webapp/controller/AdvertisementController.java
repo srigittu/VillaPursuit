@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,24 +16,17 @@ import com.i2i.villapursuit.model.User;
  * @author Team #3
  */
 @Controller
-@RequestMapping("/seller/advertisement*")
 public class AdvertisementController extends BaseFormController {
     
-	public AdvertisementController() {
-        setCancelView("redirect:/seller");
-        setSuccessView("advertisementDisplay");
-    }
-
-    @ModelAttribute
-    @RequestMapping(method = RequestMethod.GET)
-    public Advertisement showForm() {
-        return new Advertisement();
+    @RequestMapping(value = "/advertisementForm", method = RequestMethod.GET)
+    public String showForm(Advertisement advertisement) {
+        return "advertisement";
     }
     
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/addAdvertisement", method = RequestMethod.POST)
     public String onSubmit(Advertisement advertisement, BindingResult errors, HttpServletRequest request) {
     	if (request.getParameter("cancel") != null) {
-            return getCancelView();
+            return "redirect:seller";
         }
 
         if (validator != null) { // validator is null during testing

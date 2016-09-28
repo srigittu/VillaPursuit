@@ -55,6 +55,13 @@ public class AdvertisementManagerImpl extends GenericManagerImpl<Advertisement, 
 	/**
      * {@inheritDoc}
      */
+	public Advertisement getAdvertisementById(Long advertisementId) {
+		return advertisementDao.getAdvertisementById(advertisementId);
+	}
+	
+	/**
+     * {@inheritDoc}
+     */
 	public void removeAdvertisementById(long advertisementId) {
 		advertisementDao.removeAdvertisementById(advertisementId);
 	}

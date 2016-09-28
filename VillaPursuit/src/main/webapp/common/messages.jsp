@@ -1,3 +1,4 @@
+<%@ include file="/common/taglibs.jsp"%>
 <%-- Error Messages --%>
 <c:if test="${not empty errors}">
     <div class="alert alert-danger alert-dismissable">

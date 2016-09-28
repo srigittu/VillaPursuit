@@ -106,7 +106,7 @@
 							<tr >
 							    <td colspan="3"></td>
 							    <td style="padding:1px; text-align:right;">
-							    <form action="review_form">
+							    <form action="reviewForm">
 						            <input type="hidden" value="${advertisement.getId()}" name="advertisementId">
 						            <input type="submit" value="Add Review">
 					            </form>
@@ -214,7 +214,7 @@
 		</c:if>
 		
 		
-		<c:if test="${sessionScope['role'] != 'ROLE_SELLER'}">
+		<c:if test="${sessionScope['role'] != 'ROLE_BUY'}">
 		    <div class="seller">
 			<form action="seller">
 				<input type="submit" value="My Posts">

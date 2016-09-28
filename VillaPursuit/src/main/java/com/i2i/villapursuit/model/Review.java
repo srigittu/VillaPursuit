@@ -1,8 +1,11 @@
+// Copyright (C) 2015 Ideas2IT, Inc.
+// All rights reserved
+
 package com.i2i.villapursuit.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,92 +15,97 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.search.annotations.Field;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
- * This class is used to represent a Review for an Advertisement with 
- * comments and ratings information.
+ * <p>
+ * Model which allows access to properties of Review using getter and setter
+ * methods.
+ * </p>
+ * 
  * @author Team #3
+ * 
+ * @created 07/09/16
+ * 
  */
 @Entity
-@Table(name = "advertisement_review")
-public class Review implements Serializable{
-	private static final long serialVersionUID = -2131687729799096642L;
-	
-	private Long id;
-	private String comment;
-	private String rating;
-    private Date date;
-	private User user;
-	private Advertisement advertisement;
-	
-	@Id
+@Table(name = "advertisement_review", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
+public class Review {
+
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
-	public Long getId() {
-		return id;
-	}
-	
-	@Column(nullable = false, length = 128)
-    @Field
-	public String getComment() {
-		return comment;
-	}
-	
-	@Column(nullable = false, length = 32)
-    @Field
-	public String getRating() {
-		return rating;
-	}
-	@Column(name = "date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
-	@Field
-	public Date getDate() {
-		return date;
-	}
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SELECT)
+    private int reviewId;
+
+    @Column(name = "comment")
+    private String comment;
+
+    @Column(name = "rating")
+    private String rating;
+
+    @Column(name = "date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+    private Date date;
+
+    @ManyToOne
     @JoinColumn(name = "user_id")
-	public User getUser() {
-		return user;
-	}
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SELECT)
+    private User user;
+
+    @ManyToOne
     @JoinColumn(name = "advertisement_id")
-	public Advertisement getAdvertisement() {
-		return advertisement;
-	}
-	
-	public Review() {
+    @OnDelete(action =OnDeleteAction.CASCADE)
+    private Advertisement advertisement;
+
+    public Review() {
     }
-	
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-	
-	public void setRating(String rating) {
-		this.rating = rating;
-	}
-	
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	public void setAdvertisement(Advertisement advertisement) {
-		this.advertisement = advertisement;
-	}
-	
-	
+
+    public int getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Advertisement getAdvertisement() {
+        return advertisement;
+    }
+
+    public void setAdvertisement(Advertisement advertisement) {
+        this.advertisement = advertisement;
+    }
 }

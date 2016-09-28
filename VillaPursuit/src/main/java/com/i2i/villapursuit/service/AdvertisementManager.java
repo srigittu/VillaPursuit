@@ -14,22 +14,28 @@ public interface AdvertisementManager extends GenericManager<Advertisement, Long
 	/**
      * {@inheritDoc}
      */
-    List getActiveAdvertisements();
+    List<Advertisement> getActiveAdvertisements();
 
     /**
      * {@inheritDoc}
      */
-    List getInctiveAdvertisements();
+    List<Advertisement> getInctiveAdvertisements();
 
     /**
      * {@inheritDoc}
      */
-    List getAdvertisements();
+    List<Advertisement> getAdvertisements();
     
     /**
      * {@inheritDoc}
      */
     Advertisement saveAdvertisement(Advertisement advertisement);
+    
+    /**
+     * {@inheritDoc}
+     */
+    Advertisement getAdvertisementById(Long advertisementId);
+    
     
     /**
      * {@inheritDoc}

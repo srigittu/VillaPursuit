@@ -6,6 +6,7 @@ import com.i2i.villapursuit.Constants;
 import com.i2i.villapursuit.model.User;
 import com.i2i.villapursuit.service.AdvertisementManager;
 import com.i2i.villapursuit.service.MailEngine;
+import com.i2i.villapursuit.service.ReviewManager;
 import com.i2i.villapursuit.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -46,6 +47,7 @@ public class BaseFormController implements ServletContextAware {
     protected final transient Log log = LogFactory.getLog(getClass());
     private UserManager userManager = null;
     private AdvertisementManager advertisementManager = null;
+    private ReviewManager reviewManager = null;
     protected MailEngine mailEngine = null;
     protected SimpleMailMessage message = null;
     protected String templateName = "accountCreated.vm";
@@ -79,6 +81,15 @@ public class BaseFormController implements ServletContextAware {
 
     public AdvertisementManager getAdvertisementManager() {
         return this.advertisementManager;
+    }
+    
+    @Autowired
+    public void setReviewManager(ReviewManager reviewManager) {
+        this.reviewManager = reviewManager;
+    }
+
+    public ReviewManager getReviewManager() {
+        return this.reviewManager;
     }
     
     @SuppressWarnings("unchecked")

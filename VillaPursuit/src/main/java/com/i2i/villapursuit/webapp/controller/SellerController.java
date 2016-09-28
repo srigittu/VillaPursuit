@@ -1,28 +1,34 @@
 package com.i2i.villapursuit.webapp.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.i2i.villapursuit.service.AdvertisementManager;
+import com.i2i.villapursuit.model.Advertisement;
+import com.i2i.villapursuit.model.User;
 
 
 @Controller
-public class SellerController {
-	AdvertisementManager advertisementManager = null;
-	
-	@Autowired
-    public void setAdvertisementManager(AdvertisementManager advertisementManager) {
-        this.advertisementManager = advertisementManager;
-    }
+public class SellerController extends BaseFormController {
 	
 	@RequestMapping("/seller")
-    public String getActiveAdvertisements(HttpServletRequest request){
+    public String getSellerAdvertisements(HttpServletRequest request){
 		System.out.println("hell00o");
-		request.setAttribute("sellerAdvertisements", this.advertisementManager.getAdvertisements());
-		System.out.println(this.advertisementManager.getAdvertisements().size());
+		List<Advertisement> sellerAdvertisements = new ArrayList<Advertisement>();
+		User user = this.getUserManager().getUserByUsername(request.getRemoteUser());
+		for (Advertisement advertisement : getAdvertisementManager().getAdvertisements()) {
+			if(advertisement.getUser().getId() == user.getId()) {
+				sellerAdvertisements.add(advertisement);
+				System.out.println(advertisement.getUser().getId());
+				System.out.println(user.getId());
+			}
+		}
+		request.setAttribute("sellerAdvertisements", sellerAdvertisements);
+		System.out.println(sellerAdvertisements.size());
     	return "seller";
     }
 }
