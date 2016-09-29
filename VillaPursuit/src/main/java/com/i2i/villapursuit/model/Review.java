@@ -55,7 +55,7 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "advertisement_id")
-    @OnDelete(action =OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Advertisement advertisement;
 
     public Review() {

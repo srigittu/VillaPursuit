@@ -29,7 +29,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Implementation of <strong>SimpleFormController</strong> that interacts with
  * the {@link UserManager} to retrieve/persist values to the database.
  *
- * <p><a href="UserFormController.java.html"><i>View Source</i></a>
+ * <p>
+ * <a href="UserFormController.java.html"><i>View Source</i></a>
  *
  * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
  */
@@ -57,7 +58,8 @@ public class UserFormController extends BaseFormController {
     }
 
     /**
-     * Load user object from db before web data binding in order to keep properties not populated from web post.
+     * Load user object from db before web data binding in order to keep
+     * properties not populated from web post.
      * 
      * @param request
      * @return
@@ -72,9 +74,8 @@ public class UserFormController extends BaseFormController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String onSubmit(@ModelAttribute("user") final User user, final BindingResult errors, final HttpServletRequest request,
-            final HttpServletResponse response)
-            throws Exception {
+    public String onSubmit(@ModelAttribute("user") final User user, final BindingResult errors,
+            final HttpServletRequest request, final HttpServletResponse response) throws Exception {
         if (request.getParameter("cancel") != null) {
             if (!StringUtils.equals(request.getParameter("from"), "list")) {
                 return getCancelView();
@@ -86,7 +87,10 @@ public class UserFormController extends BaseFormController {
         if (validator != null) { // validator is null during testing
             validator.validate(user, errors);
 
-            if (errors.hasErrors() && request.getParameter("delete") == null) { // don't validate when deleting
+            if (errors.hasErrors() && request.getParameter("delete") == null) { // don't
+                                                                                // validate
+                                                                                // when
+                                                                                // deleting
                 return "userform";
             }
         }
@@ -117,8 +121,7 @@ public class UserFormController extends BaseFormController {
                 // if user is not an admin then load roles from the database
                 // (or any other user properties that should not be editable
                 // by users without admin role)
-                final User cleanUser = getUserManager().getUserByUsername(
-                        request.getRemoteUser());
+                final User cleanUser = getUserManager().getUserByUsername(request.getRemoteUser());
                 user.setRoles(cleanUser.getRoles());
             }
 
@@ -135,7 +138,8 @@ public class UserFormController extends BaseFormController {
             try {
                 getUserManager().saveUser(user);
             } catch (final AccessDeniedException ade) {
-                // thrown by UserSecurityAdvice configured in aop:advisor userManagerSecurity
+                // thrown by UserSecurityAdvice configured in aop:advisor
+                // userManagerSecurity
                 log.warn(ade.getMessage());
                 response.sendError(HttpServletResponse.SC_FORBIDDEN);
                 return null;
@@ -182,14 +186,14 @@ public class UserFormController extends BaseFormController {
 
     @ModelAttribute
     @RequestMapping(method = RequestMethod.GET)
-    protected User showForm(final HttpServletRequest request, final HttpServletResponse response)
-            throws Exception {
-        // If not an administrator, make sure user is not trying to add or edit another user
+    protected User showForm(final HttpServletRequest request, final HttpServletResponse response) throws Exception {
+        // If not an administrator, make sure user is not trying to add or edit
+        // another user
         if (!request.isUserInRole(Constants.ADMIN_ROLE) && !isFormSubmission(request)) {
             if (isAdd(request) || request.getParameter("id") != null) {
                 response.sendError(HttpServletResponse.SC_FORBIDDEN);
-                log.warn("User '" + request.getRemoteUser() + "' is trying to edit user with id '" +
-                        request.getParameter("id") + "'");
+                log.warn("User '" + request.getRemoteUser() + "' is trying to edit user with id '"
+                        + request.getParameter("id") + "'");
 
                 throw new AccessDeniedException("You do not have permission to modify other users.");
             }
@@ -210,7 +214,8 @@ public class UserFormController extends BaseFormController {
 
             return user;
         } else {
-            // populate user object from database, so all fields don't need to be hidden fields in form
+            // populate user object from database, so all fields don't need to
+            // be hidden fields in form
             return getUserManager().getUser(request.getParameter("id"));
         }
     }

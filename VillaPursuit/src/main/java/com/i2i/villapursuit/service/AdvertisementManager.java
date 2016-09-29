@@ -2,6 +2,7 @@ package com.i2i.villapursuit.service;
 
 import java.util.List;
 
+import com.i2i.villapursuit.exception.VillaPursuitException;
 import com.i2i.villapursuit.model.Advertisement;
 
 /**
@@ -11,34 +12,33 @@ import com.i2i.villapursuit.model.Advertisement;
  * @author Team #3
  */
 public interface AdvertisementManager extends GenericManager<Advertisement, Long> {
-	/**
+    /**
      * {@inheritDoc}
      */
-    List<Advertisement> getActiveAdvertisements();
+    List<Advertisement> getActiveAdvertisements() throws VillaPursuitException;
 
     /**
      * {@inheritDoc}
      */
-    List<Advertisement> getInctiveAdvertisements();
+    List<Advertisement> getInctiveAdvertisements() throws VillaPursuitException;
 
     /**
      * {@inheritDoc}
      */
-    List<Advertisement> getAdvertisements();
-    
+    List<Advertisement> getAdvertisements() throws VillaPursuitException;
+
     /**
      * {@inheritDoc}
      */
-    Advertisement saveAdvertisement(Advertisement advertisement);
-    
+    Advertisement saveAdvertisement(Advertisement advertisement) throws VillaPursuitException;
+
     /**
      * {@inheritDoc}
      */
-    Advertisement getAdvertisementById(Long advertisementId);
-    
-    
+    Advertisement getAdvertisementById(Long advertisementId) throws VillaPursuitException;
+
     /**
      * {@inheritDoc}
      */
-    void removeAdvertisementById(long advertisementId);
+    void removeAdvertisementById(long advertisementId) throws VillaPursuitException;
 }
