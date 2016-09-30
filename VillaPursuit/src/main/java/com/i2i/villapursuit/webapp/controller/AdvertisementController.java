@@ -127,7 +127,7 @@ public class AdvertisementController extends BaseFormController {
      * 
      * @param request
      *            Which sends reviewed advertisement as viewAdvertisement
-     * @return to home page.
+     * @return to viewAdvertisement page.
      */
     @RequestMapping(value = "/viewAdvertisement", method = RequestMethod.GET)
     public String viewAdvertisement(HttpServletRequest request) {
@@ -135,7 +135,7 @@ public class AdvertisementController extends BaseFormController {
         this.getAdvertisementManager().setAdvertisementViewer(advertisementId,
                 this.getUserManager().getUserByUsername(request.getRemoteUser()));
         request.setAttribute("viewAdvertisement", this.getAdvertisementManager().getAdvertisementById(advertisementId));
-        System.out.println("hello");
-        return "home";
+        System.out.println(this.getAdvertisementManager().getAdvertisementById(advertisementId).getAdvertisementReviews().size());
+        return "viewAdvertisement";
     }
 }

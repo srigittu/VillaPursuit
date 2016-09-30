@@ -152,7 +152,7 @@ public class Advertisement implements Serializable {
         return advertisementViewer;
     }
     
-    @OneToMany(mappedBy = "advertisement", cascade = javax.persistence.CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "advertisement", cascade = javax.persistence.CascadeType.ALL)
     public Set<AdvertisementReview> getAdvertisementReviews() {
         return advertisementReviews;
     }

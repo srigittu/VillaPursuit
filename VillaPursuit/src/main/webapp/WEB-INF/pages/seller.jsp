@@ -44,7 +44,7 @@
             </div>
             <br>
             <button class="button" style="vertical-align: middle"
-                onclick="window.location.href='advertisement_form'">
+                onclick="window.location.href='advertisementForm'">
                 <span>Click here</span>
             </button>
         </div>

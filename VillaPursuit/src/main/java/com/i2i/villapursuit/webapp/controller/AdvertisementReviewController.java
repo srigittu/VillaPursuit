@@ -37,6 +37,7 @@ public class AdvertisementReviewController extends BaseFormController {
         for (Advertisement advertisement : getAdvertisementManager().getActiveAdvertisements()) {
             if (advertisement.getId() == Long.valueOf((String) request.getParameter("advertisementId"))) {
                 model.addAttribute("reviewAdvertisement", advertisement);
+                System.out.println(advertisement.getAvailability());
             }
         }
         return "advertisementReview";
