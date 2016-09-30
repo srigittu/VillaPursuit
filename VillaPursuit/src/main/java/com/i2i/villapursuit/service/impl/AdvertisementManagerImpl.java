@@ -86,7 +86,7 @@ public class AdvertisementManagerImpl extends GenericManagerImpl<Advertisement, 
      * @param advertisementId
      *            Contains id of the advertisement.
      */
-    public void removeAdvertisementById(long advertisementId) {
+    public void removeAdvertisementById(Long advertisementId) {
         advertisementDao.removeAdvertisementById(advertisementId);
     }
     
