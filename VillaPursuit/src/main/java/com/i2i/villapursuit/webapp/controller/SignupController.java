@@ -32,25 +32,49 @@ import org.tuckey.web.filters.urlrewrite.utils.StringUtils;
 public class SignupController extends BaseFormController {
     private RoleManager roleManager;
 
+    /**
+     * Method which sets the role to the current user.
+     * @param roleManager
+     *            Contains object of the role manager.
+     */
     @Autowired
     public void setRoleManager(final RoleManager roleManager) {
         this.roleManager = roleManager;
     }
 
+    /**
+     * Default constructor of SignUp Controller.
+     */
     public SignupController() {
         setCancelView("redirect:login");
         setSuccessView("redirect:home");
     }
 
+    /**
+     * Method which retruns User object.
+     */
     @ModelAttribute
     @RequestMapping(method = RequestMethod.GET)
     public User showForm() {
         return new User();
     }
 
+    /**
+     * Method gets request to store user details from user.
+     * Sends the request to service to add user details into database.
+     *
+     * @param user
+     *            Contains object of User.
+     * @param errors
+     *            Contains error object.
+     * @param request
+     *            Contains object of the HTTP request.
+     * @param response
+     *            Contains object of the HTTP response.
+     */
     @RequestMapping(method = RequestMethod.POST)
-    public String onSubmit(final User user, final BindingResult errors, final HttpServletRequest request, final HttpServletResponse response)
-            throws Exception {
+    public String onSubmit(final User user, final BindingResult errors, final HttpServletRequest request,
+            final HttpServletResponse response) throws Exception {
         if (request.getParameter("cancel") != null) {
             return getCancelView();
         }
@@ -59,7 +83,8 @@ public class SignupController extends BaseFormController {
             validator.validate(user, errors);
 
             if (StringUtils.isBlank(user.getPassword())) {
-                errors.rejectValue("password", "errors.required", new Object[] { getText("user.password", request.getLocale()) },
+                errors.rejectValue("password", "errors.required",
+                        new Object[] { getText("user.password", request.getLocale()) },
                         "Password is a required field.");
             }
 
@@ -81,13 +106,14 @@ public class SignupController extends BaseFormController {
         try {
             this.getUserManager().saveUser(user);
         } catch (final AccessDeniedException ade) {
-            // thrown by UserSecurityAdvice configured in aop:advisor userManagerSecurity
+            // thrown by UserSecurityAdvice configured in aop:advisor
+            // userManagerSecurity
             log.warn(ade.getMessage());
             response.sendError(HttpServletResponse.SC_FORBIDDEN);
             return null;
         } catch (final UserExistsException e) {
-            errors.rejectValue("username", "errors.existing.user",
-                    new Object[] { user.getUsername(), user.getEmail() }, "duplicate user");
+            errors.rejectValue("username", "errors.existing.user", new Object[] { user.getUsername(), user.getEmail() },
+                    "duplicate user");
 
             return "signup";
         }
@@ -96,8 +122,8 @@ public class SignupController extends BaseFormController {
         request.getSession().setAttribute(Constants.REGISTERED, Boolean.TRUE);
 
         // log user in automatically
-        final UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                user.getUsername(), password, user.getAuthorities());
+        final UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(user.getUsername(),
+                password, user.getAuthorities());
         auth.setDetails(user);
         SecurityContextHolder.getContext().setAuthentication(auth);
 

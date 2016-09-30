@@ -12,7 +12,7 @@ import com.i2i.villapursuit.model.Advertisement;
 import com.i2i.villapursuit.model.User;
 
 /**
- * Controller to display seller's advertisement.
+ * Controller to display seller's advertisement and performs from seller operation.
  *
  * @author Team #3
  */

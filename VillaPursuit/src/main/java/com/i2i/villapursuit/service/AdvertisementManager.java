@@ -31,7 +31,7 @@ public interface AdvertisementManager extends GenericManager<Advertisement, Long
      * {@inheritDoc}
      */
     Advertisement saveAdvertisement(Advertisement advertisement);
-    
+
     /**
      * {@inheritDoc}
      */
@@ -46,4 +46,5 @@ public interface AdvertisementManager extends GenericManager<Advertisement, Long
      * {@inheritDoc}
      */
     void setAdvertisementViewer(Long advertisementId, User user);
+    
 }

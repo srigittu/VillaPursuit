@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
 /**
  * Simple class to retrieve a list of users from the database.
  * <p/>
@@ -27,6 +26,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
     private UserManager userManager = null;
 
+    /**
+     * Method which sets user manager.
+     *
+     * @param userManager
+     *            Contains object of User Manager.
+     */
     @Autowired
     public void setUserManager(UserManager userManager) {
         this.userManager = userManager;

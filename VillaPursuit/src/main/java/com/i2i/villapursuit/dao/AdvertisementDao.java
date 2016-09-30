@@ -16,46 +16,56 @@ public interface AdvertisementDao extends GenericDao<Advertisement, Long> {
      * Gets a list of Advertisements based on "active" status.
      *
      * @return List populated list of advertisements
+     * 
      */
     List<Advertisement> getActiveAdvertisements();
-    
+
     /**
      * Gets a list of Advertisements based on "inactive" status.
      *
      * @return List populated list of advertisements
+     * 
      */
     List<Advertisement> getInactiveAdvertisements();
-    
+
     /**
      * Gets a list of Advertisements.
      *
-     * @return List populated list of advertisements
+     * @return List populated list of advertisements.
+     * 
      */
     List<Advertisement> getAdvertisements();
-    
+
     /**
      * Saves a advertisement's information.
      * 
-     * @param advertisement the object to be saved
+     * @param advertisement 
+     *             The object to be saved
+     * @param advertisement
+     *             The object to be saved
      * @return the persisted advertisement object
+     *
      */
     Advertisement saveAdvertisement(Advertisement advertisement);
-    
+
+    /**
+     * Gets a advertisement's information.
+     * 
+     * @param advertisementId
+     *            the object to be saved
+     * @return the persisted advertisement object
+     * 
+     */
+    Advertisement getAdvertisementById(Long advertisementId);
+
     /**
      * Removes a advertisement from the database by advertisementId
      * 
-     * @param advertisementId the advertisement's id
+     * @param advertisementId 
+     *            The advertisement's id
      */
     void removeAdvertisementById(Long advertisementId);
 
-    /**
-     * Retrieves the particular Advertisement associated with the advertisementId
-     * 
-     * @param advertisementId the advertisement's id
-     * @return the particular advertisement.
-     */
-    Advertisement getAdvertisementById(Long advertisementId);
-    
     /**
      * Keeps the record of viewers for that particular Advertisement
      * 

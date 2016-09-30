@@ -16,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -28,8 +27,8 @@ import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 
 /**
- * This class represents the basic "advertisement" object in that allows for user to post
- * advertisement based on the privilege of seller.
+ * This class represents the basic "advertisement" object in that allows for
+ * user to post advertisement based on the privilege of seller.
  *
  * @author Team #3
  */
@@ -114,7 +113,7 @@ public class Advertisement implements Serializable {
     public String getAdvertisementCount() {
         return advertisementCount;
     }
-    
+
     @Column(name = "notification_count", length = 10)
     @Field
     @XmlTransient
@@ -127,7 +126,7 @@ public class Advertisement implements Serializable {
     public Facility getFacility() {
         return facility;
     }
-    
+
     @Embedded
     @IndexedEmbedded
     public Address getAddress() {
@@ -221,7 +220,7 @@ public class Advertisement implements Serializable {
     public void setAddress(Address address) {
         this.address = address;
     }
-    
+
     public void setUser(User user) {
         this.user = user;
     }

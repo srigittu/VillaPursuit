@@ -10,8 +10,9 @@ import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
 /**
- * This class is used to represent a Facility for an Advertisement with 
- * parking, drainage, transport, bedroom and area size information.
+ * This class is used to represent a Facility for an Advertisement with parking,
+ * drainage, transport, bedroom and area size information.
+ * 
  * @author Team #3
  */
 @Embeddable

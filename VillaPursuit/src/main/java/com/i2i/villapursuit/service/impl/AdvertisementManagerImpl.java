@@ -19,59 +19,86 @@ import com.i2i.villapursuit.service.AdvertisementManager;
 public class AdvertisementManagerImpl extends GenericManagerImpl<Advertisement, Long> implements AdvertisementManager{
     AdvertisementDao advertisementDao;
 
+    /**
+     * Constructor of current class.
+     * 
+     * @param advertisementDao
+     *            Contains object of Advertisement Dao class.
+     */
     @Autowired
     public AdvertisementManagerImpl(AdvertisementDao advertisementDao) {
         super(advertisementDao);
         this.advertisementDao = advertisementDao;
     }
-    
+
     /**
-     * {@inheritDoc}
+     * Method which gets request to get all active advertisements.
+     * 
+     * @return all active advertisements from database.
      */
     public List<Advertisement> getActiveAdvertisements() {
         return advertisementDao.getActiveAdvertisements();
     }
-    
+
     /**
-     * {@inheritDoc}
+     * Method which gets request to get all inactive advertisements.
+     * 
+     * @return all inactive advertisements from database.
      */
     public List<Advertisement> getInctiveAdvertisements() {
         return advertisementDao.getInactiveAdvertisements();
     }
-    
+
     /**
-     * {@inheritDoc}
+     * Method which gets request to get all advertisements.
+     * 
+     * @return all advertisements from database.
      */
     public List<Advertisement> getAdvertisements() {
         return advertisementDao.getAdvertisements();
     }
-    
+
     /**
-     * {@inheritDoc}
+     * Method which gets request to save an advertisement.
+     * 
+     * @param advertisement
+     *            Contains object of the advertisement.
+     * @return saved advertisement.
      */
     public Advertisement saveAdvertisement(Advertisement advertisement) {
         return advertisementDao.saveAdvertisement(advertisement);
     }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public void removeAdvertisementById(Long advertisementId) {
-        advertisementDao.removeAdvertisementById(advertisementId);
-    }
 
     /**
-     * {@inheritDoc}
-     */
-    public void setAdvertisementViewer(Long advertisementId, User user) {
-        advertisementDao.setAdvertisementViewer(advertisementId, user);
-    }
-
-    /**
-     * {@inheritDoc}
+     * Method which gets request to get an advertisement by advertisement id.
+     * 
+     * @param advertisementId
+     *            Contains id of the advertisement.
+     * @return advertisement belongs to the advertisementId
      */
     public Advertisement getAdvertisementById(Long advertisementId) {
         return advertisementDao.getAdvertisementById(advertisementId);
     }
 
+    /**
+     * Method which gets request to remove an advertisement by advertisement id.
+     * 
+     * @param advertisementId
+     *            Contains id of the advertisement.
+     */
+    public void removeAdvertisementById(long advertisementId) {
+        advertisementDao.removeAdvertisementById(advertisementId);
+    }
+    
+    /**
+     * Method which gets request to set buyer who viewed an advertisement.
+     * 
+     * @param advertisementId
+     *            Contains id of the advertisement.
+     @param user
+     *            Contains user info who viewed the advertisement.
+     */
+    public void setAdvertisementViewer(Long advertisementId, User user) {
+        advertisementDao.setAdvertisementViewer(advertisementId, user);
+    }
 }

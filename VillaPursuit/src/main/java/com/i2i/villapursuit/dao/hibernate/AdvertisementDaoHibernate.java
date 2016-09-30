@@ -88,3 +88,4 @@ public class AdvertisementDaoHibernate extends GenericDaoHibernate<Advertisement
         return (Advertisement)getSession().get(Advertisement.class, advertisementId);
     }
 }
+

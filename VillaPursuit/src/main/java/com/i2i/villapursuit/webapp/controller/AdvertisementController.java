@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.i2i.villapursuit.exception.VillaPursuitException;
 import com.i2i.villapursuit.model.Advertisement;
 import com.i2i.villapursuit.model.User;
 
@@ -28,6 +29,7 @@ import com.i2i.villapursuit.model.User;
 public class AdvertisementController extends BaseFormController {
 
     /**
+<<<<<<< HEAD
      * Method which send advertisement form to seller
      * 
      * @param model
@@ -61,12 +63,43 @@ public class AdvertisementController extends BaseFormController {
             return "redirect:seller";
         }
 
-        if (validator != null) { // validator is null during testing
-            validator.validate(advertisement, errors);
-
-            if (errors.hasErrors()) {
-                return "advertisement";
+    /**
+     * Method which gets request to add an advertisement's details. If
+     * advertisement added successfully, redirects it to seller page.
+     * 
+     * @param advertisement
+     *            Contains object of the advertisement.
+     * @param errors
+     *            Contains error message which redirects to jsp page.
+     * @param request
+     *            Contains object of HTTP Request.
+     * @return "advertisement" Returning to advertisement page.
+     */
+    @RequestMapping(value = "/addAdvertisement", method = RequestMethod.POST)
+    public String onSubmit(Advertisement advertisement, BindingResult errors, HttpServletRequest request,
+            ModelMap model) {
+        try {
+            if (request.getParameter("cancel") != null) {
+                return "redirect:seller";
             }
+
+            if (validator != null) { // validator is null during testing
+                validator.validate(advertisement, errors);
+
+                if (errors.hasErrors()) {
+                    return "advertisement";
+                }
+            }
+            // Assigning user to Advertisement
+            User user = this.getUserManager().getUserByUsername(request.getRemoteUser());
+            advertisement.setUser(user);
+
+            // saving advertisement to database
+            request.setAttribute("advertisement", this.getAdvertisementManager().saveAdvertisement(advertisement));
+            return getSuccessView();
+        } catch (VillaPursuitException e) {
+            model.addAttribute("advertisementAddException", e.toString());
+            return "advertisement";
         }
 
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;

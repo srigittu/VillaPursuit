@@ -15,7 +15,9 @@ import java.util.List;
  * common CRUD methods that they might all use. You should only need to extend
  * this class when your require custom CRUD logic.
  * <p/>
- * <p>To register this class in your Spring context file, use the following XML.
+ * <p>
+ * To register this class in your Spring context file, use the following XML.
+ * 
  * <pre>
  *     &lt;bean id="userManager" class="com.i2i.villapursuit.service.impl.GenericManagerImpl"&gt;
  *         &lt;constructor-arg&gt;
@@ -27,7 +29,9 @@ import java.util.List;
  *     &lt;/bean&gt;
  * </pre>
  * <p/>
- * <p>If you're using iBATIS instead of Hibernate, use:
+ * <p>
+ * If you're using iBATIS instead of Hibernate, use:
+ * 
  * <pre>
  *     &lt;bean id="userManager" class="com.i2i.villapursuit.service.impl.GenericManagerImpl"&gt;
  *         &lt;constructor-arg&gt;
@@ -40,14 +44,17 @@ import java.util.List;
  *     &lt;/bean&gt;
  * </pre>
  *
- * @param <T>  a type variable
- * @param <PK> the primary key for that type
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
- *  Updated by jgarcia: added full text search + reindexing
+ * @param <T>
+ *            a type variable
+ * @param <PK>
+ *            the primary key for that type
+ * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a> Updated by
+ *         jgarcia: added full text search + reindexing
  */
 public class GenericManagerImpl<T, PK extends Serializable> implements GenericManager<T, PK> {
     /**
-     * Log variable for all child classes. Uses LogFactory.getLog(getClass()) from Commons Logging
+     * Log variable for all child classes. Uses LogFactory.getLog(getClass())
+     * from Commons Logging
      */
     protected final Log log = LogFactory.getLog(getClass());
 
@@ -55,7 +62,6 @@ public class GenericManagerImpl<T, PK extends Serializable> implements GenericMa
      * GenericDao instance, set by constructor of child classes
      */
     protected GenericDao<T, PK> dao;
-
 
     public GenericManagerImpl() {
     }

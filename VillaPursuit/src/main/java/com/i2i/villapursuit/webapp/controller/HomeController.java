@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Controller to display advertisements to buyer.
+ * Controller which retrieve all advertisements and redirects to home page.
  *
  * @author Team #3
  */

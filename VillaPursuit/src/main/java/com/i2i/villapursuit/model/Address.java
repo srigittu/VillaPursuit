@@ -11,8 +11,8 @@ import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
 /**
- * This class is used to represent an address with address,
- * area, city, state, land mark and pincode information.
+ * This class is used to represent an address with address, area, city, state,
+ * land mark and pincode information.
  *
  * @author Team #3
  */
@@ -20,7 +20,7 @@ import org.hibernate.search.annotations.Indexed;
 @Indexed
 public class Address extends BaseObject implements Serializable {
     private static final long serialVersionUID = 3617859655330969141L;
-    
+
     private String address;
     private String area;
     private String city;
@@ -33,7 +33,7 @@ public class Address extends BaseObject implements Serializable {
     public String getAddress() {
         return address;
     }
-    
+
     @Column(length = 50)
     @Field
     public String getArea() {
@@ -45,13 +45,13 @@ public class Address extends BaseObject implements Serializable {
     public String getCity() {
         return city;
     }
-    
+
     @Column(length = 50)
     @Field
     public String getState() {
         return state;
     }
-    
+
     @Column(name = "land_mark", length = 150)
     @Field
     public String getLandMark() {
@@ -71,6 +71,7 @@ public class Address extends BaseObject implements Serializable {
     public void setArea(String area) {
         this.area = area;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
@@ -90,7 +91,8 @@ public class Address extends BaseObject implements Serializable {
     /**
      * Overridden equals method for object comparison. Compares based on hashCode.
      *
-     * @param o Object to compare
+     * @param o
+     *            Object to compare
      * @return true/false based on hashCode
      */
     public boolean equals(Object o) {
@@ -128,12 +130,8 @@ public class Address extends BaseObject implements Serializable {
      * @return a String representation of this class.
      */
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("landMark", this.landMark)
-                .append("area", this.area)
-                .append("address", this.address)
-                .append("state", this.state)
-                .append("pincode", this.pincode)
-                .append("city", this.city).toString();
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("landMark", this.landMark)
+                .append("area", this.area).append("address", this.address).append("state", this.state)
+                .append("pincode", this.pincode).append("city", this.city).toString();
     }
 }

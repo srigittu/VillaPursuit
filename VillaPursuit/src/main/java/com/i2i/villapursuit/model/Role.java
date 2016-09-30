@@ -18,19 +18,13 @@ import java.io.Serializable;
 /**
  * This class is used to represent available roles in the database.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
- *         Version by Dan Kibler dan@getrolling.com
- *         Extended to implement Acegi GrantedAuthority interface
- *         by David Carter david@carter.net
+ * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a> Version by
+ *         Dan Kibler dan@getrolling.com Extended to implement Acegi
+ *         GrantedAuthority interface by David Carter david@carter.net
  */
 @Entity
 @Table(name = "role")
-@NamedQueries({
-    @NamedQuery(
-            name = "findRoleByName",
-            query = "select r from Role r where r.name = :name "
-    )
-})
+@NamedQueries({ @NamedQuery(name = "findRoleByName", query = "select r from Role r where r.name = :name ") })
 public class Role extends BaseObject implements Serializable, GrantedAuthority {
     private static final long serialVersionUID = 3690197650654049848L;
     private Long id;
@@ -46,7 +40,8 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
     /**
      * Create a new instance and set the name.
      *
-     * @param name name of the role.
+     * @param name
+     *            name of the role.
      */
     public Role(final String name) {
         this.name = name;
@@ -59,7 +54,8 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
     }
 
     /**
-     * @return the name property (getAuthority required by Acegi's GrantedAuthority interface)
+     * @return the name property (getAuthority required by Acegi's
+     *         GrantedAuthority interface)
      * @see org.springframework.security.core.GrantedAuthority#getAuthority()
      */
     @Transient
@@ -117,8 +113,6 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
      * {@inheritDoc}
      */
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
-                .append(this.name)
-                .toString();
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(this.name).toString();
     }
 }

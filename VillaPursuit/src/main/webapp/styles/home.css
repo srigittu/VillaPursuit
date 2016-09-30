@@ -257,7 +257,7 @@ body {
 }
 
 .ad table tr td {
-	color: #fff;
+	color: #11deee;
 	border-collapse: collapse;
 	font-family: 'Exo', sans-serif;
 	font-size: 18px;
@@ -484,11 +484,11 @@ body {
 }
 
 ::-webkit-input-placeholder {
-	color: #fff;
+	color: #00FFFF;
 }
 
 ::-moz-input-placeholder {
-	color: #fff;
+	color: #00FFFF;
 }
 
 .imaging {
