@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import com.i2i.villapursuit.Constants;
 import com.i2i.villapursuit.model.User;
 import com.i2i.villapursuit.service.AdvertisementManager;
+import com.i2i.villapursuit.service.AdvertisementReviewManager;
 import com.i2i.villapursuit.service.MailEngine;
 import com.i2i.villapursuit.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,7 @@ public class BaseFormController implements ServletContextAware {
     protected final transient Log log = LogFactory.getLog(getClass());
     private UserManager userManager = null;
     private AdvertisementManager advertisementManager = null;
+    private AdvertisementReviewManager advertisementReviewManager = null;
     protected MailEngine mailEngine = null;
     protected SimpleMailMessage message = null;
     protected String templateName = "accountCreated.vm";
@@ -79,6 +81,15 @@ public class BaseFormController implements ServletContextAware {
 
     public AdvertisementManager getAdvertisementManager() {
         return this.advertisementManager;
+    }
+    
+    @Autowired
+    public void setAdvertisementReviewManager(AdvertisementReviewManager advertisementReviewManager) {
+        this.advertisementReviewManager = advertisementReviewManager;
+    }
+
+    public AdvertisementReviewManager getAdvertisementReviewManager() {
+        return this.advertisementReviewManager;
     }
     
     @SuppressWarnings("unchecked")

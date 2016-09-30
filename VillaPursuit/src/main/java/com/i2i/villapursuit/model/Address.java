@@ -31,63 +31,63 @@ public class Address extends BaseObject implements Serializable {
     @Column(length = 150)
     @Field
     public String getAddress() {
-		return address;
-	}
+        return address;
+    }
     
     @Column(length = 50)
     @Field
     public String getArea() {
-		return area;
-	}
+        return area;
+    }
 
-	@Column(length = 50)
+    @Column(length = 50)
     @Field
-	public String getCity() {
-		return city;
-	}
+    public String getCity() {
+        return city;
+    }
     
     @Column(length = 50)
     @Field
-	public String getState() {
-		return state;
-	}
+    public String getState() {
+        return state;
+    }
     
     @Column(name = "land_mark", length = 150)
     @Field
-	public String getLandMark() {
-		return landMark;
-	}
+    public String getLandMark() {
+        return landMark;
+    }
     
     @Column(length = 15)
     @Field(analyze= Analyze.NO)
-	public String getPincode() {
-		return pincode;
-	}
+    public String getPincode() {
+        return pincode;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setArea(String area) {
-		this.area = area;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public void setArea(String area) {
+        this.area = area;
+    }
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public void setState(String state) {
+        this.state = state;
+    }
 
-	public void setLandMark(String landMark) {
-		this.landMark = landMark;
-	}
+    public void setLandMark(String landMark) {
+        this.landMark = landMark;
+    }
 
-	public void setPincode(String pincode) {
-		this.pincode = pincode;
-	}
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
 
-	/**
+    /**
      * Overridden equals method for object comparison. Compares based on hashCode.
      *
      * @param o Object to compare
@@ -107,7 +107,7 @@ public class Address extends BaseObject implements Serializable {
     }
 
     /**
-     * Overridden hashCode method - compares on address, city, province, country and postal code.
+     * Overridden hashCode method - compares on address, city, area, state, land mark and pincode.
      *
      * @return hashCode
      */

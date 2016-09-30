@@ -5,6 +5,8 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>com.i2i.villapursuit.model.User</class>
         <class>com.i2i.villapursuit.model.Role</class>
+        <class>com.i2i.villapursuit.model.Advertisement</class>
+        <class>com.i2i.villapursuit.model.Image</class>
     </persistence-unit>
 
     <!-- WARNING: This file's file original source is at web/common/src/main/resources/META-INF. The

@@ -1,9 +1,29 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="userProfile.title"/></title>
-    <meta name="menu" content="UserMenu"/>
+    <title>User Profile</title>
+    <link rel="stylesheet" type="text/css" href="styles/seller.css">
 </head>
+<body>
+<div class="body"></div>
+		<div class="header">
+			<div>Villa<span>Pursuit</span></div>
+		</div>
+		<br>
+		<div class="editAddress">
+		<form action="home">
+			<input type="submit" value="Home">
+		</form>
+	</div>
+
+	<div class="logout">
+		<form action="logout">
+			<input type="submit" value="Logout">
+		</form>
+	</div>
+<div class="message">
+    <div>User<span>Form</span></div>
+</div>
 
 <c:set var="delObject" scope="request"><fmt:message key="userList.user"/></c:set>
 <script type="text/javascript">var msgDelConfirm =
@@ -11,17 +31,17 @@
 </script>
 
 <div class="col-sm-2">
-    <h2><fmt:message key="userProfile.heading"/></h2>
+   
     <c:choose>
         <c:when test="${param.from == 'list'}">
             <p><fmt:message key="userProfile.admin.message"/></p>
         </c:when>
         <c:otherwise>
-            <p><fmt:message key="userProfile.message"/></p>
+            
         </c:otherwise>
     </c:choose>
 </div>
-<div class="col-sm-7">
+<div class="col-sm-7" style="position: absolute; top: calc(32% - 35px); left: calc(42% - 255px); z-index: 3; background-color: #000; opacity:0.8;">
     <spring:bind path="user.*">
         <c:if test="${not empty status.errorMessages}">
             <div class="alert alert-danger alert-dismissable">
@@ -34,7 +54,7 @@
     </spring:bind>
 
     <form:form commandName="user" method="post" action="userform" id="userForm" autocomplete="off"
-               cssClass="well" onsubmit="return validateUser(this)">
+               cssClass="well" onsubmit="return validateUser(this)" style="padding: 5px; background-color: #000; opacity:0.8; border-color: #000">
         <form:hidden path="id"/>
         <form:hidden path="version"/>
         <input type="hidden" name="from" value="<c:out value="${param.from}"/>"/>
@@ -92,18 +112,26 @@
             <appfuse:label styleClass="control-label" key="user.website"/>
             <form:input cssClass="form-control" path="website" id="website"/>
         </div>
-        <div>
-            <legend class="accordion-heading">
-                <a data-toggle="collapse" href="#collapse-address"><fmt:message key="user.address.address"/></a>
-            </legend>
-            <div id="collapse-address" class="accordion-body collapse">
-                <div class="form-group">
-                    <appfuse:label styleClass="control-label" key="user.address.address"/>
-                    <form:input cssClass="form-control" path="address.address" id="address.address"/>
-                </div>
-                
-            </div>
+        <div class="row" style="background: #000; opacity: 0.6; height: 20px;"></div>
+        <label styleClass="control-label" style="font-size: 24px;">Address Details</label>
+        <div class="form-group" style="padding: 10px;">
+            <form:input cssClass="form-control" path="address.address" id="address.address" placeholder="No/Street"/>
         </div>
+        <div class="row" style="padding: 10px;">
+        <div class="col-sm-6 form-group">
+            <form:input cssClass="form-control" path="address.area" id="address.area" placeholder="Area"/>
+            <div class="row" style="background: #000; opacity: 0.6; height: 10px;"></div>
+            <form:input cssClass="form-control" path="address.city" id="address.city" placeholder="City"/>
+       </div>
+       <div class="col-sm-6 form-group">     
+            <form:input cssClass="form-control" path="address.state" id="address.state" placeholder="State"/>
+            <div class="row" style="background: #000; opacity: 0.6; height: 10px;"></div>
+            <form:input cssClass="form-control" path="address.pincode" id="address.pincode" placeholder="Pincode"/>
+       </div>
+       <div class="col-sm-6 form-group">
+            <form:input cssClass="form-control" path="address.landMark" id="address.landMark" placeholder="Landmark"/>
+        </div>
+       </div>
 <c:choose>
     <c:when test="${param.from == 'list' or param.method == 'Add'}">
         <div class="form-group">

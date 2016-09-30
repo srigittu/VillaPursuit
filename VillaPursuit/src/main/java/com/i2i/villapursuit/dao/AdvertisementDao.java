@@ -3,6 +3,7 @@ package com.i2i.villapursuit.dao;
 import java.util.List;
 
 import com.i2i.villapursuit.model.Advertisement;
+import com.i2i.villapursuit.model.User;
 
 /**
  * Advertisement Data Access Object (GenericDao) interface.
@@ -34,6 +35,7 @@ public interface AdvertisementDao extends GenericDao<Advertisement, Long> {
     
     /**
      * Saves a advertisement's information.
+     * 
      * @param advertisement the object to be saved
      * @return the persisted advertisement object
      */
@@ -41,7 +43,25 @@ public interface AdvertisementDao extends GenericDao<Advertisement, Long> {
     
     /**
      * Removes a advertisement from the database by advertisementId
+     * 
      * @param advertisementId the advertisement's id
      */
-    void removeAdvertisementById(long advertisementId);
+    void removeAdvertisementById(Long advertisementId);
+
+    /**
+     * Retrieves the particular Advertisement associated with the advertisementId
+     * 
+     * @param advertisementId the advertisement's id
+     * @return the particular advertisement.
+     */
+    Advertisement getAdvertisementById(Long advertisementId);
+    
+    /**
+     * Keeps the record of viewers for that particular Advertisement
+     * 
+     * @param advertisementId the advertisement's id
+     * @param userId the user's id
+     */
+    void setAdvertisementViewer(Long advertisementId, User user);
+    
 }

@@ -7,7 +7,6 @@
 
 <body>
 <div class="body"></div>
-    <div class="grad"></div>
 		<div class="header">
 			<div>Villa<span>Pursuit</span></div>
 		</div>
@@ -80,26 +79,31 @@
                 <appfuse:label styleClass="control-label" key="user.phoneNumber"/>
                 <form:input cssClass="form-control" path="phoneNumber" id="phoneNumber"/>
             </div>
-        </div>
-        <div class="form-group">
-            <appfuse:label styleClass="control-label" key="user.website"/>
-            <form:input cssClass="form-control" path="website" id="website"/>
-        </div>
-        <div>
-            <legend class="accordion-heading">
-                <a data-toggle="collapse" href="#collapse-address"><fmt:message key="user.address.address"/></a>
-            </legend>
-            <div id="collapse-address" class="accordion-body collapse">
-                <div class="form-group">
-                    <form:input cssClass="form-control" path="address.address" id="address.address" placeholder="No/Street"/>
-                    <form:input cssClass="form-control" path="address.area" id="address.area" placeholder="Area"/>
-                    <form:input cssClass="form-control" path="address.city" id="address.city" placeholder="City"/>
-                    <form:input cssClass="form-control" path="address.state" id="address.state" placeholder="State"/>
-                    <form:input cssClass="form-control" path="address.pincode" id="address.pincode" placeholder="Pincode"/>
-                    <form:input cssClass="form-control" path="address.landMark" id="address.landMark" placeholder="Landmark"/>
-                </div>
+            <div class="col-sm-6 form-group">
+                <appfuse:label styleClass="control-label" key="user.website"/>
+                <form:input cssClass="form-control" path="website" id="website"/>
             </div>
         </div>
+        <div class="row" style="background: #000; opacity: 0.6; height: 20px;"></div>
+        <label styleClass="control-label" style="font-size: 24px;">Address Details</label>
+        <div class="form-group" style="padding: 10px;">
+            <form:input cssClass="form-control" path="address.address" id="address.address" placeholder="No/Street"/>
+        </div>
+        <div class="row" style="padding: 10px;">
+        <div class="col-sm-6 form-group">
+            <form:input cssClass="form-control" path="address.area" id="address.area" placeholder="Area"/>
+            <div class="row" style="background: #000; opacity: 0.6; height: 10px;"></div>
+            <form:input cssClass="form-control" path="address.city" id="address.city" placeholder="City"/>
+       </div>
+       <div class="col-sm-6 form-group">     
+            <form:input cssClass="form-control" path="address.state" id="address.state" placeholder="State"/>
+            <div class="row" style="background: #000; opacity: 0.6; height: 10px;"></div>
+            <form:input cssClass="form-control" path="address.pincode" id="address.pincode" placeholder="Pincode"/>
+       </div>
+       <div class="col-sm-6 form-group">
+            <form:input cssClass="form-control" path="address.landMark" id="address.landMark" placeholder="Landmark"/>
+        </div>
+       </div>
         <div class="form-group" style="float: right">
             <button type="submit" class="btn btn-primary" name="save" onclick="bCancel=false">
                 <i class="icon-ok icon-white"></i> <fmt:message key="button.register"/>
@@ -110,7 +114,7 @@
         </div>
     </form:form>
 </div>
-
+</body>
 <c:set var="scripts" scope="request">
 <v:javascript formName="signup" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value="/scripts/validator.jsp"/>"></script>

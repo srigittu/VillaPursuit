@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.i2i.villapursuit.dao.AdvertisementDao;
 import com.i2i.villapursuit.model.Advertisement;
+import com.i2i.villapursuit.model.User;
 import com.i2i.villapursuit.service.AdvertisementManager;
 
 /**
@@ -16,47 +17,61 @@ import com.i2i.villapursuit.service.AdvertisementManager;
  */
 @Service("advertisementManager")
 public class AdvertisementManagerImpl extends GenericManagerImpl<Advertisement, Long> implements AdvertisementManager{
-	AdvertisementDao advertisementDao;
+    AdvertisementDao advertisementDao;
 
     @Autowired
     public AdvertisementManagerImpl(AdvertisementDao advertisementDao) {
         super(advertisementDao);
         this.advertisementDao = advertisementDao;
     }
-	
+    
     /**
      * {@inheritDoc}
      */
-	public List<Advertisement> getActiveAdvertisements() {
-		return advertisementDao.getActiveAdvertisements();
-	}
+    public List<Advertisement> getActiveAdvertisements() {
+        return advertisementDao.getActiveAdvertisements();
+    }
     
-	/**
+    /**
      * {@inheritDoc}
      */
-	public List<Advertisement> getInctiveAdvertisements() {
-		return advertisementDao.getInactiveAdvertisements();
-	}
+    public List<Advertisement> getInctiveAdvertisements() {
+        return advertisementDao.getInactiveAdvertisements();
+    }
     
-	/**
+    /**
      * {@inheritDoc}
      */
-	public List<Advertisement> getAdvertisements() {
-		return advertisementDao.getAdvertisements();
-	}
+    public List<Advertisement> getAdvertisements() {
+        return advertisementDao.getAdvertisements();
+    }
     
-	/**
+    /**
      * {@inheritDoc}
      */
-	public Advertisement saveAdvertisement(Advertisement advertisement) {
-		return advertisementDao.saveAdvertisement(advertisement);
-	}
+    public Advertisement saveAdvertisement(Advertisement advertisement) {
+        return advertisementDao.saveAdvertisement(advertisement);
+    }
     
-	/**
+    /**
      * {@inheritDoc}
      */
-	public void removeAdvertisementById(long advertisementId) {
-		advertisementDao.removeAdvertisementById(advertisementId);
-	}
-	
+    public void removeAdvertisementById(Long advertisementId) {
+        advertisementDao.removeAdvertisementById(advertisementId);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setAdvertisementViewer(Long advertisementId, User user) {
+        advertisementDao.setAdvertisementViewer(advertisementId, user);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Advertisement getAdvertisementById(Long advertisementId) {
+        return advertisementDao.getAdvertisementById(advertisementId);
+    }
+
 }

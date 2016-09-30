@@ -1,6 +1,5 @@
 package com.i2i.villapursuit.webapp.controller;
 
-import com.i2i.villapursuit.Constants;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.i2i.villapursuit.Constants;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,7 +17,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Controller class to upload Files.
+ * Controller class to upload files.
  * <p/>
  * <p>
  * <a href="FileUploadFormController.java.html"><i>View Source</i></a>

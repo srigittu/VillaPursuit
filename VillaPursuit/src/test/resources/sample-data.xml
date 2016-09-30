@@ -177,6 +177,7 @@
             <value description="role_id">-4</value>
         </row>
     </table>
+    
     <table name="seller_advertisement">
         <column>id</column>
         <column>title</column>
@@ -190,6 +191,8 @@
         <column>land_mark</column>
         <column>pincode</column>
         <column>state</column>
+        <column>bedroom</column>
+        <column>area_size</column>
         <column>user_id</column>
         <row>
             <value description="id">-1</value>
@@ -204,7 +207,9 @@
             <value description="pincode">600094</value>
             <value description="state">TN</value>
             <value description="land_mark">Back Side to Forum Mall</value>
-            <value description="id">-5</value>
+            <value description="bedroom">3BHK</value>
+            <value description="area_size">12,500Sq.ft</value>
+            <value description="user_id">-5</value>
         </row>
         <row>
             <value description="id">-2</value>
@@ -219,8 +224,11 @@
             <value description="pincode">600047</value>
             <value description="state">TN</value>
             <value description="land_mark">Back Side to Mega Mart</value>
-            <value description="id">-5</value>
-            
+            <value description="bedroom">2BHK</value>
+            <value description="area_size">10,500Sq.ft</value>
+            <value description="user_id">-5</value>
         </row>
     </table>
+    
+    
 </dataset>
